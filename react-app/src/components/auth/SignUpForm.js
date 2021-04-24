@@ -40,6 +40,9 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={onSignUp}>
+      <div className="flex-container">
+        <img style={{ paddingBottom: '20px' }} src={require('../../frontend-assets/logo_black_text_trans.png')} height="70px"></img>
+      </div>
       <div>
         <label>User Name</label>
         <input
@@ -78,6 +81,9 @@ const SignUpForm = () => {
         ></input>
       </div>
       <button type="submit">Sign Up</button>
+      <div style={{ paddingTop: '20px' }} className="flex-container">
+        <p>Already have an account?<a href="/login">  Log in</a></p>
+      </div>
     </form>
   );
 };
