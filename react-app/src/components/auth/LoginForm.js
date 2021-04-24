@@ -18,6 +18,14 @@ const LoginForm = () => {
     }
   };
 
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data.errors) {
+      setErrors(data.errors);
+    }
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -32,6 +40,9 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={onLogin}>
+      <div className="flex-container">
+        <img style={{ paddingBottom: '20px' }} src={require('../../frontend-assets/logo_black_text_trans.png')} height="70px"></img>
+      </div>
       <div>
         {errors.map((error) => (
           <div>{error}</div>
@@ -42,7 +53,7 @@ const LoginForm = () => {
         <input
           name="email"
           type="text"
-          placeholder="Email"
+          // placeholder="Email"
           value={email}
           onChange={updateEmail}
         />
@@ -52,11 +63,15 @@ const LoginForm = () => {
         <input
           name="password"
           type="password"
-          placeholder="Password"
+          // placeholder="Password"
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
+        <button type="submit">Log in</button>
+        <button type="submit" onClick={demoLogin}>Demo User</button>
+        <div style={{ paddingTop: '20px' }} className="flex-container">
+          <p>Don't have an account?<a href="/sign-up">  Sign up</a></p>
+        </div>
       </div>
     </form>
   );

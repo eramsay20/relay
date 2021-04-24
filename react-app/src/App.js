@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-// import { authenticate } from "./services/auth";
+import Footer from './components/Footer';
 import { authenticate } from "./store/session";
 
 function App() {
@@ -28,24 +28,41 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path="/users" exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
-      </Switch>
+      <div className={`app-container`}>
+        <div className={`header flex-container`}>
+          <NavBar />
+        </div>
+          <Switch>
+            <Route path="/login" exact={true}>
+              <div className={`main flex-container`}>
+                <LoginForm />
+              </div>
+            </Route>
+            <Route path="/sign-up" exact={true}>
+              <div className={`main flex-container`}>
+                <SignUpForm />
+              </div>
+            </Route>
+            <ProtectedRoute path="/users" exact={true} >
+              <div className={`main flex-container`}>
+                <UsersList/>
+              </div>
+            </ProtectedRoute>
+            <ProtectedRoute path="/users/:userId" exact={true} >
+              <div className={`main flex-container`}>
+                <User />
+              </div>
+            </ProtectedRoute>
+            <ProtectedRoute path="/" exact={true}>
+              <div className={`main flex-container`}>
+                <h1>My Home Page</h1>
+              </div>
+            </ProtectedRoute>
+          </Switch>
+        <div className={`footer flex-container`}>
+          <Footer />
+        </div>
+      </div>
     </BrowserRouter>
   );
 }
