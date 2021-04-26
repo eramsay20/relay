@@ -24,7 +24,7 @@ const deleteTeam = (payload) => ({
 })
 
 export const getTeamsFunction = () => async dispatch => {
-    const reponse = await fetch('/api/teams',{
+    const response = await fetch('/api/teams',{
         headers: {'Content-Type': 'application/json'}
     });
     if (response.ok) {
@@ -102,7 +102,7 @@ const teamReducer = (state=initialState, action) => {
         }
         case DELETE: {
             const newState = {...state};
-            const id = payload.id
+            const id = action.payload.id
             delete newState[id]
             delete newState.team[id]
             return {
