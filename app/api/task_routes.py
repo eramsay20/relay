@@ -45,7 +45,7 @@ def task(id):
 def edit(id):
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit_on():
+    if form.validate_on_submit():
         task = Task.query.get(id)
         task.project_id = form.data['project_id']
         task.user_id = form.data['user_id']
@@ -68,5 +68,5 @@ def delete(id):
         task = Task.query.get(id)
         db.session.delete(task)
         db.session.commit()
-        return {'result': 'deleted!'}
+        return {'id': id}
     return {'errors': form.errors}

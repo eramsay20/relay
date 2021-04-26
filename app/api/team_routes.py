@@ -69,5 +69,5 @@ def delete(id):
         team = Team.query.get(id)
         db.session.delete(team)
         db.session.commit()
-        return {'result': 'deleted!'}
+        return {'id': id}
     return {'errors': form.errors}

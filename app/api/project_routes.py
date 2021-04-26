@@ -7,7 +7,7 @@ project_routes = Blueprint('projects', __name__)
 
 
 @project_routes.route("/", methods=["GET", "POST"])
-# @login_required
+@login_required
 def projects():
     projects = Project.query.filter(Project.user_id == session["_user_id"])
     print(projects)
