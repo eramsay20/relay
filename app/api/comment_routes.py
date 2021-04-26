@@ -32,4 +32,4 @@ def comment(id):
         db.session.delete(comment)
         db.session.commit()
         return comment.to_dict()
-    return comment.to_dict()
+    return comment.to_dict() if comment else {"Comment": "Null"}

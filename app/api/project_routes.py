@@ -33,4 +33,4 @@ def project(id):
         db.session.commit()
         return redirect("/")
     print(project)
-    return project.to_dict() or {"Project": "None"}
+    return project.to_dict() if project else {"Project": "Null"}
