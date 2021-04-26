@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SelectField, DateField, BooleanField
-from wtforms import IntegerField
+from wtforms import StringField, TextAreaField, SelectField, DateField
+from wtforms import IntegerField, BooleanField
 from wtforms.validators import DataRequired
 from app.models import User, Team, Project
 
@@ -14,11 +14,12 @@ from app.models import User, Team, Project
 
 choices = [(1, 'username')]  # hardcoded placeholder until we have seed data
 
+
 class TaskForm(FlaskForm):
     # Integerfields marked '.' should be rendered as hidden fields
     project_id = IntegerField('.', validators=[DataRequired()])
     title = StringField('title', validators=[DataRequired()])
-    team = SelectField('team', coerce=int, choices=choices)
+    user_id = SelectField('user_id', coerce=int, choices=choices)
     due_date = DateField('due_date')
     description = TextAreaField('description')
     complete = BooleanField('complete', false_values=None)

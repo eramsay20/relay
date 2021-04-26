@@ -6,8 +6,15 @@ from flask_login import current_user, login_user, logout_user, login_required
 team_routes = Blueprint('teams', __name__)
 
 
-@team_routes.route('/')
+@team_routes.route('/', methods=["Get"])
 def teams():
+    teams = Team.query.all()
+    team_list = [team.to_dict() for team in teams]
+    return team_list
+
+
+@team_routes.route('/', methods=["POST"])
+def make():
     form = TeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit_on_submit():

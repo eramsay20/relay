@@ -6,50 +6,56 @@ from flask_login import current_user, login_user, logout_user, login_required
 task_routes = Blueprint('tasks', __name__)
 
 
-@task_routes.route('/')
-def tasks():
-    form = TeamForm()
+@team_routes.route('/', methods=["Get"])
+def teams():
+    tasks = Task.query.all()
+    task_list = [task.to_dict() for task in tasks]
+    return task_list
+
+
+@task_routes.route('/', methods=["POST"])
+def make():
+    form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit_on_submit():
-        team = Team(
+        task = Task(
             title=form.data['title']
+            project_id=form.data['project_id']
+            user_id=form.data['user_id']
+            due_date=form.data['due_date']
+            description=form.data['description']
+            complete=form.data['complete']
         )
-        db.session.add(team)
+        db.session.add(task)
         db.session.commit()
-        return team.to_dict()
+        return task.to_dict()
     return {'errors': form.errors}
 
 
-@team_routes.route('/<int:id>', methods=["GET"])
+@task_routes.route('/<int:id>', methods=["GET"])
 def task(id):
-    # in our routes documentation we suggest pulling out task
-    # and comment information here. However I am not, because
-    # those are attached to project not team, and we should use the project
-    # pull for that.
+    task = Task.query.get(id)
 
-    team = Team.query.get(id)
-
-    # Below in case you guys disagree. Will need to import above
-    # project = Project.query.filter_by(team_id=id).all()
-    # task = Task.query.filter_by(project_id=project.id).all()
-    # comment = Comment.query.filter_by(task_id=task.id).all()
-
-    return team.to_dict()
+    return task.to_dict()
 
 
 @team_routes.route('/<int:id>', methods=["PUT"])
 def edit(id):
-    form = TeamForm()
+    form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit_on_submit():
-        team = Team.query.get(id)
-        team.title = form.data['title']
+        task = Task.query.get(id)
+        task.project_id = form.data['project_id']
+        task.user_id = form.data['user_id']
+        task.due_date = form.data['due_date']
+        task.description = form.data['description']
+        task.complete = form.data['complete']
         db.session.commit()
-        return team.to_dict()
+        return task.to_dict()
     return {'errors': form.errors}
 
 
-@team_routes.route('/<int:id>', , methods=["DELETE"])
+@task_routes.route('/<int:id>', , methods=["DELETE"])
 def delete(id):
     # I don't know how to handle csrf outside the forms, so for now
     # I'm kludging with a delete form
@@ -57,7 +63,7 @@ def delete(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit_on_submit():
         task = Task.query.get(id)
-        db.session.delete(team)
-        db.session.commit(task)
+        db.session.delete(task)
+        db.session.commit()
         return {'result': 'deleted!'}
     return {'errors': form.errors}
