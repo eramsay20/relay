@@ -1,4 +1,7 @@
 from app.models import db, Task
+from datetime import date
+
+today = date.today()
 
 
 def seed_tasks():
@@ -8,7 +11,7 @@ def seed_tasks():
         complete=False,
         title='ea dolore atque totam doloribus',
         user_id=1,
-        due_date=None,
+        due_date=today,
         description='Test description 1'
     )
 
@@ -19,7 +22,7 @@ def seed_tasks():
         complete=False,
         title='ab consequuntur maxime sit ea',
         user_id=1,
-        due_date=None,
+        due_date=today,
         description='Test description 2'
     )
 
@@ -30,7 +33,7 @@ def seed_tasks():
         complete=False,
         title='corrupti est ut sit repellendus',
         user_id=1,
-        due_date=None,
+        due_date=today,
         description='Test description 3'
     )
 
