@@ -1,12 +1,12 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Task, db
 from app.forms import TaskForm, DeleteForm
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import login_required
 
 task_routes = Blueprint('tasks', __name__)
 
 
-@team_routes.route('/', methods=["Get"])
+@team_routes.route('/', methods=["GET"])
 def teams():
     tasks = Task.query.all()
     task_list = [task.to_dict() for task in tasks]
@@ -14,6 +14,7 @@ def teams():
 
 
 @task_routes.route('/', methods=["POST"])
+@login_required
 def make():
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -40,6 +41,7 @@ def task(id):
 
 
 @team_routes.route('/<int:id>', methods=["PUT"])
+@login_required
 def edit(id):
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -56,6 +58,7 @@ def edit(id):
 
 
 @task_routes.route('/<int:id>', , methods=["DELETE"])
+@login_required
 def delete(id):
     # I don't know how to handle csrf outside the forms, so for now
     # I'm kludging with a delete form

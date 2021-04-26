@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Team, db
 from app.forms import TeamForm, DeleteForm
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import login_required
 
 team_routes = Blueprint('teams', __name__)
 
@@ -14,6 +14,7 @@ def teams():
 
 
 @team_routes.route('/', methods=["POST"])
+@login_required
 def make():
     form = TeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -45,6 +46,7 @@ def team(id):
 
 
 @team_routes.route('/<int:id>', methods=["PUT"])
+@login_required
 def edit(id):
     form = TeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -57,6 +59,7 @@ def edit(id):
 
 
 @team_routes.route('/<int:id>', , methods=["DELETE"])
+@login_required
 def delete(id):
     # I don't know how to handle csrf outside the forms, so for now
     # I'm kludging with a delete form
