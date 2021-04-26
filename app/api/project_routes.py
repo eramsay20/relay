@@ -23,8 +23,7 @@ def projects():
         return new_project.to_dict()
     # return {"projects": [project.to_dict() for project in projects]}
     return {"projects": "null"}
-
-
+ 
 @project_routes.route("/<int:id>", methods=["GET", "DELETE"])
 # @login_required
 def project(id):
