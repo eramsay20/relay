@@ -5,33 +5,31 @@ const faker = require('faker')
 const seed_user = (num) => {
     let i = 1
     let j = 1
-    console.log(`def seed_user_teams(): `)
+    console.log(`COPY BELOW HERE`)
+    team = ['test', 'onboarding', 'product', 'sales', 'engineering', 'finance', 'hr']
+
     while(j <= num){
-        while (i <= num) {
+        while (i <= 6) {
             const string = `
-            user${i} = user_team(
-            team_id= "${faker.name.firstName()} ${faker.name.lastName()}",
+            user${j} = User(
+            username= "${faker.name.firstName()} ${faker.name.lastName()}",
             email= "${faker.internet.email()}",
             password= "${faker.internet.password()}"
             )`
             console.log(string)
             console.log("")
-            console.log(`db.session.add(user${i})`)
+            console.log(`user${j}.teams.append(${team[i]})`)
+            console.log(`db.session.add(user${j})`)
             console.log("")
             i++
+            j++
         }
-        i = 1;
-        j++
+        i = 1
     }
-    console.log(`db.session.commit()`)
     console.log("")
     console.log("")
-    console.log(`
-    def undo_users():
-    db.session.execute('TRUNCATE user_teams RESTART IDENTITY CASCADE;')
-    db.session.commit()`)
 };
 
-seed_user(6)
+seed_user(30)
 
-// COMMAND:   ' node user-data.js'
+// COMMAND:   ' node users-teams-data.js'

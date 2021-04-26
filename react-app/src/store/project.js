@@ -37,8 +37,8 @@ export const projects = () => async dispatch => {
     };
     dispatch(setProjects(data))
 };
-//double declared function below so I changed
-export const removeProjectFunction = (projectId) => async dispatch => {
+
+export const deleteProject = (projectId) => async dispatch => {
     const response = await fetch(`/api/projects/${projectId}`, {
         headers: {'Content-Type': 'application/json'}
     });

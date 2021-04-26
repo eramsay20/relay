@@ -65,7 +65,7 @@ def delete(id):
     # I'm kludging with a delete form
     form = DeleteForm
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit_on_submit():
+    if form.validate_on_submit():
         team = Team.query.get(id)
         db.session.delete(team)
         db.session.commit()
