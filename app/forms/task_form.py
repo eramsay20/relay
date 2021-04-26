@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SelectField, DateField
-from wtforms import IntegerField, BooleanField
+from wtforms import (
+    IntegerField, StringField, TextAreaField, SelectField,
+    DateField, BooleanField
+    )
 from wtforms.validators import DataRequired
 from app.models import User, Team, Project
 
