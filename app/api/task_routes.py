@@ -68,5 +68,5 @@ def delete(id):
         task = Task.query.get(id)
         db.session.delete(task)
         db.session.commit()
-        return {'result': 'deleted!'}
+        return {'id': id}
     return {'errors': form.errors}
