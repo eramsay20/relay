@@ -6,7 +6,7 @@ from flask_login import login_required
 task_routes = Blueprint('tasks', __name__)
 
 
-@team_routes.route('/', methods=["GET"])
+@task_routes.route('/', methods=["GET"])
 def teams():
     tasks = Task.query.all()
     task_list = [task.to_dict() for task in tasks]
@@ -20,11 +20,11 @@ def make():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit_on_submit():
         task = Task(
-            title=form.data['title']
-            project_id=form.data['project_id']
-            user_id=form.data['user_id']
-            due_date=form.data['due_date']
-            description=form.data['description']
+            title=form.data['title'],
+            project_id=form.data['project_id'],
+            user_id=form.data['user_id'],
+            due_date=form.data['due_date'],
+            description=form.data['description'],
             complete=form.data['complete']
         )
         db.session.add(task)
@@ -40,12 +40,12 @@ def task(id):
     return task.to_dict()
 
 
-@team_routes.route('/<int:id>', methods=["PUT"])
+@task_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def edit(id):
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit_on_submit():
+    if form.validate_on_submit_on():
         task = Task.query.get(id)
         task.project_id = form.data['project_id']
         task.user_id = form.data['user_id']
@@ -57,7 +57,7 @@ def edit(id):
     return {'errors': form.errors}
 
 
-@task_routes.route('/<int:id>', , methods=["DELETE"])
+@task_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete(id):
     # I don't know how to handle csrf outside the forms, so for now

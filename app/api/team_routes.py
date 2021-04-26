@@ -58,14 +58,14 @@ def edit(id):
     return {'errors': form.errors}
 
 
-@team_routes.route('/<int:id>', , methods=["DELETE"])
+@team_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete(id):
     # I don't know how to handle csrf outside the forms, so for now
     # I'm kludging with a delete form
     form = DeleteForm
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit_on_submit():
+    if form.validate_on_submit():
         team = Team.query.get(id)
         db.session.delete(team)
         db.session.commit()
