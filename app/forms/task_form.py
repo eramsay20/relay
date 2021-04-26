@@ -1,5 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SelectField, DateField, BooleanField
+from wtforms import (
+    StringField, TextAreaField, SelectField, DateField, BooleanField
+    )
 from wtforms import IntegerField
 from wtforms.validators import DataRequired
 from app.models import User, Team, Project
@@ -13,6 +15,7 @@ from app.models import User, Team, Project
 #     return team_choices
 
 choices = [(1, 'username')]  # hardcoded placeholder until we have seed data
+
 
 class TaskForm(FlaskForm):
     # Integerfields marked '.' should be rendered as hidden fields
