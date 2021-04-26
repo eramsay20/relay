@@ -2,7 +2,7 @@ const faker = require('faker')
 
 // const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 
-const data_projects = (num) => {
+const seed_projects = (num) => {
     let i = 1
     console.log(`def seed_users(): `)
 
@@ -29,6 +29,6 @@ const data_projects = (num) => {
     db.session.commit()`)
 };
 
-seed_user(19)
+seed_projects(19)
 
 // COMMAND:   ' node seed-data-gen.js'
