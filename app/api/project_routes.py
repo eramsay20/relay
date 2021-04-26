@@ -7,7 +7,7 @@ project_routes = Blueprint('projects', __name__)
 
 
 @project_routes.route("/", methods=["GET", "POST"])
-# @login_required
+@login_required
 def projects():
     projects = Project.query.filter(
         Project.user_id == session["_user_id"]).all()
@@ -25,11 +25,12 @@ def projects():
 
 
 @project_routes.route("/<int:id>", methods=["GET", "DELETE"])
-# @login_required
+@login_required
 def project(id):
     project = Project.query.get(id)
     if request.method == "DELETE":
         db.session.delete(project)
         db.session.commit()
         return redirect("/")
-    return project.to_dict()
+    print(project)
+    return project.to_dict() or {"Project": "None"}
