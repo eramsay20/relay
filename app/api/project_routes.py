@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request, redirect
 from flask_login import login_required
 # from app.forms import ProjectForm
-from app.models import Project, Task, Team
+from app.models import Project, Task, Team, User
 
 project_routes = Blueprint('projects', __name__)
 
@@ -9,8 +9,8 @@ project_routes = Blueprint('projects', __name__)
 @project_routes.route("/", methods=["GET", "POST"])
 # @login_required
 def projects():
-    projects = Project.query.filter(Project.user_id == session["_user_id"])
-    print(projects)
+    projects = Project.query.filter(
+        Project.user_id == session["_user_id"]).all()
     if request.method == "POST":
         req = request.form
         new_project = Project(
@@ -21,8 +21,7 @@ def projects():
         db.session.add(new_project)
         db.session.commit()
         return new_project.to_dict()
-    # return {"projects": [project.to_dict() for project in projects]}
-    return {"projects": "null"}
+    return {"projects": [project.to_dict() for project in projects]}
 
 
 @project_routes.route("/<int:id>", methods=["GET", "DELETE"])
