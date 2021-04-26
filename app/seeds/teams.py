@@ -22,7 +22,6 @@ def seed_teams():
 
 
 # Uses a raw SQL query to TRUNCATE the users table.
-# Uses a raw SQL query to TRUNCATE the users table.
 
 
 def undo_teams():
