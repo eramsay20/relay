@@ -58,7 +58,7 @@ def edit(id):
     return {'errors': form.errors}
 
 
-@team_routes.route('/<int:id>', , methods=["DELETE"])
+@team_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete(id):
     # I don't know how to handle csrf outside the forms, so for now

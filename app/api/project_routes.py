@@ -8,7 +8,7 @@ project_routes = Blueprint('projects', __name__)
 
 @project_routes.route("/", methods=["GET", "POST"])
 @login_required
-def project():
+def projects():
     projects = Project.query.filter()
     if request.method == "POST":
         req = request.form

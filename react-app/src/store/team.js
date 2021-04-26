@@ -54,7 +54,7 @@ export const deleteTeamFunction = (teamId) => async dispatch => {
 
 const initialState = {team: null, teams: null}
 
-const teamsReducer = (state=initialState, action) => {
+const teamReducer = (state=initialState, action) => {
     switch(action.type) {
         case LOAD: {
             const allTeams = {}
@@ -94,3 +94,5 @@ const teamsReducer = (state=initialState, action) => {
             return state;
     }
 }
+
+export default teamReducer
