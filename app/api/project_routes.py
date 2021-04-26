@@ -6,21 +6,21 @@ from app.models import Project, Task, Team
 project_routes = Blueprint('projects', __name__)
 
 
-@project_routes.route("/", methods=["GET", "POST"])
-@login_required
-def project():
-    projects = Project.query.filter()
-    if request.method == "POST":
-        req = request.form
-        new_project = Project(
-            user_id=session["_user_id"],
-            team_id=req.get("team"),
-            title=req.get("title")
-        )
-        db.session.add(new_project)
-        db.session.commit()
-        return new_project.to_dict()
-    return {"projects": [projects.to_dict() for project in projects]}
+# @project_routes.route("/", methods=["GET", "POST"])
+# @login_required
+# def project():
+#     projects = Project.query.all()
+#     if request.method == "POST":
+#         req = request.form
+#         new_project = Project(
+#             user_id=session["_user_id"],
+#             team_id=req.get("team"),
+#             title=req.get("title")
+#         )
+#         db.session.add(new_project)
+#         db.session.commit()
+#         return new_project.to_dict()
+#     return {"projects": [project.to_dict() for project in projects]}
 
 
 @project_routes.route("/<int:id>", methods=["GET", "DELETE"])
