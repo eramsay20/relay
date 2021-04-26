@@ -3,8 +3,11 @@ from wtforms import StringField, SelectField, BooleanField, IntegerField
 from wtforms.validators import DataRequired
 from app.models import Team
 
-team_list = Team.query.all()
-team_choices = [(team.id, team.title) for team in team_list]
+# team_list = Team.query.all()
+# team_choices = [(team.id, team.title) for team in team_list]
+
+# hardcoded placeholder until we have seed data
+team_choices = [(1, 'Analysts')]
 
 
 class ProjectForm(FlaskForm):
