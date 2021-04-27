@@ -61,20 +61,59 @@ body {
     background-color: #151b26;
 }
 
-/* STARTER FOR PROFILE PAGE, DO NOT DELETE */
-/* .profile-container {
+/* PROFILE LAYOUT */
+
+.profile-container {
     display: grid;
-    
     grid-template-areas:
-    "nav main";
-    
-    grid-template-columns: 250px 1fr;
-    grid-template-rows: 1fr;
+      "sidebar tasks"
+      "sidebar projects";
+      
+    grid-template-columns: 275px 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-gap: 10px;
     height: 100%;
-} */
+    width: 100%;
+}
+
+.sidebar{
+    grid-area: sidebar;
+}
 
 
+.tasks{
+    grid-area: tasks;
+    background-color: green;
+}
+
+.projects{
+    grid-area: projects;
+    background-color: blue;
+}
+
+/* SIDEBAR LAYOUT */
+.sidebar-container {
+    display: grid;
+    grid-template-areas:
+      "sidebar-nav"
+      "sidebar-teams";
+      
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar-nav{
+    grid-area: sidebar-nav;
+    background-color: var(--ORANGE_FADE);
+}
+
+.sidebar-teams{
+    grid-area: sidebar-teams;
+    background-color: var(--RED_FADE);
+}
 
 
 /* LINKS */
