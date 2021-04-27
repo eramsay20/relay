@@ -9,8 +9,8 @@ const ProjectContent = () => {
     const user = useSelector(state => state.session.user);
 
     return (
-        <div className="project-task-container flex-container">
-            <div className="task-header">
+        <div className="project-task-container">
+            <div className="task-header flex-container">
                 <TaskHeader />
             </div>
             <div className="task-container">

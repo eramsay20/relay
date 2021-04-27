@@ -14,15 +14,12 @@ const TaskTable = () => {
                     <td></td>
                     <td>Task Name</td>
                     <td>Assignee</td>
-                    <td>Due Date</td>
+                    <td style={{ 'borderRight': 'none' }}>Due Date</td>
                 </tr>
             </thead>
             <tbody>
                 <div className='task-row-entries'>
                     {/* LOOP TASK ROWS HERE */}
-                    <TaskRow />
-                    <TaskRow />
-                    <TaskRow />
                     <TaskRow />
                     <TaskRow />
                     <TaskRow />

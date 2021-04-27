@@ -21,10 +21,10 @@ const ProjectPage = () => {
             <div className="sidebar">
                 <SideBar />
             </div>
-            <div className="project-page-header flex-container">
+            <div className="project-page-header ">
                 <ProjectHeader project={currProject}/>
             </div>
-            <div className="project-page-content flex-container">
+            <div className="project-page-content">
                 <ProjectContent project={currProject} />
             </div>
         </div>

@@ -71,7 +71,7 @@ body {
       
     grid-template-columns: 275px 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-gap: 10px;
+    grid-gap: 5px;
     height: 100%;
     width: 100%;
 }
@@ -102,19 +102,20 @@ body {
       
     grid-template-columns: 275px 1fr;
     grid-template-rows: 75px 1fr;
-    grid-gap: 10px;
+    grid-gap: 5px;
     height: 100%;
     width: 100%;
+    background-color: var(--WHITE);
 }
 
 .project-page-header{
     grid-area: table-header;
     /* justify-content: space-around; */
-    background-color: green;
+    /* background-color: green; */
     display: grid;
     grid-template-areas:
       ". task-icon title-status . ."; 
-    grid-template-columns: 75px 100px 300px 1fr 1fr;
+    grid-template-columns: 60px 100px 300px 1fr 1fr;
     grid-template-rows: 1fr;
     height: 100%;
     width: 100%;
@@ -123,7 +124,8 @@ body {
 
 .project-page-content{
     grid-area: table-content;
-    background-color: blue;
+    margin: 10px;
+    /* background-color: blue; */
 }
 
 
@@ -137,7 +139,7 @@ body {
       
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-gap: 10px;
+    grid-gap: 5px;
     height: 100%;
     width: 100%;
 }
@@ -160,21 +162,21 @@ body {
       "task-header"
       "task-table"
       "."; 
-    background-color: var(--CHARCOAL);
+    /* background-color: var(--CHARCOAL); */
     grid-template-columns: 1fr;
-    grid-template-rows: 50px 1fr 100px;
+    grid-template-rows: 40px 1fr 100px;
     height: 100%;
     width: 100%;
 }
 
 .task-header{
     grid-area: task-header;
-    background-color: var(--SKY_BLUE);
+    /* background-color: var(--SKY_BLUE); */
 
     display: grid;
     grid-template-areas:
       "add-task . filter sort ."; 
-    grid-template-columns: 190px 1fr 50px 50px 100px;
+    grid-template-columns: 200px 1fr 50px 50px 100px;
     grid-template-rows: 1fr;
     height: 100%;
     width: 100%;
@@ -182,7 +184,7 @@ body {
 
 .task-container{
     grid-area: task-table;
-    background-color: var(--ORANGE_FADE);
+    /* background-color: var(--ORANGE_FADE); */
     
     display: grid;
     grid-template-areas:
@@ -230,7 +232,7 @@ body {
 td {
     border-top: 1px solid var(--GREY_GRID);
     border-right: 1px solid var(--GREY_GRID);
-    padding: 5px;
+    padding: 10px;
 }
 
 
