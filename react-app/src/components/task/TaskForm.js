@@ -14,8 +14,8 @@ const TaskForm = () => {
   const [errors, setErrors] = useState([]);
   const tasks = useSelector(state => state.task.tasks);
   useEffect(()=>{
-      dispatch(getTasksForProjectsFunction(1))
-      dispatch(getOneTaskFunction(2))
+    dispatch(getTasksForProjectsFunction(1))
+    dispatch(getOneTaskFunction(2))
   },[dispatch])
   const onSubmit = (e) => {
     e.preventDefault();

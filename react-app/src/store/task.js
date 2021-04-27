@@ -116,6 +116,8 @@ const taskReducer = (state=initialState, action) => {
     switch(action.type) {
         case LOAD: {
             const allTasks = {}
+            const saveTask = state.task
+            console.log(saveTask)
             const list = action.list
             console.log(list)
             const keys = Object.keys(list)
@@ -125,7 +127,7 @@ const taskReducer = (state=initialState, action) => {
                 allTasks[keys[i]] = action.list[keys[i]]
                 array.push(allTasks[keys[i]]) 
             }
-            return {...allTasks, task: null, tasks: array}
+            return {...allTasks, task: saveTask, tasks: array}
         }
         case ONE: {
             
