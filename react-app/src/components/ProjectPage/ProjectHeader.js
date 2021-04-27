@@ -7,9 +7,15 @@ const ProjectHeader = () => {
 
     return (
         <>
-            <img src="../../frontend-assets/task_list_icon.png" alt="task_icon"></img>
-            <h2>TITLE</h2>
-            <h2>STATUS</h2>
+            <div></div>
+            <div className='flex-container'>
+                <img src="../../frontend-assets/task_list_icon.png" alt="task_icon"></img>
+            </div>
+            <div>
+                <h3>TITLE FOR THE PROJECT</h3>
+                <h4>STATUS BAR</h4>
+            </div>
+            <div></div>
             <div></div>
             <div></div>
         </>

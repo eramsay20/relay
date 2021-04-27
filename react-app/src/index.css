@@ -101,7 +101,7 @@ body {
       "sidebar table-content";
       
     grid-template-columns: 275px 1fr;
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 75px 1fr;
     grid-gap: 10px;
     height: 100%;
     width: 100%;
@@ -109,8 +109,16 @@ body {
 
 .project-page-header{
     grid-area: table-header;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     background-color: green;
+    display: grid;
+    grid-template-areas:
+      ". task-icon title-status . ."; 
+    grid-template-columns: 75px 100px 300px 1fr 1fr;
+    grid-template-rows: 1fr;
+    height: 100%;
+    width: 100%;
+    line-height: 10px;
 }
 
 .project-page-content{
@@ -166,7 +174,7 @@ body {
     display: grid;
     grid-template-areas:
       "add-task . filter sort ."; 
-    grid-template-columns: 240px 1fr 50px 50px 100px;
+    grid-template-columns: 190px 1fr 50px 50px 100px;
     grid-template-rows: 1fr;
     height: 100%;
     width: 100%;
@@ -211,13 +219,18 @@ body {
     grid-template-rows: 1fr;
     height: 100%;
     width: 100%;
-    padding: 5px;
-    border-top: 1px solid var(--GREY_GRID);
     background-color: var(--WHITE);
+    font-size: 14px;
 }
 
 .task-row:hover {
     background-color: var(--GREY_HIGHLIGHT);
+}
+
+td {
+    border-top: 1px solid var(--GREY_GRID);
+    border-right: 1px solid var(--GREY_GRID);
+    padding: 5px;
 }
 
 

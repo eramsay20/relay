@@ -8,9 +8,9 @@ const TaskRow = () => {
     return (
         <tr className="task-row">
             <td className="task-complete" style={{'text-align': 'right', 'padding-right':'12px'}}>✓</td>
-            <td className="task-title">TITLE FOR TASK HERE</td>
-            <td className="task-assignee">USER_ID</td>
-            <td className="task-due-date">DUE_DATE</td>
+            <td className="task-title">Title for task goes here</td>
+            <td className="task-assignee">User assigned</td>
+            <td className="task-due-date">mm-dd-yyyy</td>
         </tr>
     );
 };
