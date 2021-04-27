@@ -66,6 +66,9 @@ function App() {
                 <ProjectPage />
               </div>
             </ProtectedRoute>
+            <ProtectedRoute path="/new_project" exact={true}>
+              <ProjectForm />
+            </ProtectedRoute>
           </Switch>
         <div className={`footer flex-container`}>
           <Footer />
