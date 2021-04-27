@@ -5,14 +5,23 @@ import SideBar from '../SideBar';
 import ProjectHeader from './ProjectHeader';
 import ProjectContent from './ProjectContent';
 import { project } from "../../store/project";
+import ProjectForm from '../ProjectForm';
+import { Modal } from '../../context/Modal';
 
 const ProjectPage = () => {
     const dispatch = useDispatch();
-    const {project_id} = useParams()
-    const currProject = useSelector(state => state.project.project)
+    const {project_id} = useParams();
+    const [showModal, setShowModal] = useState(false);
+    const currProject = useSelector(state => state.project.project);
+
     useEffect(() => {
         dispatch(project(parseInt(project_id)))
     }, [dispatch]);
+
+    const onClick = e => {
+        e.preventDefault();
+        setShowModal(true);
+    }
     // const user = useSelector(state => state.session.user);
     // grab the project content here, pass as props to TableHeader & TableContent
 
@@ -26,6 +35,16 @@ const ProjectPage = () => {
             </div>
             <div className="project-page-content flex-container">
                 <ProjectContent project={currProject} />
+            </div>
+            <div>
+                <div onClick={onClick}>
+                    Test
+                </div>
+                {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <ProjectForm />
+                </Modal>
+                )}
             </div>
         </div>
     );
