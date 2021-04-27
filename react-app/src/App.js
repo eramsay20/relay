@@ -61,7 +61,7 @@ function App() {
                 <ProfilePage />
               </div>
             </ProtectedRoute>
-            <ProtectedRoute path="/project/build" exact={true}>
+            <ProtectedRoute path="/projects/:project_id" exact={true}>
               <div className={`main flex-container`}>
                 <ProjectPage />
               </div>

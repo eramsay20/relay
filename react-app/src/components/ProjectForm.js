@@ -1,24 +1,36 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { postProject } from '../store/project';
-import CommentForm from "./CommentForm"
+import { useHistory } from "react-router-dom";
 
 const ProjectForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  
   const [title, setTitle] = useState('');
+  const [team, setTeam] = useState(1);
   const [errors, setErrors] = useState([]);
+
   const onSubmitForm = (e) => {
     e.preventDefault();
     if(!title.length){
       setErrors(["Project needs a title to be created."])
     }else {
-      dispatch(postProject({title: title}))
+      dispatch(postProject({title: title, team:team}))
+      history.push('/')
     }
+
   }
+
+  const team_options = ['Finance', 'HR', 'Engineering', 'Sales']
+  const select_insert = team_options.map((team, idx) => (
+    <option value={idx}>{team}</option>
+  ))
+
   return (
-    <div>
-      <CommentForm />
+    <div className="flex-container">
       <form onSubmit={onSubmitForm}>
+        <h1>New Project</h1>
         <div>
           {errors.map(error => (
               <div>{error}</div>
@@ -26,7 +38,7 @@ const ProjectForm = () => {
         </div>
         <div>
           <label>
-            Title
+            Project Name
             <input
               type="text"
               name="title"
@@ -34,6 +46,19 @@ const ProjectForm = () => {
               value={title}
               required={true}
             />
+          </label>
+        </div>
+        <div>
+          <label>
+            Team Assigned
+            <select
+              name="team_id"
+              onChange={e => setTeam(e.target.value)}
+              value={team}
+              required={false}
+            >
+              {select_insert}
+            </select>
           </label>
         </div>
         <div>

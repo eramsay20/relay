@@ -21,6 +21,7 @@ export const project = (projectId) => async dispatch => {
         headers: {'Content-Type ': 'application/json'}
     });
     const data = await response.json()
+    console.log(data)
     if(!response.ok){
         return;
     };
@@ -28,7 +29,7 @@ export const project = (projectId) => async dispatch => {
 };
 
 export const projects = () => async dispatch => {
-    const response = await fetch(`/api/projects`, {
+    const response = await fetch(`/api/projects/`, {
         headers: {'Content-Type': 'application/json'}
     });
     const data = await response.json()
@@ -69,7 +70,7 @@ const initialState = { project: null , projects: null}
 const projectReducer = (state=initialState, action) => {
     switch(action.type) {
         case SET_PROJECTS:
-            return { ...state, projects: action.projects};
+            return { ...state, projects: action.projects.projects};
         case REMOVE_PROJECT:
             return { project: null , projects: state.projects};
         case GET_PROJECT:

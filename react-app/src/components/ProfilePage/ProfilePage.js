@@ -3,10 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import SideBar from '../SideBar';
 import ProjectDisplay from './ProjectDisplay';
 import TaskDisplay from './TaskDisplay';
+import { projects } from '../../store/project';
 
 const ProfilePage = () => {
-    // const dispatch = useDispatch(); 
+    const dispatch = useDispatch(); 
     const user = useSelector(state => state.session.user);
+    const current_projects = useSelector(state => state.project.projects)
+
+    useEffect(() => {
+        dispatch(projects())
+    }, [dispatch])
 
     return (
         <div className="profile-container">
@@ -17,7 +23,7 @@ const ProfilePage = () => {
                 <TaskDisplay />
             </div>
             <div className="projects flex-container">
-                <ProjectDisplay />
+                <ProjectDisplay projects={current_projects}/>
             </div>
         </div>
     );
