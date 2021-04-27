@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Footer from './components/Footer';
+import ProfilePage from './components/ProfilePage/ProfilePage';
 import { authenticate } from "./store/session";
 import { Component } from "react";
 
@@ -56,7 +57,7 @@ function App() {
             </ProtectedRoute>
             <ProtectedRoute path="/" exact={true}>
               <div className={`main flex-container`}>
-                <h1>My Home Page</h1>
+                <ProfilePage />
               </div>
             </ProtectedRoute>
           </Switch>

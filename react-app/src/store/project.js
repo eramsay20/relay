@@ -35,12 +35,13 @@ export const projects = () => async dispatch => {
     if(!response.ok){
         return
     };
-    dispatch(setProjects(data))
+    dispatch(setProjects(data));
 };
 
 export const deleteProject = (projectId) => async dispatch => {
     const response = await fetch(`/api/projects/${projectId}`, {
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/json'},
+        method: "DELETE"
     });
     const data = await response.json()
     if(!response.ok){
@@ -64,4 +65,4 @@ const projectReducer = (state=initialState, action) => {
     };
 };
 
-export default projectReducer
+export default projectReducer;
