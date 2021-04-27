@@ -11,7 +11,7 @@ const TaskTable = () => {
         <table>
             <thead>
                 <tr className="task-row-titles task-row">
-                    <td>Complete</td>
+                    <td></td>
                     <td>Task Name</td>
                     <td>Assignee</td>
                     <td>Due Date</td>
@@ -19,6 +19,16 @@ const TaskTable = () => {
             </thead>
             <tbody>
                 <div className='task-row-entries'>
+                    {/* LOOP TASK ROWS HERE */}
+                    <TaskRow />
+                    <TaskRow />
+                    <TaskRow />
+                    <TaskRow />
+                    <TaskRow />
+                    <TaskRow />
+                    <TaskRow />
+                    <TaskRow />
+                    <TaskRow />
                     <TaskRow />
                     <TaskRow />
                     <TaskRow />

@@ -7,7 +7,11 @@ const ProjectHeader = () => {
 
     return (
         <>
-            <h1>PROJECT HEADER HERE</h1>
+            <img src="../../frontend-assets/task_list_icon.png" alt="task_icon"></img>
+            <h2>TITLE</h2>
+            <h2>STATUS</h2>
+            <div></div>
+            <div></div>
         </>
     );
 };

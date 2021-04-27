@@ -7,7 +7,7 @@ const TaskRow = () => {
 
     return (
         <tr className="task-row">
-            <td className="task-complete">CHECK(Y/N)</td>
+            <td className="task-complete" style={{'text-align': 'right', 'padding-right':'12px'}}>✓</td>
             <td className="task-title">TITLE FOR TASK HERE</td>
             <td className="task-assignee">USER_ID</td>
             <td className="task-due-date">DUE_DATE</td>

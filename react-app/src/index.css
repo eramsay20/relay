@@ -109,6 +109,7 @@ body {
 
 .project-page-header{
     grid-area: table-header;
+    justify-content: space-around;
     background-color: green;
 }
 
@@ -154,7 +155,6 @@ body {
     background-color: var(--CHARCOAL);
     grid-template-columns: 1fr;
     grid-template-rows: 50px 1fr 100px;
-    grid-gap: 5px;
     height: 100%;
     width: 100%;
 }
@@ -162,6 +162,14 @@ body {
 .task-header{
     grid-area: task-header;
     background-color: var(--SKY_BLUE);
+
+    display: grid;
+    grid-template-areas:
+      "add-task . filter sort ."; 
+    grid-template-columns: 240px 1fr 50px 50px 100px;
+    grid-template-rows: 1fr;
+    height: 100%;
+    width: 100%;
 }
 
 .task-container{
@@ -175,35 +183,41 @@ body {
       
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    grid-gap: 5px;
+    max-height: 60vh;
+    overflow-y: scroll;
     height: 100%;
     width: 100%;
 }
 
 .task-row-titles{
     grid-area: task-row-titles;
-    background-color: var(--GREY_TEXT);
+    color: var(--GREY_TEXT_LABELS);
 }
 
 .task-row-entries{
     grid-area: task-rows;
-    background-color: var(--GREY_TEXT);
+    color: var(--CHARCOAL);
 }
 
 .task-form{
-    grid-area: task-form;
-    background-color: var(--RED_FADE);
+    color: var(--GREY_TEXT_LABELS);
 }
 
 .task-row {
     display: grid;
     grid-template-areas:
       "complete task assignee due-date";
-      
-    grid-template-columns: 100px 1fr 200px 200px;
+    grid-template-columns:50px 1fr 200px 200px;
     grid-template-rows: 1fr;
     height: 100%;
     width: 100%;
+    padding: 5px;
+    border-top: 1px solid var(--GREY_GRID);
+    background-color: var(--WHITE);
+}
+
+.task-row:hover {
+    background-color: var(--GREY_HIGHLIGHT);
 }
 
 

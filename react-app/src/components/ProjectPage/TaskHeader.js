@@ -7,7 +7,17 @@ const TaskHeader = () => {
 
     return (
         <>
-            <h1>TASK HEADER HERE</h1>
+            <div className="add-task flex-container">
+                <button>Add Task</button>
+            </div>
+            <div></div>
+            <div className="task-filter flex-container">
+                <button>Filter</button>
+            </div>
+            <div className="task-sort flex-container">
+                <button>Sort</button>
+            </div>
+            <div></div>
         </>
     );
 };
