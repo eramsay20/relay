@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Task, db
+from app.models import Task, Project, db
 from app.forms import TaskForm, DeleteForm
 from flask_login import login_required
 
@@ -36,6 +36,18 @@ def make():
         db.session.commit()
         return task.to_dict()
     return {'errors': form.errors}
+
+
+@task_routes.route('/projects/<int:id>', methods=['GET'])
+def project_tasks(id):
+    tasks = Task.query.filter_by(project_id=id)
+    tasks = [task.to_dict() for task in tasks]
+    task_dict = {}
+    i = 0
+    while i < len(tasks):
+        task_dict[i+1] = tasks[i]
+        i += 1
+    return task_dict
 
 
 @task_routes.route('/<int:id>', methods=["GET"])

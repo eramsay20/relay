@@ -28,6 +28,7 @@ def make():
         team = Team(
             title=form.data['title']
         )
+        print(team)
         db.session.add(team)
         db.session.commit()
         return team.to_dict()
