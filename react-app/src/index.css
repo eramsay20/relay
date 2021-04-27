@@ -49,6 +49,15 @@ body {
 .header{
     grid-area: header;
     background-color: #151b26;
+
+    /* display: grid;
+    grid-template-areas:
+      "home-logo . links logout profile-icon"; 
+    grid-template-columns: 50px 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    height: 100%;
+    width: 100%;
+    line-height: 10px; */
 }
 
 .main{
