@@ -7,6 +7,7 @@ const TeamList = () =>{
     const dispatch = useDispatch();
     const teams = useSelector(state => state.team.teams)
     const oneTeam = useSelector(state=>state.team.team)
+    console.log(oneTeam)
     useEffect(()=>{
         dispatch(getTeamsFunction());
         dispatch(getOneTeamFunction(1))
@@ -16,12 +17,11 @@ const TeamList = () =>{
 
     return (
         <div>
-            <h3>Single Team: {oneTeam[1].title}</h3>
+            <h3>Single Team</h3>
             {teams.map((team)=>{
+                console.log(team.id)
                 return (
-                    <>
                     <h3 key={team.id}>Team List: {team.title}</h3>
-                    </>
                 )
             })}
         </div>

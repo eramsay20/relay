@@ -30,7 +30,8 @@ export const getTeamsFunction = () => async dispatch => {
     });
     if (response.ok) {
         const teams = await response.json()
-    dispatch(getTeams(teams));
+        console.log(teams)
+        dispatch(getTeams(teams));
     }
 }
 export const getOneTeamFunction = (teamId) => async dispatch => {
@@ -89,6 +90,7 @@ const teamReducer = (state=initialState, action) => {
         case LOAD: {
             const allTeams = {}
             const list = action.list
+            console.log(list)
             const keys = Object.keys(list)
             const listLength = keys.length
             const array = []
@@ -112,14 +114,32 @@ const teamReducer = (state=initialState, action) => {
             const id = action.payload.id
             delete newState[id]
             delete newState.team[id]
+            newState.teams = newState.teams.filter(team => team.id !== id)
             return {
                 ...newState
             }
         }
         case CRU: {
+            const newState = {...state}
+            newState.team ={ [action.payload.id] : action.payload }
+            if (newState[action.payload.id]){
+                newState[action.payload.id] = action.payload
+                newState.teams.forEach((element, index) => {
+                    console.log(element)
+                    if (element.id === action.payload.id){
+                        newState.teams.splice(index, 1)
+                        newState.teams.push(action.payload)
+                    }
+                });
+            } else {
+                newState[action.payload.id] = action.payload;
+                newState.teams.push(action.payload)
+            }
             return {
-                ...state,
-                [action.payload.id] : action.payload
+                ...newState,
+                [action.payload.id] : action.payload,
+                
+
             }
         }
         default:

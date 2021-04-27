@@ -18,10 +18,10 @@ const TeamForm = () => {
     }
     if(error.length === 0){
         dispatch(makeTeamFunction(title))
-        dispatch(getTeamsFunction())
     }
   }
   const onEdit = (e) =>{
+    e.preventDefault();
     let error = []
     console.log(title)
     if(!title.length){
@@ -29,14 +29,14 @@ const TeamForm = () => {
         setErrors(error)
     }
     if(error.length === 0){
-        dispatch(updateTeamFunction())
-        dispatch(getTeamsFunction())
+        dispatch(updateTeamFunction(1, title))
     }
   }
   const onDelete = (e) =>{
-      const deleteId = teams.length - 1
-      console.log(deleteId)
-      dispatch(deleteTeamFunction(deleteId))
+    e.preventDefault();
+    const deleteId = teams.length
+    console.log(deleteId)
+    dispatch(deleteTeamFunction(deleteId))
   }
   return (
     <div>
