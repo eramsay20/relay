@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import TeamList from '../team/TeamList'
+import TeamForm from '../team/TeamForm'
 const SideBar = () => {
     // const dispatch = useDispatch(); 
     const user = useSelector(state => state.session.user);
@@ -12,6 +13,8 @@ const SideBar = () => {
             </div>
             <div className="sidebar-teams flex-container">
                 <h1>TEAM INFO HERE</h1>
+                <TeamForm />
+                <TeamList />
             </div>
         </div>
     );

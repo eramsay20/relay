@@ -13,7 +13,8 @@ def teams():
     task_dict = {}
     i = 0
     while i < len(tasks):
-        task_dict[i+1] = tasks[i]
+        key = tasks[i]['id']
+        task_dict[key] = tasks[i]
         i += 1
     return task_dict
 
@@ -23,7 +24,7 @@ def teams():
 def make():
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit_on_submit():
+    if form.validate_on_submit():
         task = Task(
             title=form.data['title'],
             project_id=form.data['project_id'],
@@ -45,7 +46,8 @@ def project_tasks(id):
     task_dict = {}
     i = 0
     while i < len(tasks):
-        task_dict[i+1] = tasks[i]
+        key = tasks[i]['id']
+        task_dict[key] = tasks[i]
         i += 1
     return task_dict
 

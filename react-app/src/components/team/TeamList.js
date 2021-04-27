@@ -16,11 +16,11 @@ const TeamList = () =>{
 
     return (
         <div>
-            <h2>Single Team: {oneTeam.title}</h2>
+            <h3>Single Team: {oneTeam[1].title}</h3>
             {teams.map((team)=>{
                 return (
                     <>
-                    <h2>Team List: {team.title}</h2>
+                    <h3 key={team.id}>Team List: {team.title}</h3>
                     </>
                 )
             })}
