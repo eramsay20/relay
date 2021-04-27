@@ -35,7 +35,7 @@ export const getTasksForProjectsFunction = (projectId) => async dispatch => {
         }
 }
 
-export const getTaskFunction = () => async dispatch => {
+export const getTasksFunction = () => async dispatch => {
     const response = await fetch('/api/tasks',{
         headers: {'Content-Type': 'application/json'}
     });
@@ -91,7 +91,7 @@ export const makeTaskFunction = (projectId,  title, complete, userId, dueDate, d
     }
 }
 
-export const updateTeamFunction = (taskId, projectId,  title, complete, userId, dueDate, description) => async dispatch => {
+export const updateTaskFunction = (taskId, projectId,  title, complete, userId, dueDate, description) => async dispatch => {
     const response = await fetch(`/api/tasks/${taskId}`, {
         headers: {'Content-Type': 'application/json'},
         method: 'PUT',
@@ -125,7 +125,7 @@ const taskReducer = (state=initialState, action) => {
                 allTasks[keys[i]] = action.list[keys[i]]
                 array.push(allTasks[keys[i]]) 
             }
-            return {...allTasks, tasks: array}
+            return {...allTasks, task: null, tasks: array}
         }
         case ONE: {
             
@@ -140,7 +140,7 @@ const taskReducer = (state=initialState, action) => {
             const newState = {...state};
             const id = action.payload.id
             delete newState[id]
-            delete newState.task[id]
+            if(newState.task[id])delete newState.task[id]
             newState.tasks = newState.tasks.filter(task => task.id !== id)
             return {
                 ...newState
