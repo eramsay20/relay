@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session';
 import project from './project'
 import team from './team'
+import task from './task'
 
 
 const rootReducer = combineReducers({
     session,
     project,
-    team
+    team,
+    task
 });
 
 let enhancer;
