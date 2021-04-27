@@ -37,14 +37,14 @@ const TaskForm = () => {
         setErrors(error)
     }
     if(error.length === 0){
-        dispatch(updateTaskFunction(1, projectId, title, complete, userId, dueDate, description))
+        dispatch(updateTaskFunction(1, 1, title, complete, userId, dueDate, description))
     }
   }
   const onDelete = (e) =>{
     e.preventDefault();
     const deleteId = tasks.length
     console.log(deleteId)
-    dispatch(deleteTaskFunction(2))
+    dispatch(deleteTaskFunction(1))
   }
   return (
     <div>
