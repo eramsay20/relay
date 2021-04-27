@@ -18,7 +18,7 @@ const removeProject = () => ({
 
 export const project = (projectId) => async dispatch => {
     const response = await fetch(`/api/projects/${projectId}`, {
-        headers: {'Content-Type ': 'application/json'}
+        headers: {'Content-Type': 'application/json'}
     });
     const data = await response.json()
     console.log(data)
