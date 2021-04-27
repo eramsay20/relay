@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SideBar from './SideBar';
+import SideBar from '../SideBar';
 import ProjectDisplay from './ProjectDisplay';
 import TaskDisplay from './TaskDisplay';
 

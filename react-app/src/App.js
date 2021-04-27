@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Footer from './components/Footer';
 import ProfilePage from './components/ProfilePage/ProfilePage';
+import ProjectPage from './components/ProjectPage/ProjectPage';
 import { authenticate } from "./store/session";
 import { Component } from "react";
 
@@ -58,6 +59,11 @@ function App() {
             <ProtectedRoute path="/" exact={true}>
               <div className={`main flex-container`}>
                 <ProfilePage />
+              </div>
+            </ProtectedRoute>
+            <ProtectedRoute path="/project/build" exact={true}>
+              <div className={`main flex-container`}>
+                <ProjectPage />
               </div>
             </ProtectedRoute>
           </Switch>

@@ -91,6 +91,34 @@ body {
     background-color: blue;
 }
 
+
+/* PROFILE LAYOUT */
+
+.project-page-container {
+    display: grid;
+    grid-template-areas:
+      "sidebar table-header"
+      "sidebar table-content";
+      
+    grid-template-columns: 275px 1fr;
+    grid-template-rows: 100px 1fr;
+    grid-gap: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+.project-page-header{
+    grid-area: table-header;
+    background-color: green;
+}
+
+.project-page-content{
+    grid-area: table-content;
+    background-color: blue;
+}
+
+
+
 /* SIDEBAR LAYOUT */
 .sidebar-container {
     display: grid;
@@ -114,6 +142,71 @@ body {
     grid-area: sidebar-teams;
     background-color: var(--RED_FADE);
 }
+
+
+/* TASK TABLE LAYOUT */
+.project-task-container {
+    display: grid;
+    grid-template-areas:
+      "task-header"
+      "task-table"
+      "."; 
+    background-color: var(--CHARCOAL);
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr 100px;
+    grid-gap: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+.task-header{
+    grid-area: task-header;
+    background-color: var(--SKY_BLUE);
+}
+
+.task-container{
+    grid-area: task-table;
+    background-color: var(--ORANGE_FADE);
+    
+    display: grid;
+    grid-template-areas:
+      "task-row-titles"
+      "task-row-entries";
+      
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+.task-row-titles{
+    grid-area: task-row-titles;
+    background-color: var(--GREY_TEXT);
+}
+
+.task-row-entries{
+    grid-area: task-rows;
+    background-color: var(--GREY_TEXT);
+}
+
+.task-form{
+    grid-area: task-form;
+    background-color: var(--RED_FADE);
+}
+
+.task-row {
+    display: grid;
+    grid-template-areas:
+      "complete task assignee due-date";
+      
+    grid-template-columns: 100px 1fr 200px 200px;
+    grid-template-rows: 1fr;
+    height: 100%;
+    width: 100%;
+}
+
+
 
 
 /* LINKS */
