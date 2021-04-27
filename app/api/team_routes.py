@@ -9,10 +9,14 @@ team_routes = Blueprint('teams', __name__)
 @team_routes.route('/', methods=["Get"])
 def teams():
     teams = Team.query.all()
-    team_list = [team.to_dict() for team in teams]
-    print(team_list)
-    # team_dict = {{team['id']: team} for team in team_list}
-    return team_list
+    teams = [team.to_dict() for team in teams]
+    team_dict = {}
+    i = 0
+    while i < len(teams):
+        team_dict[i+1] = teams[i]
+        i += 1
+    print(team_dict)
+    return team_dict
 
 
 @team_routes.route('/', methods=["POST"])
