@@ -91,6 +91,43 @@ body {
     background-color: blue;
 }
 
+
+/* PROFILE LAYOUT */
+
+.project-page-container {
+    display: grid;
+    grid-template-areas:
+      "sidebar table-header"
+      "sidebar table-content";
+      
+    grid-template-columns: 275px 1fr;
+    grid-template-rows: 75px 1fr;
+    grid-gap: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+.project-page-header{
+    grid-area: table-header;
+    /* justify-content: space-around; */
+    background-color: green;
+    display: grid;
+    grid-template-areas:
+      ". task-icon title-status . ."; 
+    grid-template-columns: 75px 100px 300px 1fr 1fr;
+    grid-template-rows: 1fr;
+    height: 100%;
+    width: 100%;
+    line-height: 10px;
+}
+
+.project-page-content{
+    grid-area: table-content;
+    background-color: blue;
+}
+
+
+
 /* SIDEBAR LAYOUT */
 .sidebar-container {
     display: grid;
@@ -114,6 +151,89 @@ body {
     grid-area: sidebar-teams;
     background-color: var(--RED_FADE);
 }
+
+
+/* TASK TABLE LAYOUT */
+.project-task-container {
+    display: grid;
+    grid-template-areas:
+      "task-header"
+      "task-table"
+      "."; 
+    background-color: var(--CHARCOAL);
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr 100px;
+    height: 100%;
+    width: 100%;
+}
+
+.task-header{
+    grid-area: task-header;
+    background-color: var(--SKY_BLUE);
+
+    display: grid;
+    grid-template-areas:
+      "add-task . filter sort ."; 
+    grid-template-columns: 190px 1fr 50px 50px 100px;
+    grid-template-rows: 1fr;
+    height: 100%;
+    width: 100%;
+}
+
+.task-container{
+    grid-area: task-table;
+    background-color: var(--ORANGE_FADE);
+    
+    display: grid;
+    grid-template-areas:
+      "task-row-titles"
+      "task-row-entries";
+      
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    max-height: 60vh;
+    overflow-y: scroll;
+    height: 100%;
+    width: 100%;
+}
+
+.task-row-titles{
+    grid-area: task-row-titles;
+    color: var(--GREY_TEXT_LABELS);
+}
+
+.task-row-entries{
+    grid-area: task-rows;
+    color: var(--CHARCOAL);
+}
+
+.task-form{
+    color: var(--GREY_TEXT_LABELS);
+}
+
+.task-row {
+    display: grid;
+    grid-template-areas:
+      "complete task assignee due-date";
+    grid-template-columns:50px 1fr 200px 200px;
+    grid-template-rows: 1fr;
+    height: 100%;
+    width: 100%;
+    background-color: var(--WHITE);
+    font-size: 14px;
+}
+
+.task-row:hover {
+    background-color: var(--GREY_HIGHLIGHT);
+}
+
+td {
+    border-top: 1px solid var(--GREY_GRID);
+    border-right: 1px solid var(--GREY_GRID);
+    padding: 5px;
+}
+
+
 
 
 /* LINKS */
