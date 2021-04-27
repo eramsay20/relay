@@ -9,8 +9,14 @@ team_routes = Blueprint('teams', __name__)
 @team_routes.route('/', methods=["Get"])
 def teams():
     teams = Team.query.all()
-    team_list = [team.to_dict() for team in teams]
-    return team_list
+    teams = [team.to_dict() for team in teams]
+    team_dict = {}
+    i = 0
+    while i < len(teams):
+        team_dict[i+1] = teams[i]
+        i += 1
+    print(team_dict)
+    return team_dict
 
 
 @team_routes.route('/', methods=["POST"])
@@ -22,6 +28,7 @@ def make():
         team = Team(
             title=form.data['title']
         )
+        print(team)
         db.session.add(team)
         db.session.commit()
         return team.to_dict()
@@ -36,7 +43,7 @@ def team(id):
     # pull for that.
 
     team = Team.query.get(id)
-
+    print(team)
     # Below in case you guys disagree. Will need to import above
     # project = Project.query.filter_by(team_id=id).all()
     # task = Task.query.filter_by(project_id=project.id).all()

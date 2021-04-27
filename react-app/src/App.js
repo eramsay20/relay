@@ -10,6 +10,7 @@ import User from "./components/User";
 import Footer from './components/Footer';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import { authenticate } from "./store/session";
+import { Component } from "react";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
