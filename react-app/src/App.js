@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Footer from './components/Footer';
 import { authenticate } from "./store/session";
+import { Component } from "react";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);

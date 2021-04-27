@@ -28,7 +28,8 @@ export const getTeamsFunction = () => async dispatch => {
         headers: {'Content-Type': 'application/json'}
     });
     if (response.ok) {
-    const teams = await response.json()
+        const teams = await response.json()
+        console.log('------------', teams)
     dispatch(getTeams(teams));
     }
 }
@@ -83,9 +84,14 @@ const teamReducer = (state=initialState, action) => {
     switch(action.type) {
         case LOAD: {
             const allTeams = {}
-            action.list.forEach(team => {
-                allTeams[team.id] = team;
-            });
+            // action.list.forEach(team => {
+            //     allTeams[team.id] = team;
+            // });
+            console.log(action.list)
+            const list = action.list
+            for (let i = 1; i <= list.length; i++) {
+                allTeams[i] = action.list[i]
+            }
             return {
                 ...allTeams,
                 ...state
