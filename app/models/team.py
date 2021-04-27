@@ -11,3 +11,9 @@ class Team(db.Model):
     projects = db.relationship("Project", back_populates="team")
     users = db.relationship("User", secondary=user_team,
                             back_populates="teams")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title
+        }

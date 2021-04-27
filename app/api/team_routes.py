@@ -10,6 +10,8 @@ team_routes = Blueprint('teams', __name__)
 def teams():
     teams = Team.query.all()
     team_list = [team.to_dict() for team in teams]
+    print(team_list)
+    # team_dict = {{team['id']: team} for team in team_list}
     return team_list
 
 
@@ -36,7 +38,7 @@ def team(id):
     # pull for that.
 
     team = Team.query.get(id)
-
+    print(team)
     # Below in case you guys disagree. Will need to import above
     # project = Project.query.filter_by(team_id=id).all()
     # task = Task.query.filter_by(project_id=project.id).all()
