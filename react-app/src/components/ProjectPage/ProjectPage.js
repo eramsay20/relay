@@ -12,7 +12,7 @@ const ProjectPage = () => {
     const currProject = useSelector(state => state.project.project)
     useEffect(() => {
         dispatch(project(parseInt(project_id)))
-    });
+    }, [dispatch]);
     // const user = useSelector(state => state.session.user);
     // grab the project content here, pass as props to TableHeader & TableContent
 
