@@ -9,8 +9,13 @@ task_routes = Blueprint('tasks', __name__)
 @task_routes.route('/', methods=["GET"])
 def teams():
     tasks = Task.query.all()
-    task_list = [task.to_dict() for task in tasks]
-    return task_list
+    tasks = [task.to_dict() for task in tasks]
+    task_dict = {}
+    i = 0
+    while i < len(tasks):
+        task_dict[i+1] = tasks[i]
+        i += 1
+    return task_dict
 
 
 @task_routes.route('/', methods=["POST"])
