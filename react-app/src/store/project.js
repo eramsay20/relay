@@ -50,6 +50,20 @@ export const deleteProject = (projectId) => async dispatch => {
     dispatch(removeProject());
 };
 
+export const postProject = (project) => async dispatch => {
+    const {title} = project
+    const response = await fetch(`/api/projects/`, {
+        headers: {'Content-Type': 'application/json'},
+        method: 'POST',
+        body: JSON.stringify({title})
+    });
+    const data = response.json();
+    if(!response.ok){
+        return;
+    };
+    return dispatch(getProject(data));
+};
+
 const initialState = { project: null , projects: null}
 
 const projectReducer = (state=initialState, action) => {

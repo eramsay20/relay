@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, session, request, redirect
 from flask_login import login_required
-# from app.forms import ProjectForm
-from app.models import Project, Task, Team, User
+from app.models import db, Project, Task, Team, User
 
 project_routes = Blueprint('projects', __name__)
 
@@ -12,11 +11,11 @@ def projects():
     projects = Project.query.filter(
         Project.user_id == session["_user_id"]).all()
     if request.method == "POST":
-        req = request.form
+        body = request.get_json()
         new_project = Project(
             user_id=session["_user_id"],
-            team_id=req.get("team"),
-            title=req.get("title")
+            team_id=body.get("team", None),
+            title=body["title"]
         )
         db.session.add(new_project)
         db.session.commit()
@@ -31,6 +30,6 @@ def project(id):
     if request.method == "DELETE":
         db.session.delete(project)
         db.session.commit()
-        return redirect("/")
+        return {"Project": "NUll"}
     print(project)
     return project.to_dict() if project else {"Project": "Null"}

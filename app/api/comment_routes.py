@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request, redirect
 from flask_login import login_required
-from app.models import Comment
+from app.models import db, Comment
 
 comment_routes = Blueprint("comments", __name__)
 
@@ -12,11 +12,12 @@ def comments():
     comments = Comment.query.filter(
         Comment.task_id == "1").all()
     if request.method == "POST":
-        req = request.form
+        body = request.get_json()
+        print(session["_user_id"])
         new_comment = Comment(
             user_id=session["_user_id"],
-            task_id=req.get("id"),
-            comment=req.get("comment")
+            task_id=body.get("id", 1),
+            comment=body.get("comment")
         )
         db.session.add(new_comment)
         db.session.commit()
