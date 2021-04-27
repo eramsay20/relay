@@ -9,14 +9,15 @@ const TaskList = () =>{
     const oneTask = useSelector(state=>state.task.task)
     console.log(oneTask)
     useEffect(()=>{
-        dispatch(getTasksForProjectsFunction());
-        dispatch(getOneTaskFunction(1))
+        dispatch(getTasksForProjectsFunction(1));
+        dispatch(getOneTaskFunction(2))
     },[dispatch])
-    if (!teams) return (<h2>No tasks</h2>)
-    if(!oneTeam) return (<h2>No one Task</h2>)
+    if (!tasks) return (<h2>No tasks</h2>)
+    if(!oneTask) return (<h2>No one Task</h2>)
 
     return (
         <div>
+            <h2>Killroy was here</h2>
             {tasks.map((task)=>{
                 console.log(task.id)
                 return (
