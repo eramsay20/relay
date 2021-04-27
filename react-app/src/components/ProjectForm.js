@@ -1,22 +1,23 @@
-import {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
+import { postProject } from '../store/project';
+import CommentForm from "./CommentForm"
 
 const ProjectForm = () => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [errors, setErrors] = useState([]);
-  const onSubmitForm = () => {
+  const onSubmitForm = (e) => {
     e.preventDefault();
     if(!title.length){
-      setErrors.push("Project needs a title to be created.")
-    }
-    else if(setErrors.length === 0){
-      await dispatch()
+      setErrors(["Project needs a title to be created."])
+    }else {
+      dispatch(postProject({title: title}))
     }
   }
   return (
     <div>
+      <CommentForm />
       <form onSubmit={onSubmitForm}>
         <div>
           {errors.map(error => (
@@ -25,7 +26,7 @@ const ProjectForm = () => {
         </div>
         <div>
           <label>
-            title
+            Title
             <input
               type="text"
               name="title"
@@ -34,6 +35,9 @@ const ProjectForm = () => {
               required={true}
             />
           </label>
+        </div>
+        <div>
+          <button type="submit">Create</button>
         </div>
       </form>
     </div>

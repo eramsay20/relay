@@ -10,7 +10,7 @@ import User from "./components/User";
 import Footer from './components/Footer';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import { authenticate } from "./store/session";
-import { Component } from "react";
+import ProjectForm from "./components/ProjectForm";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -59,6 +59,9 @@ function App() {
               <div className={`main flex-container`}>
                 <ProfilePage />
               </div>
+            </ProtectedRoute>
+            <ProtectedRoute path="/new_project" exact={true}>
+              <ProjectForm />
             </ProtectedRoute>
           </Switch>
         <div className={`footer flex-container`}>
