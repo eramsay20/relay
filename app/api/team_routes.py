@@ -13,9 +13,9 @@ def teams():
     team_dict = {}
     i = 0
     while i < len(teams):
-        team_dict[i+1] = teams[i]
+        key = teams[i]['id']
+        team_dict[key] = teams[i]
         i += 1
-    print(team_dict)
     return team_dict
 
 
@@ -24,7 +24,8 @@ def teams():
 def make():
     form = TeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit_on_submit():
+    if form.validate_on_submit():
+        print('-------------------------', form.data)
         team = Team(
             title=form.data['title']
         )
@@ -43,7 +44,6 @@ def team(id):
     # pull for that.
 
     team = Team.query.get(id)
-    print(team)
     # Below in case you guys disagree. Will need to import above
     # project = Project.query.filter_by(team_id=id).all()
     # task = Task.query.filter_by(project_id=project.id).all()
@@ -57,7 +57,7 @@ def team(id):
 def edit(id):
     form = TeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit_on_submit():
+    if form.validate_on_submit():
         team = Team.query.get(id)
         team.title = form.data['title']
         db.session.commit()
@@ -68,13 +68,8 @@ def edit(id):
 @team_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete(id):
-    # I don't know how to handle csrf outside the forms, so for now
-    # I'm kludging with a delete form
-    form = DeleteForm
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        team = Team.query.get(id)
-        db.session.delete(team)
-        db.session.commit()
-        return {'id': id}
+    team = Team.query.get(id)
+    db.session.delete(team)
+    db.session.commit()
+    return {'id': id}
     return {'errors': form.errors}

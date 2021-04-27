@@ -8,14 +8,15 @@ const getTeams = (list) => ({
     list
 })
 
+
 const getOneTeam = (payload) => ({
     type: ONE,
     payload
 })
 
-const makeTeam = (payload) => ({
-    type: CRU,
-    payload
+const makeTeam = (payload) =>({
+        type: CRU,
+        payload
 })
 
 const deleteTeam = (payload) => ({
@@ -29,8 +30,8 @@ export const getTeamsFunction = () => async dispatch => {
     });
     if (response.ok) {
         const teams = await response.json()
-        console.log('------------', teams)
-    dispatch(getTeams(teams));
+        console.log(teams)
+        dispatch(getTeams(teams));
     }
 }
 export const getOneTeamFunction = (teamId) => async dispatch => {
@@ -44,33 +45,37 @@ export const getOneTeamFunction = (teamId) => async dispatch => {
 }
 
 export const deleteTeamFunction = (teamId) => async dispatch => {
+    console.log(teamId)
     const response = await fetch(`/api/teams/${teamId}`, {
         headers: {'Content-Type': 'application/json'},
         method: 'DELETE',
 
     });
+    console.log(response)
     if (response.ok) {
         const deletedTeamIdObj = await response.json()
         dispatch(deleteTeam(deletedTeamIdObj))
     }
 }
-export const makeTeamFunction = (form) => async dispatch => {
-    const response = await fetch('/api/teams', {
+export const makeTeamFunction = (title) => async dispatch => {
+    console.log(title)
+    const response = await fetch('/api/teams/', {
         headers: {'Content-Type': 'application/json'},
         method: 'POST',
-        body: JSON.stringify({'title': form.title})
+        body: JSON.stringify({ 'title': title })
     });
+    console.log(response)
     if (response.ok) {
         const team = await response.json()
         dispatch(makeTeam(team))
     }
 }
 
-export const updateTeamFunction = (teamId, form) => async dispatch => {
+export const updateTeamFunction = (teamId, title) => async dispatch => {
     const response = await fetch(`/api/teams/${teamId}`, {
         headers: {'Content-Type': 'application/json'},
         method: 'PUT',
-        body: JSON.stringify({'title': form.title})
+        body: JSON.stringify({'title': title})
     });
     if (response.ok) {
         const team = await response.json()
@@ -84,18 +89,16 @@ const teamReducer = (state=initialState, action) => {
     switch(action.type) {
         case LOAD: {
             const allTeams = {}
-            // action.list.forEach(team => {
-            //     allTeams[team.id] = team;
-            // });
-            console.log(action.list)
             const list = action.list
-            for (let i = 1; i <= list.length; i++) {
-                allTeams[i] = action.list[i]
+            console.log(list)
+            const keys = Object.keys(list)
+            const listLength = keys.length
+            const array = []
+            for (let i = 0; i < listLength; i++) {
+                allTeams[keys[i]] = action.list[keys[i]]
+                array.push(allTeams[keys[i]]) 
             }
-            return {
-                ...allTeams,
-                ...state
-            }
+            return { ...state, ...allTeams, teams: array}
         }
         case ONE: {
             
@@ -111,14 +114,32 @@ const teamReducer = (state=initialState, action) => {
             const id = action.payload.id
             delete newState[id]
             delete newState.team[id]
+            newState.teams = newState.teams.filter(team => team.id !== id)
             return {
                 ...newState
             }
         }
         case CRU: {
+            const newState = {...state}
+            newState.team ={ [action.payload.id] : action.payload }
+            if (newState[action.payload.id]){
+                newState[action.payload.id] = action.payload
+                newState.teams.forEach((element, index) => {
+                    console.log(element)
+                    if (element.id === action.payload.id){
+                        newState.teams.splice(index, 1)
+                        newState.teams.push(action.payload)
+                    }
+                });
+            } else {
+                newState[action.payload.id] = action.payload;
+                newState.teams.push(action.payload)
+            }
             return {
-                ...state,
-                [action.payload.id] : action.payload
+                ...newState,
+                [action.payload.id] : action.payload,
+                
+
             }
         }
         default:
