@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TaskForm from "../task/TaskForm"
+import TeamForm from "../team/TeamForm"
 
 const TaskDisplay = () => {
     // const dispatch = useDispatch(); 
@@ -9,7 +10,8 @@ const TaskDisplay = () => {
     return (
         <>
             <h1>TASKS HERE</h1>
-            <TaskForm />
+            <TeamForm />
+            {/* <TaskForm /> */}
         </>
     );
 };
