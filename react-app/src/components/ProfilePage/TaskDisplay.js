@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TaskRow from '../ProjectPage/TaskRow';
 import { getTasksFunction } from '../../store/task';
-import { project } from '../../store/project';
 
 const TaskDisplay = ({projects}) => {
     const dispatch = useDispatch();
@@ -21,18 +20,12 @@ const TaskDisplay = ({projects}) => {
     let task_components = myTasks.map(task => (
         <TaskRow task={task} />
     ))
-    
-    // {
-    //     projects && projects.map(project => (
-    //         <ProjectCard project={project} />
-    //     ))
-    // }
 
     return (
         <table>
             <thead>
                 <tr className="task-row-titles task-row">
-                    <td></td>
+                    <td style={{ 'borderRight': 'none' }}></td>
                     <td>Task Name</td>
                     <td>Assignee</td>
                     <td style={{ 'borderRight': 'none' }}>Due Date</td>

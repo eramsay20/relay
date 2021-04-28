@@ -43,9 +43,9 @@ const TaskRow = ({task}) => {
             { task &&
                 (
                     <>
-                        <td className="flex-container">
-                            <img style={{'width':'20px', 'paddingLeft':'10px'}} src={incomplete_check}></img>
-                        </td>
+                    <td className="flex-container">
+                        <img style={{'width':'20px', 'paddingLeft':'10px'}} src={incomplete_check}></img>
+                    </td>
                     <td className="capitalize">
                         <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick}>{task.title}</Link>
                         { showModal && (
