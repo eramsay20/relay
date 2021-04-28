@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Team, user_team, db
+from app.models import Team, User, user_team, db
 from app.forms import TeamForm, DeleteForm, UserTeamForm
 from flask_login import login_required
 
@@ -19,15 +19,6 @@ def teams():
         mutated_teams.append(team_dict)
 
     teams = mutated_teams
-    # team1 = teams[0]
-    # test_user = team1.users
-    # print('********************', users)
-    # teams = [team.to_dict() for team in teams]
-    # test_team = teams[0]
-    # test_members = test_team
-    # test_key = 'members'
-    # test_team[test_key] = 'please work'
-    # # print('##########', test_team)
     team_dict = {}
     i = 0
     while i < len(teams):
@@ -43,49 +34,50 @@ def make():
     form = TeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print('-------------------------', form.data)
+        body = request.get_json()
         team = Team(
             title=form.data['title']
         )
-        print(team)
         db.session.add(team)
         db.session.commit()
+        user_ids = body['users']
+        for user_id in user_ids:
+            user = User.query.get(user_id)
+            user.teams.append(team)
+        users = [user.to_dict() for user in team.users]
+        team_dict = team.to_dict()
+        users_string = 'users'
+        team_dict[users_string] = users
         return team.to_dict()
     return {'errors': form.errors}
 
 
-@team_routes.route('<int:team_id>/users/<int:user_id>', methods=["POST"])
-@login_required
-def make_join(team_id, user_id):
-    form = TeamForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        print('-------------------------', form.data)
-        team = user_team(
-            team_id=form.data['team_id'],
-            user_id=form.data['user_id'],
-        )
-        print(team)
-        db.session.add(team)
-        db.session.commit()
-        return team.to_dict()
-    return {'errors': form.errors}
+# @team_routes.route('<int:team_id>/users/<int:user_id>', methods=["POST"])
+# @login_required
+# def make_join(team_id, user_id):
+#     form = TeamForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         print('-------------------------', form.data)
+#         team = user_team(
+#             team_id=form.data['team_id'],
+#             user_id=form.data['user_id'],
+#         )
+#         print(team)
+#         db.session.add(team)
+#         db.session.commit()
+#         return team.to_dict()
+#     return {'errors': form.errors}
 
 
 @team_routes.route('/<int:id>', methods=["GET"])
 def team(id):
-    # in our routes documentation we suggest pulling out task
-    # and comment information here. However I am not, because
-    # those are attached to project not team, and we should use the project
-    # pull for that.
-
     team = Team.query.get(id)
-    # Below in case you guys disagree. Will need to import above
-    # project = Project.query.filter_by(team_id=id).all()
-    # task = Task.query.filter_by(project_id=project.id).all()
-    # comment = Comment.query.filter_by(task_id=task.id).all()
-
-    return team.to_dict()
+    users = [user.to_dict() for user in team.users]
+    team_dict = team.to_dict()
+    users_string = 'users'
+    team_dict[users_string] = users
+    return team_dict
 
 
 @team_routes.route('/<int:id>', methods=["PUT"])

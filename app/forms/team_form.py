@@ -13,4 +13,4 @@ user_choices = [(1, 'username_test')]
 
 class TeamForm(FlaskForm):
     title = StringField("Team Title", validators=[DataRequired()])
-    user_id = SelectMultipleField("user_id", coerce=int, choices=user_choices)
+    users = StringField("users")

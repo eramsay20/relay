@@ -63,12 +63,12 @@ export const deleteTeamFunction = (teamId) => async dispatch => {
         dispatch(deleteTeam(deletedTeamIdObj))
     }
 }
-export const makeTeamFunction = (title) => async dispatch => {
+export const makeTeamFunction = (title, users) => async dispatch => {
     console.log(title)
     const response = await fetch('/api/teams/', {
         headers: {'Content-Type': 'application/json'},
         method: 'POST',
-        body: JSON.stringify({ 'title': title})
+        body: JSON.stringify({'title': title, 'users' : users})
     });
     console.log(response)
     if (response.ok) {
@@ -77,26 +77,15 @@ export const makeTeamFunction = (title) => async dispatch => {
     }
 }
 
-export const updateTeamFunction = (teamId, title) => async dispatch => {
+export const updateTeamFunction = (teamId, title, users) => async dispatch => {
     const response = await fetch(`/api/teams/${teamId}`, {
         headers: {'Content-Type': 'application/json'},
         method: 'PUT',
-        body: JSON.stringify({'title': title})
+        body: JSON.stringify({'title': title, 'users' : users})
     });
     if (response.ok) {
         const team = await response.json()
         dispatch(makeTeam(team))
-    }
-}
-
-export const makeJoinFunction = (teamId, userId) => async dispatch => {
-    const response = await fetch(`/api/teams/${teamId}/users/${userId}`, {
-        headers: {'Content-Type': 'application/json'},
-        method: 'POST',
-    });
-    if (response.ok) {
-        const team = await response.json()
-        dispatch(joinToTeam(team))
     }
 }
 
