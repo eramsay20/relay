@@ -32,17 +32,23 @@ const TaskRow = ({task}) => {
         const time = date.toLocaleTimeString()
         const hour = time.split(':')[0]
         const amPm = time.split(' ')[1]
-        return `${weekday}, ${month} ${dateNum} @ ${hour}:00 ${amPm}`
+        return `${month} ${dateNum}`
     }
 
-    let due = dateFormat(task.due_date)
+    const today = new Date()
+    let due;
+    if(task.due_date){
+        due= dateFormat(task.due_date)
+    } else {
+        due=dateFormat(today);
+    }
 
     return (
         <tr className="task-row">
             { task &&
                 (
                     <>
-                    <td className="flex-container">
+                    <td style={{ 'borderRight': 'none' }} className="flex-container">
                         <img style={{'width':'20px', 'paddingLeft':'10px'}} src={incomplete_check}></img>
                     </td>
                     <td className="capitalize" >
