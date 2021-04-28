@@ -79,7 +79,7 @@ body {
 
 .main{
     grid-area: main;
-    background-color: var(--GREY_HIGHLIGHT);
+    /* background-color: var(--GREY_HIGHLIGHT); */
 }
 
 .footer{
@@ -107,16 +107,23 @@ body {
 }
 
 
-.tasks{
+.my-tasks{
     grid-area: tasks;
-    background-color: green;
+    /* background-color: green; */
+    display: flex;
+    padding-right: 50px;
+    padding-left: 50px;
+    justify-content: center;
 }
 
-.projects{
+.my-projects{
     grid-area: projects;
-    background-color: blue;
+    /* background-color: blue; */
+    display: flex;
+    padding-right: 50px;
+    padding-left: 50px;
+    justify-content: center;
 }
-
 
 /* PROFILE LAYOUT */
 
@@ -154,6 +161,14 @@ body {
     /* background-color: blue; */
 }
 
+.project-card {
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+  align-items: center;
+  margin: 20px;
+}
+
 
 
 /* SIDEBAR LAYOUT */
@@ -164,20 +179,28 @@ body {
       "sidebar-teams";
 
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 200px 1fr;
     grid-gap: 5px;
     height: 100%;
     width: 100%;
+    color: var(--GREY_TEXT);
+    background-color: var(--SIDEBAR_CHARCOAL)
 }
 
 .sidebar-nav{
     grid-area: sidebar-nav;
-    background-color: var(--ORANGE_FADE);
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
 }
 
 .sidebar-teams{
     grid-area: sidebar-teams;
-    background-color: var(--RED_FADE);
+    padding-left: 30px;
+    line-height: 10px;
 }
 
 
@@ -266,7 +289,6 @@ td {
 /* LINKS */
 
 a {
-    color: var(--SKY_BLUE);
     text-decoration: none;
 }
 
@@ -350,11 +372,15 @@ input:focus {
 
 
 
+/* MISC  */
 
+.capitalize {
+  text-transform: capitalize
+}
 
-
-
-
+.min-margin {
+  margin: 30px 0 10px 0;
+}
 
 
 

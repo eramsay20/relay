@@ -36,7 +36,7 @@ const ProjectPage = () => {
             <div className="project-page-content">
                 <ProjectContent project={currProject} />
             </div>
-            <div>
+            {/* <div>
                 <div onClick={onClick}>
                     Test
                 </div>
@@ -45,7 +45,7 @@ const ProjectPage = () => {
                     <ProjectForm />
                 </Modal>
                 )}
-            </div>
+            </div> */}
         </div>
     );
 };
