@@ -30,7 +30,7 @@ const TaskRow = ({task}) => {
                         <td className="flex-container">
                             <img style={{'width':'20px', 'paddingLeft':'10px'}} src={incomplete_check}></img>
                         </td>
-                    <td className="capitalize"><Link></Link>{task.title}</td>
+                    <td className="capitalize">{task.title}</td>
                     <td>{task.user_id}</td>
                     <td style={{ 'borderRight': 'none' }} className="task-due-date">{due}</td>
                     </>

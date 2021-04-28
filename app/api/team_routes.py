@@ -10,7 +10,6 @@ team_routes = Blueprint('teams', __name__)
 def teams():
     teams = Team.query.all()
     mutated_teams = []
-    print('###############', teams)
     for team in teams:
         users = [user.to_dict() for user in team.users]
         team_dict = team.to_dict()
@@ -40,34 +39,18 @@ def make():
         )
         db.session.add(team)
         db.session.commit()
+        team_dict = team.to_dict()
+        team_obj = Team.query.get(team_dict['id'])
         user_ids = body['users']
         for user_id in user_ids:
             user = User.query.get(user_id)
-            user.teams.append(team)
+            user.teams.append(team_obj)
+        db.session.commit()
         users = [user.to_dict() for user in team.users]
-        team_dict = team.to_dict()
         users_string = 'users'
         team_dict[users_string] = users
-        return team.to_dict()
+        return team_dict
     return {'errors': form.errors}
-
-
-# @team_routes.route('<int:team_id>/users/<int:user_id>', methods=["POST"])
-# @login_required
-# def make_join(team_id, user_id):
-#     form = TeamForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         print('-------------------------', form.data)
-#         team = user_team(
-#             team_id=form.data['team_id'],
-#             user_id=form.data['user_id'],
-#         )
-#         print(team)
-#         db.session.add(team)
-#         db.session.commit()
-#         return team.to_dict()
-#     return {'errors': form.errors}
 
 
 @team_routes.route('/<int:id>', methods=["GET"])
@@ -86,10 +69,24 @@ def edit(id):
     form = TeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        body = request.get_json()
         team = Team.query.get(id)
         team.title = form.data['title']
+        team_dict = team.to_dict()
+        user_ids = body['users']
+        popping_users = user_team.query.all()
+        print('###########################', popping_users_id)
+        # for user_id in user_ids:
+        #     user = User.query.get(user_id)
+        #     user.teams.append(team)
+        for user_id in user_ids:
+            user = User.query.get(user_id)
+            user.teams.append(team)
         db.session.commit()
-        return team.to_dict()
+        users = [user.to_dict() for user in team.users]
+        users_string = 'users'
+        team_dict[users_string] = users
+        return team_dict
     return {'errors': form.errors}
 
 
