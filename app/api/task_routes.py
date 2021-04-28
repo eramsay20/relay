@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Task, Project, db
+from app.models import Task, Comment, Project, db
 from app.forms import TaskForm, DeleteForm
 from flask_login import login_required
 
@@ -82,6 +82,8 @@ def edit(id):
 @login_required
 def delete(id):
     task = Task.query.get(id)
+    comment = Comment.query.filter_by(task_id=id).all()
+    print('@@@@@@@@@@@@@@@@@@@@@@@', comment)
     db.session.delete(task)
     db.session.commit()
     return {'id': id}

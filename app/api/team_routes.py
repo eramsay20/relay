@@ -74,11 +74,14 @@ def edit(id):
         team.title = form.data['title']
         team_dict = team.to_dict()
         user_ids = body['users']
-        popping_users = user_team.query.all()
-        print('###########################', popping_users_id)
-        # for user_id in user_ids:
-        #     user = User.query.get(user_id)
-        #     user.teams.append(team)
+        team_users = team.users
+        length = len(team_users)
+        print(team_users)
+        i = 0
+        while i < length:
+            team_users[0].teams.remove(team)
+            i += 1
+        db.session.commit()
         for user_id in user_ids:
             user = User.query.get(user_id)
             user.teams.append(team)
