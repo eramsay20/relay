@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TeamList from './TeamList';
 import { makeTeamFunction, getOneTeamFunction, getTeamsFunction, updateTeamFunction, deleteTeamFunction } from '../../store/team'
-
+import { getUsersFunction } from '../../store/user'
 const TeamForm = () => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
@@ -11,7 +11,9 @@ const TeamForm = () => {
 
   useEffect(()=>{
     dispatch(getTeamsFunction());
-    dispatch(getOneTeamFunction(1))
+    dispatch(getOneTeamFunction(1));
+    dispatch(getUsersFunction());
+
   },[dispatch])
 
   const onSubmit = (e) => {

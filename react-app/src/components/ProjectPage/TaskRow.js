@@ -32,6 +32,7 @@ const TaskRow = ({task}) => {
         <tr className="task-row">
             { task &&
                 (
+
                 <>
                     <td style={{ 'borderRight': 'none' }} className="flex-container">
                     <img style={{ 'width': '20px', 'paddingLeft': '10px'}} src={incomplete_check}></img>
