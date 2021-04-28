@@ -13,7 +13,7 @@ const SideBar = () => {
             </div>
             <div className="sidebar-teams flex-container">
                 <h1>TEAM INFO HERE</h1>
-                <TeamForm />
+                {/* <TeamForm /> */}
                 
             </div>
         </div>

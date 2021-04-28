@@ -25,12 +25,13 @@ const deleteTask = (payload) => ({
     })
     
 export const getTasksForProjectsFunction = (projectId) => async dispatch => {
+    // console.log('WE IN THIS THUNKKKK', projectId)
         const response = await fetch(`/api/projects/${projectId}/tasks`,{
             headers: {'Content-Type': 'application/json'}
         });
         if (response.ok) {
             const tasks = await response.json()
-            console.log(tasks)
+            // console.log(tasks)
             dispatch(getTasks(tasks));
         }
 }
