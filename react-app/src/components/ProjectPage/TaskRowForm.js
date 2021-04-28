@@ -7,7 +7,7 @@ const TaskRowForm = () => {
 
     return (
         <tr className="task-row task-form">
-            <td id="complete"></td>
+            <td style={{ 'borderRight': 'none' }} id="complete"></td>
             <td id="title">Add task...</td>
             <td id="user_id">Assign...</td>
             <td style={{ 'borderRight': 'none' }} id="due-date">Due...</td>
