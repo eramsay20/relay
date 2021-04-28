@@ -1,11 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TaskRow from './TaskRow';
 import TaskRowForm from './TaskRowForm';
+import { getTasksForProjectsFunction } from '../../store/task';
+import { project } from '../../store/project';
 
 const TaskTable = () => {
-    // const dispatch = useDispatch(); 
-    const user = useSelector(state => state.session.user);
+    const dispatch = useDispatch(); 
+    const tasks = useSelector(state => state.task.tasks)
+    const currProject = useSelector(state => state.project.project)
+
+    let project_id;
+    if ( currProject ){
+        project_id = currProject.id
+    }
+    
+    useEffect(() => {
+        dispatch(project(project_id))
+        dispatch(getTasksForProjectsFunction(project_id))
+    }, [dispatch, project_id])
+    
+    let task_components = tasks.map( task => (
+        <TaskRow task={task}/>
+    ))
 
     return (
         <table>
@@ -19,17 +36,7 @@ const TaskTable = () => {
             </thead>
             <tbody>
                 <div className='task-row-entries'>
-                    {/* LOOP TASK ROWS HERE */}
-                    <TaskRow />
-                    <TaskRow />
-                    <TaskRow />
-                    <TaskRow />
-                    <TaskRow />
-                    <TaskRow />
-                    <TaskRow />
-                    <TaskRow />
-                    <TaskRow />
-                    <TaskRow />
+                    {task_components}
                     <TaskRowForm />
                 </div>
             </tbody>

@@ -4,17 +4,17 @@ import TaskHeader from './TaskHeader';
 import TaskTable from './TaskTable';
 
 
-const ProjectContent = () => {
+const ProjectContent = ({ project }) => {
     // const dispatch = useDispatch(); 
     const user = useSelector(state => state.session.user);
 
     return (
         <div className="project-task-container">
             <div className="task-header flex-container">
-                <TaskHeader />
+                <TaskHeader project={project}/>
             </div>
             <div className="task-container">
-                <TaskTable />
+                <TaskTable project={project}/>
             </div>
         </div>
     );
