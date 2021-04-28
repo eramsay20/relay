@@ -5,7 +5,7 @@ import LogoutButton from './auth/LogoutButton';
 
 const NavBar = () => {
   const profile_icon_violet = require('../frontend-assets/profile_icon_violet.png');
-  const relay_banner = require('../frontend-assets/relay_banner_2_dark.png');
+  const relay_banner = require('../frontend-assets/relay_banner_1.png');
 
   const history = useHistory();
 
@@ -41,14 +41,9 @@ const NavBar = () => {
   return (
     <nav className='nav-container'>
       { user &&
-        <div onClick={return_home}><img style={{'height':'50px'}} alt='logo' src={relay_banner}></img></div>
+        <div onClick={return_home}><img style={{'height':'45px', 'paddingRight':'15px'}} alt='logo' src={relay_banner}></img></div>
       }
       <div></div>
-      { user && (
-        <div>
-          <LogoutButton />
-        </div>
-      )}
       { user_initial &&
         (<>
           <div onClick={openMenu} className='flex-container'>

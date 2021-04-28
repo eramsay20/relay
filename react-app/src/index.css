@@ -83,7 +83,7 @@ body {
 
 .header{
     grid-area: header;
-    background-color: #151b26;
+    background-color: var(--CHARCOAL)
 }
 
 .main{
@@ -93,7 +93,7 @@ body {
 
 .footer{
     grid-area: footer;
-    background-color: #151b26;
+    background-color: var(--CHARCOAL)
 }
 
 /* PROFILE LAYOUT */
@@ -304,8 +304,8 @@ a {
 .nav-container {
     display: grid;
     grid-template-areas:
-      "logo-home . logout profile";
-    grid-template-columns: 200px 1fr 200px 100px;
+      "logo-home . profile";
+    grid-template-columns: 200px 1fr 100px;
     grid-template-rows: 1fr;
     height: 100%;
     width: 100%;
