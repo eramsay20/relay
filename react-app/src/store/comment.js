@@ -17,10 +17,10 @@ const addComment = (comment) => ({
     comment
 });
 
-export const comments = (taskId) => async dispatch => {
+export const comments = (task_id) => async dispatch => {
     const response = await fetch(`/api/comments`, {
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({taskId: `${taskId}`})
+        body: JSON.stringify({task_id})
     });
     const data = await response.json()
     if(!response.ok){
@@ -40,11 +40,11 @@ export const deleteComment = (commentId) => async dispatch => {
     dispatch(removeComment(data));
 };
 
-export const postComment = (comment) => async dispatch => {
+export const postComment = ({comment, task_id}) => async dispatch => {
     const response = await fetch(`/api/comments/`, {
         headers: {'Content-Type': 'application/json'},
         method: 'POST',
-        body: JSON.stringify({comment})
+        body: JSON.stringify({comment, task_id})
     });
     const data = response.json();
     if(!response.ok){

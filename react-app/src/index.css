@@ -52,6 +52,22 @@
   background-color: white;
 }
 
+.taskDetailContainer {
+  background-color: white;
+  background-color: var(--WHITE);
+  color: var(--CHARCOAL);
+  text-align: left;
+  font-size: 15px;
+  padding: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--GREY_HIGHLIGHT);
+  box-shadow: 1px 1px 20px 1px var(--WHITE);
+}
+
+.taskDetailContent {
+  overflow-y: scroll;
+}
+
 body {
     background-color: var(--WHITE);
     color: var(--CHARCOAL);

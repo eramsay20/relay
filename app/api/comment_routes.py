@@ -9,14 +9,14 @@ comment_routes = Blueprint("comments", __name__)
 @login_required
 def comments():
     # need to make the task_id dynamic
+    task_id = request.get_json().get("task_id")
     comments = Comment.query.filter(
-        Comment.task_id == "1").all()
+        Comment.task_id == task_id).all()
     if request.method == "POST":
         body = request.get_json()
-        print(session["_user_id"])
         new_comment = Comment(
             user_id=session["_user_id"],
-            task_id=body.get("id", 1),
+            task_id=body.get("task_id"),
             comment=body.get("comment")
         )
         db.session.add(new_comment)

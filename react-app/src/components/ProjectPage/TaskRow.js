@@ -19,7 +19,6 @@ const TaskRow = ({task}) => {
     // };
 
     const onClick = e => {
-        e.preventDefault();
         setShowModal(true);
     };
 
@@ -46,10 +45,10 @@ const TaskRow = ({task}) => {
                     <td className="flex-container">
                         <img style={{'width':'20px', 'paddingLeft':'10px'}} src={incomplete_check}></img>
                     </td>
-                    <td className="capitalize">
+                    <td className="capitalize" >
                         <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick}>{task.title}</Link>
                         { showModal && (
-                            <Modal onClose={() => setShowModal(false)}>
+                            <Modal onClose={() => setShowModal(false)} style={{}}>
                                 <TaskDetails task={task} date={dateFormat}/>
                             </Modal>
                         )}
