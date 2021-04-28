@@ -5,6 +5,7 @@ import { getTasksFunction } from '../../store/task';
 import { getUsersFunction } from '../../store/user' 
 
 const TaskRowForm = ({project, lastTask, setLastTask}) => {
+    const add_task_icon = require('../../frontend-assets/aqua_add_icon.png')
     const dispatch = useDispatch(); 
     const user = useSelector(state => state.session.user);
     const all_users = useSelector(state => state.user.users)
@@ -47,9 +48,12 @@ const TaskRowForm = ({project, lastTask, setLastTask}) => {
     const today = new Date()
 
     return (
-        <form onSubmit={onSubmit}>
-            <button type='submit'>+</button>
+        <form className="task-form-container" onSubmit={onSubmit}>
+            <button className="task-form-button" type='submit'>
+                <img style={{ 'width': '20px', 'paddingLeft': '18px' }} src={add_task_icon}></img>
+            </button>
             <input
+                className="task-form-input"
                 type="text"
                 name="title"
                 onChange={e => setTitle(e.target.value)}
@@ -57,11 +61,13 @@ const TaskRowForm = ({project, lastTask, setLastTask}) => {
                 required={true}
                 placeholder='Add task...'
             />
-            <select value={assignee} required={false} onChange={e => setAssignee(e.target.value)}>
+            <select className="task-form-select" value={assignee} required={false} onChange={e => setAssignee(e.target.value)}>
                 <option value={null}></option>
                 {select_options}
             </select>
             <input
+                style={{ 'borderRight': 'none' }}
+                className="task-form-input"
                 type="date"
                 name="due_date"
                 onChange={e => setDue(e.target.value)}
