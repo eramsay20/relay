@@ -2,15 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeTaskFunction } from '../../store/task'
 import { getTasksFunction } from '../../store/task';
+import { getUsersFunction } from '../../store/user' 
 
 const TaskRowForm = ({project, lastTask, setLastTask}) => {
     const dispatch = useDispatch(); 
     const user = useSelector(state => state.session.user);
+    const all_users = useSelector(state => state.user.users)
 
     const [complete, setComplete] = useState(false);
     const [title, setTitle] = useState(null);
     const [assignee, setAssignee] = useState(null);
     const [due, setDue] = useState(null);
+
+    useEffect(() => {
+        dispatch(getUsersFunction())
+    }, [dispatch])
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -23,8 +29,13 @@ const TaskRowForm = ({project, lastTask, setLastTask}) => {
         setDue(null)
         }
     let project_id;
+
     if(project){
         project_id = project.id
+    }
+
+    if (all_users){
+        console.log(all_users)
     }
 
     const people = ['Eric', 'Mauro', 'Robert']
