@@ -22,8 +22,13 @@ const ProfilePage = () => {
             <div className="tasks flex-container">
                 <TaskDisplay />
             </div>
-            <div className="projects flex-container">
-                <ProjectDisplay projects={current_projects}/>
+            <div>
+                <div className="flex-container">
+                    <h3>Recent Projects</h3>
+                </div>
+                <div className="projects">
+                    <ProjectDisplay projects={current_projects}/>
+                </div>
             </div>
         </div>
     );
