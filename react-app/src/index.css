@@ -79,7 +79,7 @@ body {
 
 .main{
     grid-area: main;
-    background-color: var(--GREY_HIGHLIGHT);
+    /* background-color: var(--GREY_HIGHLIGHT); */
 }
 
 .footer{
@@ -107,12 +107,16 @@ body {
 }
 
 
-.tasks{
+.my-tasks{
     grid-area: tasks;
-    background-color: green;
+    /* background-color: green; */
+    display: flex;
+    padding-right: 50px;
+    padding-left: 50px;
+    justify-content: center;
 }
 
-.projects{
+.my-projects{
     grid-area: projects;
     /* background-color: blue; */
     display: flex;
@@ -374,9 +378,9 @@ input:focus {
   text-transform: capitalize
 }
 
-
-
-
+.min-margin {
+  margin: 30px 0 10px 0;
+}
 
 
 

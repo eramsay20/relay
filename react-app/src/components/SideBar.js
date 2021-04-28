@@ -22,7 +22,7 @@ const SideBar = () => {
 
     const teamList = team.map(team => (
         <>
-            <h3>{team.title}</h3>
+            <h4>{team.title}</h4>
             <p>{team.users.map(user => user.username[0].toUpperCase()+", ")}</p>
             <br></br>
         </>
