@@ -16,6 +16,7 @@ const TaskForm = () => {
   useEffect(()=>{
     dispatch(getTasksForProjectsFunction(1))
     dispatch(getOneTaskFunction(2))
+    dispatch(getOneTeamFunction(1))
   },[dispatch])
   const onSubmit = (e) => {
     e.preventDefault();
