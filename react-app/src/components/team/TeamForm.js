@@ -23,7 +23,7 @@ const TeamForm = () => {
         setErrors(error)
     }
     if(error.length === 0){
-        dispatch(makeTeamFunction(title, 6))
+        dispatch(makeTeamFunction(title, [6, 2, 1, 5]))
     }
   }
   const onEdit = (e) =>{
@@ -35,7 +35,7 @@ const TeamForm = () => {
         setErrors(error)
     }
     if(error.length === 0){
-        dispatch(updateTeamFunction(1, title, 16))
+        dispatch(updateTeamFunction(1, title, [28, 29]))
     }
   }
   const onDelete = (e) =>{

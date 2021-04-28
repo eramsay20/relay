@@ -14,16 +14,40 @@ const ProfilePage = () => {
         dispatch(projects())
     }, [dispatch])
 
+    const divider = (
+        <hr
+            style={{
+                'color': 'var(--GREY_TEXT_LABELS)',
+                'backgroundColor': 'green',
+                'height': '15',
+                'marginLeft': '200px',
+                'marginRight': '200px'
+            }}
+        />
+    );
+
     return (
         <div className="profile-container">
             <div className="sidebar">
                 <SideBar />
             </div>
-            <div className="tasks flex-container">
-                <TaskDisplay />
+            <div>
+                <div className="flex-container">
+                    <h3 className="min-margin">My Tasks</h3>
+                </div>
+                {divider}
+                <div className="my-tasks">
+                    <TaskDisplay projects={current_projects}/>
+                </div>
             </div>
-            <div className="projects flex-container">
-                <ProjectDisplay projects={current_projects}/>
+            <div>
+                <div className="flex-container">
+                    <h3 className="min-margin">My Projects</h3>
+                </div>
+                {divider}
+                <div className="my-projects">
+                    <ProjectDisplay projects={current_projects}/>
+                </div>
             </div>
         </div>
     );
