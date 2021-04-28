@@ -9,7 +9,6 @@ const TaskDisplay = () => {
     return (
         <>
             <h1>TASKS HERE</h1>
-            <TaskForm />
         </>
     );
 };

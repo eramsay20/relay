@@ -164,20 +164,28 @@ body {
       "sidebar-teams";
 
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 200px 1fr;
     grid-gap: 5px;
     height: 100%;
     width: 100%;
+    color: var(--GREY_TEXT);
+    background-color: var(--SIDEBAR_CHARCOAL)
 }
 
 .sidebar-nav{
     grid-area: sidebar-nav;
-    background-color: var(--ORANGE_FADE);
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
 }
 
 .sidebar-teams{
     grid-area: sidebar-teams;
-    background-color: var(--RED_FADE);
+    padding-left: 30px;
+    line-height: 10px;
 }
 
 
@@ -266,7 +274,6 @@ td {
 /* LINKS */
 
 a {
-    color: var(--SKY_BLUE);
     text-decoration: none;
 }
 
