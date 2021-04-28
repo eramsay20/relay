@@ -35,7 +35,6 @@ const ProfilePage = () => {
                 <div className="flex-container">
                     <h3 className="min-margin">My Tasks</h3>
                 </div>
-                {divider}
                 <div className="my-tasks">
                     <TaskDisplay projects={current_projects}/>
                 </div>

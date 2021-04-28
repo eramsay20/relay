@@ -28,7 +28,7 @@ const TaskTable = () => {
         <table>
             <thead>
                 <tr className="task-row-titles task-row">
-                    <td></td>
+                    <td style={{ 'borderRight': 'none' }}></td>
                     <td>Task Name</td>
                     <td>Assignee</td>
                     <td style={{ 'borderRight': 'none' }}>Due Date</td>
