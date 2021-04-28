@@ -25,7 +25,8 @@ const TaskForm = () => {
         setErrors(error)
     }
     if(error.length === 0){
-        dispatch(makeTaskFunction(projectId, title, complete, userId, dueDate, description))
+        dispatch(makeTaskFunction(1, 'test title', false, 1, null, 'description'))
+        // dispatch(makeTaskFunction(projectId, title, complete, userId, dueDate, description))
     }
   }
   const onEdit = (e) =>{
@@ -37,7 +38,8 @@ const TaskForm = () => {
         setErrors(error)
     }
     if(error.length === 0){
-        dispatch(updateTaskFunction(1, 1, title, complete, userId, dueDate, description))
+        dispatch(updateTaskFunction(1, 2, 'More', true, 2, '2021-04-27', 'more descript'))
+        // dispatch(updateTaskFunction(1, 1, title, complete, userId, dueDate, description))
     }
   }
   const onDelete = (e) =>{

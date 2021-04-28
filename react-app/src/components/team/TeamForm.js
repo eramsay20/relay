@@ -1,13 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TeamList from './TeamList';
-import { makeTeamFunction, getTeamsFunction, updateTeamFunction, deleteTeamFunction } from '../../store/team'
+import { makeTeamFunction, getOneTeamFunction, getTeamsFunction, updateTeamFunction, deleteTeamFunction } from '../../store/team'
 
 const TeamForm = () => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [errors, setErrors] = useState([]);
   const teams = useSelector(state => state.team.teams)
+
+  useEffect(()=>{
+    dispatch(getTeamsFunction());
+    dispatch(getOneTeamFunction(1))
+  },[dispatch])
+
   const onSubmit = (e) => {
     e.preventDefault();
     let error = []
@@ -17,7 +23,7 @@ const TeamForm = () => {
         setErrors(error)
     }
     if(error.length === 0){
-        dispatch(makeTeamFunction(title))
+        dispatch(makeTeamFunction(title, 6))
     }
   }
   const onEdit = (e) =>{
@@ -29,7 +35,7 @@ const TeamForm = () => {
         setErrors(error)
     }
     if(error.length === 0){
-        dispatch(updateTeamFunction(1, title))
+        dispatch(updateTeamFunction(1, title, 16))
     }
   }
   const onDelete = (e) =>{

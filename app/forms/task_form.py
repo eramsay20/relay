@@ -21,7 +21,7 @@ class TaskForm(FlaskForm):
     # Integerfields marked '.' should be rendered as hidden fields
     project_id = IntegerField('.', validators=[DataRequired()])
     title = StringField('title', validators=[DataRequired()])
-    user_id = SelectField('user_id', coerce=int, choices=choices)
-    due_date = DateField('due_date')
-    description = TextAreaField('description')
-    complete = BooleanField('complete', false_values=None)
+    user_id = IntegerField('user_id')
+    due_date = StringField('due_date')
+    description = StringField('description')
+    complete = StringField('complete')

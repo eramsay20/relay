@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Team, db
-from app.forms import TeamForm, DeleteForm
+from app.models import Team, user_team, db
+from app.forms import TeamForm, DeleteForm, UserTeamForm
 from flask_login import login_required
 
 team_routes = Blueprint('teams', __name__)
@@ -28,6 +28,24 @@ def make():
         print('-------------------------', form.data)
         team = Team(
             title=form.data['title']
+        )
+        print(team)
+        db.session.add(team)
+        db.session.commit()
+        return team.to_dict()
+    return {'errors': form.errors}
+
+
+@team_routes.route('<int:team_id>/users/<int:user_id>', methods=["POST"])
+@login_required
+def make_join(team_id, user_id):
+    form = TeamForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        print('-------------------------', form.data)
+        team = user_team(
+            team_id=form.data['team_id'],
+            user_id=form.data['user_id'],
         )
         print(team)
         db.session.add(team)
@@ -73,3 +91,13 @@ def delete(id):
     db.session.commit()
     return {'id': id}
     return {'errors': form.errors}
+
+
+# @team_routes.route('<int:team_id>/users/<int:user_id>', methods=["DELETE"])
+# @login_required
+# def delete_join(team_id):
+#     join = user_team.query.filter_by(team_id=team_id and user_id=user_id)
+#     db.session.delete(team)
+#     db.session.commit()
+#     return {'team_id': team_id, 'user_id'}
+#     return {'errors': form.errors}

@@ -24,6 +24,7 @@ def teams():
 def make():
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print('######################################', form)
     if form.validate_on_submit():
         task = Task(
             title=form.data['title'],
@@ -33,6 +34,7 @@ def make():
             description=form.data['description'],
             complete=form.data['complete']
         )
+        print(task.to_dict)
         db.session.add(task)
         db.session.commit()
         return task.to_dict()
