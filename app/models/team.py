@@ -15,5 +15,6 @@ class Team(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "title": self.title
+            "title": self.title,
+            # "members": self.users.to_dict()
         }

@@ -9,7 +9,25 @@ team_routes = Blueprint('teams', __name__)
 @team_routes.route('/', methods=["Get"])
 def teams():
     teams = Team.query.all()
-    teams = [team.to_dict() for team in teams]
+    mutated_teams = []
+    print('###############', teams)
+    for team in teams:
+        users = [user.to_dict() for user in team.users]
+        team_dict = team.to_dict()
+        users_string = 'users'
+        team_dict[users_string] = users
+        mutated_teams.append(team_dict)
+
+    teams = mutated_teams
+    # team1 = teams[0]
+    # test_user = team1.users
+    # print('********************', users)
+    # teams = [team.to_dict() for team in teams]
+    # test_team = teams[0]
+    # test_members = test_team
+    # test_key = 'members'
+    # test_team[test_key] = 'please work'
+    # # print('##########', test_team)
     team_dict = {}
     i = 0
     while i < len(teams):
