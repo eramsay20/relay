@@ -82,6 +82,8 @@ def edit(id):
 @login_required
 def delete(id):
     task = Task.query.get(id)
+    comment = Comment.query.filter_by(task_id=id).all()
+    print('@@@@@@@@@@@@@@@@@@@@@@@', comment)
     db.session.delete(task)
     db.session.commit()
     return {'id': id}
