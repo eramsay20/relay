@@ -42,6 +42,15 @@
   background-color: transparent;
 }
 
+.profileDropdown {
+  position: relative;
+}
+
+.profileContent {
+  position: absolute;
+  right: 30px;
+  background-color: white;
+}
 
 body {
     background-color: var(--WHITE);
@@ -147,7 +156,7 @@ body {
     /* background-color: green; */
     display: grid;
     grid-template-areas:
-      ". task-icon title-status . ."; 
+      ". task-icon title-status . .";
     grid-template-columns: 60px 100px 300px 1fr 1fr;
     grid-template-rows: 1fr;
     height: 100%;
@@ -210,7 +219,7 @@ body {
     grid-template-areas:
       "task-header"
       "task-table"
-      "."; 
+      ".";
     /* background-color: var(--CHARCOAL); */
     grid-template-columns: 1fr;
     grid-template-rows: 40px 1fr 100px;
@@ -224,7 +233,7 @@ body {
 
     display: grid;
     grid-template-areas:
-      "add-task . filter sort ."; 
+      "add-task . filter sort .";
     grid-template-columns: 200px 1fr 50px 50px 100px;
     grid-template-rows: 1fr;
     height: 100%;
@@ -295,7 +304,7 @@ a {
 .nav-container {
     display: grid;
     grid-template-areas:
-      "logo-home . logout profile"; 
+      "logo-home . logout profile";
     grid-template-columns: 200px 1fr 200px 100px;
     grid-template-rows: 1fr;
     height: 100%;
