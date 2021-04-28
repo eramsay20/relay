@@ -2,6 +2,7 @@ const LOAD = 'teams/LOAD'
 const ONE = 'teams/ONE'
 const DELETE = 'teams/DELETE'
 const CRU = 'teams/CRU'
+const JOIN = 'teams/CRU'
 
 const getTeams = (list) => ({
     type: LOAD,
@@ -11,6 +12,11 @@ const getTeams = (list) => ({
 
 const getOneTeam = (payload) => ({
     type: ONE,
+    payload
+})
+
+const joinToTeam = (payload) => ({
+    type: JOIN,
     payload
 })
 
@@ -62,7 +68,7 @@ export const makeTeamFunction = (title) => async dispatch => {
     const response = await fetch('/api/teams/', {
         headers: {'Content-Type': 'application/json'},
         method: 'POST',
-        body: JSON.stringify({ 'title': title })
+        body: JSON.stringify({ 'title': title})
     });
     console.log(response)
     if (response.ok) {
@@ -83,7 +89,18 @@ export const updateTeamFunction = (teamId, title) => async dispatch => {
     }
 }
 
-const initialState = {team: null, teams: null}
+export const makeJoinFunction = (teamId, userId) => async dispatch => {
+    const response = await fetch(`/api/teams/${teamId}/users/${userId}`, {
+        headers: {'Content-Type': 'application/json'},
+        method: 'POST',
+    });
+    if (response.ok) {
+        const team = await response.json()
+        dispatch(joinToTeam(team))
+    }
+}
+
+const initialState = {team: null, teams: []}
 
 const teamReducer = (state=initialState, action) => {
     switch(action.type) {
@@ -141,6 +158,9 @@ const teamReducer = (state=initialState, action) => {
                 
 
             }
+        }
+        case JOIN: {
+            return { ...state }
         }
         default:
             return state;

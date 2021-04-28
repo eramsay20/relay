@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import TeamForm from './team/TeamForm'
 
 const SideBar = () => {
     // const dispatch = useDispatch(); 
@@ -12,6 +13,8 @@ const SideBar = () => {
             </div>
             <div className="sidebar-teams flex-container">
                 <h1>TEAM INFO HERE</h1>
+                <TeamForm />
+                
             </div>
         </div>
     );
