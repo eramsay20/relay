@@ -18,9 +18,8 @@ const addComment = (comment) => ({
 });
 
 export const comments = (task_id) => async dispatch => {
-    const response = await fetch(`/api/comments`, {
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({task_id})
+    const response = await fetch(`/api/tasks/${task_id}/comments`, {
+        headers: {'Content-Type': 'application/json'}
     });
     const data = await response.json()
     if(!response.ok){
@@ -58,7 +57,7 @@ const initialState = {comments: null}
 const commentReducer = (state=initialState, action) => {
     switch(action.type) {
         case SET_COMMENTS:
-            return {comments: action.comments};
+            return {comments: action.comments.comments};
         case REMOVE_COMMENT:
             const newState = {...state};
             for (const key in action.comment){
