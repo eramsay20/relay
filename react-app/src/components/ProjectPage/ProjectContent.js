@@ -5,7 +5,6 @@ import TaskTable from './TaskTable';
 
 
 const ProjectContent = ({ project }) => {
-    // const dispatch = useDispatch(); 
     const user = useSelector(state => state.session.user);
 
     return (

@@ -86,7 +86,6 @@ const TaskForm = () => {
               onChange={e => setTitle(e.target.value)}
               value={title}
               required={true}
-
             />
           </label>
         </div>

@@ -6,7 +6,7 @@ const getUsers = payload =>({
 })
 
 export const getUsersFunction = () => async dispatch => {
-    const response = await fetch('/api/users',{
+    const response = await fetch('/api/users/',{
         headers: {'Content-Type': 'application/json'}
     });
     if (response.ok) {
