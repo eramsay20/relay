@@ -54,6 +54,11 @@ function App() {
                 <ProjectPage />
               </div>
             </ProtectedRoute>
+            <ProtectedRoute path="/projects/:project_id/tasks/:task_id" exact={true}>
+              <div className={`main flex-container`}>
+                <ProjectPage />
+              </div>
+            </ProtectedRoute>
             <ProtectedRoute path="/new_project" exact={true}>
               <ProjectForm />
             </ProtectedRoute>

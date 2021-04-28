@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal, ModalProvider } from "../../context/Modal";
+import { Modal } from "../../context/Modal";
 import ProjectForm from "../ProjectForm";
 
 const ProjectHeader = ({project}) => {

@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { postComment } from '../store/comment';
 
 const CommentForm = () => {
+    const {task_id} = useParams();
     const dispatch = useDispatch();
     const [comment, setComment] = useState('');
     const [errors, setErrors] = useState([]);
@@ -12,7 +14,7 @@ const CommentForm = () => {
         if(!comment.length){
             setErrors(["Comment cannot be an empty field."])
         }else {
-            dispatch(postComment(comment))
+            dispatch(postComment({comment, task_id}))
         }
     }
     return (
