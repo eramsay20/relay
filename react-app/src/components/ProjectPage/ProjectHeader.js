@@ -5,7 +5,7 @@ import { project } from "../../store/project";
 const ProjectHeader = ({project}) => {
     // const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
-    const completed = project?.complete === true ? 'Completed' : 'Incomplete'
+    const completed = project?.complete === true ? 'Completed' : 'In Progress'
     const task_list_icon = require("../../frontend-assets/task_list_icon.png")
     return (
         <>
