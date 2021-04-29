@@ -60,7 +60,7 @@ const TaskRow = ({task, currentTask, onClick}) => {
                         <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick(task.id)}>{task.title}</Link>
                         { currentTask === task.id && (
                             <Modal styles={styles} >
-                                <TaskDetails task={task} date={dateFormat}/>
+                                <TaskDetails task={task} date={dateFormat} onClick={onClick}/>
                             </Modal>
                         )}
                     </td>

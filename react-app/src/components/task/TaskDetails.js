@@ -1,24 +1,49 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { comments } from '../../store/comment';
+import { comments, deleteComment } from '../../store/comment';
 import CommentForm from "../CommentForm"
 
 const TaskDetails = ({task, date, onClick}) => {
     const profile_icon_violet = require('../../frontend-assets/profile_icon_violet.png');
 
     const dispatch = useDispatch();
+    const userId = useSelector(state => state.session.user.id)
     const taskComment = useSelector(state => state.comment.comments)
-    if(taskComment){
-        console.log(taskComment)
+
+    const [showMenu, setShowMenu] = useState(true)
+
+    const openMenu = e => {
+        e.preventDefault();
+        if(showMenu) return;
+        setShowMenu(true);
+    };
+
+    useEffect(() => {
+        if(!showMenu) return;
+        const closeMenu = e => {
+        e.preventDefault();
+        setShowMenu(false);
+        };
+        document.addEventListener("click", closeMenu);
+        return () => document.removeEventListener("click", closeMenu)
+    }, [showMenu])
+
+
+    const onDelete = (id) => () => {
+        dispatch(deleteComment(id));
+    };
+    const onEdit = (id) => () => {
+        console.log("Hello", `${id}`)
     }
+
     useEffect(() => {
         dispatch(comments(task.id))
     }, [dispatch]);
     const due = date(task.due_date)
  return (
-     <div className="taskDetailContainer" onClick={onClick}>
+     <div className="taskDetailContainer">
          <nav>
-             <div></div>
+             <div onClick={onClick(null)}>Exit</div>
          </nav>
          <div>
             <h1>{task.title}</h1>
@@ -46,13 +71,24 @@ const TaskDetails = ({task, date, onClick}) => {
                             <img style={{ 'width': '30px', 'paddingLeft': '10px' }} src={profile_icon_violet}></img>
                             <span className="commentInitial">{name.split('')[0].toUpperCase()}</span>
                             <span className="commentText">{taskComment[name].comment}</span>
+                            {taskComment[name].user_id === userId &&
+                                (<div>
+                                    <div onClick={openMenu} >adkja;lfdj;asjr;lejl;</div>
+                                    {showMenu && (
+                                        <div className="profileContent">
+                                            <div className="logout" onClick={onEdit(taskComment[name].id)}>Edit</div>
+                                            <div onClick={onDelete(taskComment[name].id)}>Delete</div>
+                                        </div>
+                                    )}
+                                </div>)
+                            }
                         </div>
                     ))}
                 </div>
             </div>
          </div>
          <div>
-             <CommentForm />
+             {/* <CommentForm /> */}
          </div>
      </div>
  )

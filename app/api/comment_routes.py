@@ -29,10 +29,12 @@ def comments():
 @login_required
 def comment(id):
     comment = Comment.query.get(id)
+    comment_ = (db.session.query(Comment, User.username).join(User).get(id))
     if request.method == "DELETE":
         deleted_comment = delete_comment(comment)
-        # db.session.delete(comment)
-        # db.session.commit()
+        db.session.delete(comment)
+        db.session.commit()
         # return comment.to_dict()
-        return deleted_comment
-    return comment.to_dict() if comment else {"Comment": "Null"}
+        return {name: comment for comment, name in comment_}
+    return ({name: comment.to_dict() for comment, name in comment_}
+            if comment else {"Comment": "Null"})
