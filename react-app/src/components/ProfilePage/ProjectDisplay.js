@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NavLink } from 'react-router-dom'
-import { useDispatch, useSelector } from "react-redux";
-// import { projects } from '../../store/project';
 import ProjectCard from './ProjectCard'
 
-const ProjectDisplay = ({ projects }) => {
-    const task_list_icon = require("../../frontend-assets/task_list_icon.png")
-    const add_project_icon = require("../../frontend-assets/add_project_icon.png")
-    const user = useSelector(state => state.session.user);
 
+const ProjectDisplay = ({ projects }) => {
+    const add_project_icon = require('../../frontend-assets/add_project_icon.png')
     return (
-        <>
+        <div className="my-project-wrap">
+            <div className="project-card">
+                <NavLink to={`/new_project`}>
+                    <img alt="new_project_icon" src={add_project_icon}></img>
+                </NavLink>
+                <h5 className='min-margin'> New Project</h5>
+            </div>
             {projects && projects.map(project => (
                     <ProjectCard project={project} />
                 ))}
-            <div className="project-card">
-                <NavLink to="/new_project"><img alt="project_icon" src={add_project_icon}></img></NavLink>
-                <h4> New Project</h4>
-            </div>
-        </>
+        </div>
     );
 };
 
