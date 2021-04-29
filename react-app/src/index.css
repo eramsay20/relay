@@ -76,8 +76,9 @@ body {
     margin: 0;
 }
 
-/* ROOT LAYOUT */
 
+
+/* ROOT LAYOUT */
 .flex-container {
   display: flex;
   justify-content: space-around;
@@ -105,7 +106,6 @@ body {
 
 .main{
     grid-area: main;
-    /* background-color: var(--GREY_HIGHLIGHT); */
 }
 
 .footer{
@@ -113,8 +113,9 @@ body {
     background-color: var(--CHARCOAL)
 }
 
-/* PROFILE LAYOUT */
 
+
+/* PROFILE PAGE */
 .profile-container {
     display: grid;
     grid-template-areas:
@@ -132,10 +133,8 @@ body {
     grid-area: sidebar;
 }
 
-
 .my-tasks{
     grid-area: tasks;
-    /* background-color: green; */
     display: flex;
     padding-right: 50px;
     padding-left: 50px;
@@ -144,15 +143,15 @@ body {
 
 .my-projects{
     grid-area: projects;
-    /* background-color: blue; */
     display: flex;
     padding-right: 50px;
     padding-left: 50px;
     justify-content: center;
 }
 
-/* PROFILE LAYOUT */
 
+
+/* PROJECT PAGE */
 .project-page-container {
     display: grid;
     grid-template-areas:
@@ -169,8 +168,6 @@ body {
 
 .project-page-header{
     grid-area: table-header;
-    /* justify-content: space-around; */
-    /* background-color: green; */
     display: grid;
     grid-template-areas:
       ". task-icon title-status . .";
@@ -184,7 +181,6 @@ body {
 .project-page-content{
     grid-area: table-content;
     margin: 10px;
-    /* background-color: blue; */
 }
 
 .project-card {
@@ -197,7 +193,7 @@ body {
 
 
 
-/* SIDEBAR LAYOUT */
+/* SIDEBAR */
 .sidebar-container {
     display: grid;
     grid-template-areas:
@@ -205,12 +201,12 @@ body {
       "sidebar-teams";
 
     grid-template-columns: 1fr;
-    grid-template-rows: 200px 1fr;
+    grid-template-rows: 200px 20px 1fr;
     grid-gap: 5px;
     height: 100%;
     width: 100%;
     color: var(--GREY_TEXT);
-    background-color: var(--SIDEBAR_CHARCOAL)
+    background-color: var(--SIDEBAR_CHARCOAL);
 }
 
 .sidebar-nav{
@@ -229,6 +225,21 @@ body {
     line-height: 10px;
 }
 
+.sidebar-container p {
+  margin: 20px 0px 10px 0px;
+  font-size: 14px;
+}
+.sidebar-container h4 {
+  margin: 20px 0px 20px 0px;
+  font-size: 16px;
+  color: var(--GREY_TEXT_LABELS);
+}
+
+.sidebar-container a {
+  color: var(--GREY_TEXT);
+  font-size: 14px;
+}
+
 
 /* TASK TABLE LAYOUT */
 .project-task-container {
@@ -237,7 +248,6 @@ body {
       "task-header"
       "task-table"
       ".";
-    /* background-color: var(--CHARCOAL); */
     grid-template-columns: 1fr;
     grid-template-rows: 40px 1fr 100px;
     height: 100%;
@@ -246,8 +256,6 @@ body {
 
 .task-header{
     grid-area: task-header;
-    /* background-color: var(--SKY_BLUE); */
-
     display: grid;
     grid-template-areas:
       "add-task . filter sort .";
@@ -259,7 +267,6 @@ body {
 
 .task-container{
     grid-area: task-table;
-    /* background-color: var(--ORANGE_FADE); */
     display: grid;
     grid-template-areas:
       "task-row-titles"
@@ -308,7 +315,6 @@ td {
     border-right: 1px solid var(--GREY_GRID);
     padding: 10px;
 }
-
 
 
 
@@ -477,7 +483,23 @@ input:focus {
   margin: 30px 0 10px 0;
 }
 
+.profile-icon-container{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 25px;
+  margin-right:5px;
+}
 
+.profile-icon-bg {
+  height: 25px;
+}
+
+.profile-initial {
+  position: relative;
+  right: 17px;
+  font-size: 12px;
+}
 
 
 
