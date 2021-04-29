@@ -90,6 +90,15 @@
   height: 20px;
   padding: 5px;
 }
+
+.logout {
+  border-bottom: 1px solid var(--CHARCOAL);
+  border-right: 1px solid var(--CHARCOAL);
+  border-left: 1px solid var(--CHARCOAL) ;
+  width: 60px;
+  height: 20px;
+  padding: 5px;
+}
 body {
     background-color: var(--WHITE);
     color: var(--CHARCOAL);

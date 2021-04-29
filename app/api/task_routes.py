@@ -111,4 +111,3 @@ def comments(id):
     comments = (db.session.query(Comment, User.username).join(User)
                 .filter(Comment.task_id == id).all())
     return {name: comment.to_dict() for comment, name in comments}
-

@@ -18,7 +18,7 @@ def projects():
     my_project = [project.to_dict() for project in projects]
     project_teams = ([Project.query.filter(Project.team_id == id).first()
                      for id in filter_teams if id not in
-                     [project["team_id"] for project in dict_project]])
+                     [project["team_id"] for project in my_project]])
     if request.method == "POST":
         body = request.get_json()
         new_project = Project(
