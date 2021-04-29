@@ -1,60 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { Modal } from "../../context/Modal";
+import { updateTaskFunction  } from '../../store/task'
 import TaskDetails from "../task/TaskDetails";
 import styles from './TaskRow.module.css';
 
 const TaskRow = ({task, currentTask, onClick}) => {
-
-    const {project_id} = useParams();
-    // const [showModal, setShowModal] = useState(showState);
-
+    const dispatch = useDispatch();
+    const { project_id } = useParams();
     const incomplete_check = require('../../frontend-assets/grey_checkmark.png')
     const complete_check = require('../../frontend-assets/aqua_checkmark.png')
-    const user = useSelector(state => state.session.user);
 
-    // useEffect(() => {
-    //     setShowModal(showState)
-    // }, [showState])
+    const [status, setStatus] = useState(task.complete);
+    const [change, setChange] = useState(false);
 
-    // const onClick = () => {
-    //     if(showModal){
-    //         setShowModal(false)
-    //     }else{
-    //         setShowModal(true);
-    //     }
-
-    // };
+    const toggle_status = () => {
+        setChange(!change)
+        const payload = [task.id, task.project_id,  task.title, !task.complete, task.user_Id, task.due_date, task.description]
+        dispatch(updateTaskFunction(...payload))
+    }
+    
+    useEffect(() => {
+        setStatus(!status)
+    }, [dispatch, change])
 
     const dateFormat = (dateString) => {
         const date = new Date(dateString)
         const day = date.toDateString();
-        const weekday = day.split(" ")[0]
         const month = day.split(" ")[1]
         const dateNum = day.split(" ")[2]
-
-        const time = date.toLocaleTimeString()
-        const hour = time.split(':')[0]
-        const amPm = time.split(' ')[1]
         return `${month} ${dateNum}`
     }
 
     const today = new Date()
+    
     let due;
-    if(task.due_date){
-        due= dateFormat(task.due_date)
-    } else {
-        due=dateFormat(today);
-    }
+    task.due_date ? due= dateFormat(task.due_date) : due=dateFormat(today);
+
+    let statusImg;
+    status ? statusImg = complete_check : statusImg = incomplete_check;
 
     return (
         <tr className="task-row">
             { task &&
                 (
-                    <>
+                <>
                     <td style={{ 'borderRight': 'none' }} className="flex-container">
-                        <img style={{'width':'20px', 'paddingLeft':'10px'}} src={incomplete_check}></img>
+                        <img onClick={toggle_status} style={{'width':'20px', 'paddingLeft':'10px'}} src={statusImg}></img>
                     </td>
                     <td className="capitalize" >
                         <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick(task.id)}>{task.title}</Link>
@@ -66,7 +59,7 @@ const TaskRow = ({task, currentTask, onClick}) => {
                     </td>
                     <td>{task.user_id}</td>
                     <td style={{ 'borderRight': 'none' }} className="task-due-date">{due}</td>
-                    </>
+                </>
                 )
             }
         </tr>
