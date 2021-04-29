@@ -6,7 +6,7 @@ from flask_login import login_required
 team_routes = Blueprint('teams', __name__)
 
 
-@team_routes.route('/', methods=["Get"])
+@team_routes.route('', methods=["Get"])
 def teams():
     teams = Team.query.all()
     mutated_teams = []

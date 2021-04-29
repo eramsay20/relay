@@ -90,6 +90,7 @@ This is the backend for the Flask React project.
    heroku container:release web -a {NAME_OF_HEROKU_APP}
    ```
    <!-- heroku container:release web -a relay-aa -->
+   <!-- ** run this again every time we change the app to rebuild the image ** -->
 
 9. set up your database:
 
