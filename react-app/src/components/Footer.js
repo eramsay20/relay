@@ -14,19 +14,19 @@ function Footer() {
     if (user){
         links = (
             <div className = 'flex-container' style={{'paddingLeft':'230px'}}>
-                <a className='flex-container' href={WIKI_PATH} style={{ marginLeft: '20px' }}>
+                <a className='flex-container' href={WIKI_PATH} target="_blank" style={{ marginLeft: '20px' }}>
                     <img style={{ 'width': '35px' }} src={github_icon}></img>
                     <p style={{ 'position': 'relative', 'right':'21px', 'font-size':'8px' }}>W</p>
                 </a>
-                <a className='flex-container' href={GITHUB_PROFILE_MS} style={{ marginLeft: '20px' }}>
+                <a className='flex-container' href={GITHUB_PROFILE_MS} target="_blank" style={{ marginLeft: '20px' }}>
                     <img style={{ 'width': '35px' }} src={github_icon}></img>
                     <p style={{ 'position': 'relative', 'right': '21px', 'font-size': '8px' }}>M</p>
                 </a>
-                <a className='flex-container' href={GITHUB_PROFILE_RG} style={{ marginLeft: '20px' }}>
+                <a className='flex-container' href={GITHUB_PROFILE_RG} target="_blank" style={{ marginLeft: '20px' }}>
                     <img style={{ 'width': '35px' }} src={github_icon}></img>
                     <p style={{ 'position': 'relative', 'right': '20px', 'font-size': '8px' }}>R</p>
                 </a>
-                <a className='flex-container' href={GITHUB_PROFILE_ER} style={{ marginLeft: '20px' }}>
+                <a className='flex-container' href={GITHUB_PROFILE_ER} target="_blank" style={{ marginLeft: '20px' }}>
                     <img style={{ 'width': '35px' }} src={github_icon}></img>
                     <p style={{ 'position': 'relative', 'right': '20px', 'font-size': '8px' }}>E</p>
                 </a>

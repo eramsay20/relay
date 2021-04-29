@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { comments, deleteComment } from '../../store/comment';
+import { comments, deleteComment, editComment } from '../../store/comment';
 import CommentForm from "../CommentForm"
 
 const TaskDetails = ({task, date, onClick}) => {
     const profile_icon_violet = require('../../frontend-assets/profile_icon_violet.png');
 
     const dispatch = useDispatch();
-    const userId = useSelector(state => state.session.user.id)
-    const taskComment = useSelector(state => state.comment.comments)
+    const userId = useSelector(state => state.session.user.id);
+    const taskComment = useSelector(state => state.comment.comments);
 
-    const [showMenu, setShowMenu] = useState(true)
+    const [showMenu, setShowMenu] = useState(true);
+    const [currComment, setCurrComment] = useState(null);
 
     const openMenu = e => {
         e.preventDefault();
@@ -25,16 +26,16 @@ const TaskDetails = ({task, date, onClick}) => {
         setShowMenu(false);
         };
         document.addEventListener("click", closeMenu);
-        return () => document.removeEventListener("click", closeMenu)
-    }, [showMenu])
+        return () => document.removeEventListener("click", closeMenu);
+    }, [showMenu]);
 
 
     const onDelete = (id) => () => {
         dispatch(deleteComment(id));
     };
-    const onEdit = (id) => () => {
-        console.log("Hello", `${id}`)
-    }
+    const onEdit = (comment) => () => {
+        setCurrComment(comment)
+    };
 
     useEffect(() => {
         dispatch(comments(task.id))
@@ -76,7 +77,7 @@ const TaskDetails = ({task, date, onClick}) => {
                                     <div onClick={openMenu} >adkja;lfdj;asjr;lejl;</div>
                                     {showMenu && (
                                         <div className="profileContent">
-                                            <div className="logout" onClick={onEdit(taskComment[name].id)}>Edit</div>
+                                            <div className="logout" onClick={onEdit(taskComment[name])}>Edit</div>
                                             <div onClick={onDelete(taskComment[name].id)}>Delete</div>
                                         </div>
                                     )}
@@ -88,7 +89,7 @@ const TaskDetails = ({task, date, onClick}) => {
             </div>
          </div>
          <div>
-             {/* <CommentForm /> */}
+             {currComment && <CommentForm comment2={currComment.comment} commentId={currComment.id}/>}
          </div>
      </div>
  )

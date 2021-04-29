@@ -53,6 +53,20 @@ export const postComment = ({comment, task_id}) => async dispatch => {
     dispatch(addComment(data));
 };
 
+export const editComment = ({commentId, comment}) => async dispatch => {
+    console.log(commentId)
+    const response = await fetch(`/api/comments/${commentId}`, {
+        headers: {'Content-Type': 'application/json'},
+        method: "PUT",
+        body: JSON.stringify({comment})
+    });
+    const data = response.json();
+    if(!response.ok){
+        return;
+    };
+    dispatch(setComments(data))
+};
+
 const initialState = {comments: null}
 
 const commentReducer = (state=initialState, action) => {
