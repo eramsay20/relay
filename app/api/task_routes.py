@@ -18,7 +18,7 @@ def delete_task(task, id):
     db.session.commit()
 
 
-@task_routes.route('/', methods=["GET"])
+@task_routes.route('', methods=["GET"])
 def teams():
     tasks = Task.query.all()
     tasks = [task.to_dict() for task in tasks]
