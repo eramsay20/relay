@@ -20,7 +20,7 @@ const ProjectHeader = ({project}) => {
     return (
         <>
             <div></div>
-            <div className='flex-container' style={{ 'width': '100%', 'height':'100%', 'transform':'scale(.7)' }}>
+            <div className='flex-container' style={{ 'width': '100%', 'height':'100%', 'transform':'scale(.8)' }}>
                 <img onClick={onClick} title="Create Project" src={task_list_icon} alt="task_icon"></img>
                 { showModal && (
                 <Modal onClose={() => setShowModal(false)}>
@@ -28,9 +28,9 @@ const ProjectHeader = ({project}) => {
                 </Modal>
                 )}
             </div>
-            <div style={{ 'text-transform': 'capitalize' }}>
+            <div style={{ 'text-transform': 'capitalize', 'paddingTop':'10px' }}>
                 <h3>{project?.title}</h3>
-                <h4>{completed}</h4>
+                <h4 style={{'color':'var(--GREY_TEXT_LABELS'}}>{completed}</h4>
             </div>
             <div></div>
             <div></div>
