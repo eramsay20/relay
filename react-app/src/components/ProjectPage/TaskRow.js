@@ -54,7 +54,7 @@ const TaskRow = ({task}) => {
                     <td className="capitalize" >
                         <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick}>{task.title}</Link>
                         { showModal && (
-                            <Modal onClose={() => setShowModal(false)} style={{}}>
+                            <Modal onClose={() => setShowModal(false)} >
                                 <TaskDetails task={task} date={dateFormat}/>
                             </Modal>
                         )}
