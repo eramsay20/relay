@@ -36,7 +36,6 @@ const SideBar = () => {
             <div className='sidebar-team-header'>
                 <p>{team.title}</p>
                 <img alt={team.id} style={{ 'width': '20px', 'paddingRight': '20px'}} src={add_task_icon} onClick={onClick}></img>
-                {/* <img alt={team.id} style={{ 'width': '20px', 'paddingLeft': '0px' }} src={remove_icon} onClick={onClick}></img> */}
             </div>
             <div className="profile-icon-container">
                 {team.users.map(user => (
