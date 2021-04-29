@@ -15,7 +15,7 @@ const ProfilePage = () => {
 
     let my_projects;
     if(current_projects) my_projects = current_projects.filter(project => project.user_id === user.id)
-
+    
     useEffect(() => {
         dispatch(projects())
     }, [dispatch])
