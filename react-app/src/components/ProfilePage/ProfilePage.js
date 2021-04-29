@@ -43,7 +43,6 @@ const ProfilePage = () => {
             <div>
                 <div className="flex-container">
                     <h3 className="min-margin">My Projects</h3>
-                    <TaskForm />
                 </div>
                 {divider}
                 <div className="my-projects">
