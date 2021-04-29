@@ -4,7 +4,7 @@ export const ModalStateContext = createContext();
 export const useModalState = () => useContext(ModalStateContext);
 
 const ModalStateProvider = ({children}) => {
-    const [showState, setShowState] = useState(false);
+    const [showState, setShowState] = useState();
     const closeModal = () => {
         setShowState(false)
         console.log("I was here.............")

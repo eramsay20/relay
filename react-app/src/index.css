@@ -61,8 +61,8 @@
   font-size: 15px;
   padding-left: 40px;
   border-radius: 10px;
-  border: 1px solid var(--GREY_HIGHLIGHT);
-  box-shadow: 1px 1px 20px 1px var(--WHITE);
+  border: 1px solid var(--GREY_GRID);
+  box-shadow: 1px 1px 1px 1px var(--WHITE);
 }
 
 .taskDetailContent {

@@ -1,24 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { Modal } from "../../context/Modal";
 import TaskDetails from "../task/TaskDetails";
 import styles from './TaskRow.module.css';
 
-const TaskRow = ({task, showState}) => {
+const TaskRow = ({task, currentTask, onClick}) => {
 
     const {project_id} = useParams();
-    const [showModal, setShowModal] = useState(showState);
+    // const [showModal, setShowModal] = useState(showState);
 
     const incomplete_check = require('../../frontend-assets/grey_checkmark.png')
     const complete_check = require('../../frontend-assets/aqua_checkmark.png')
     const user = useSelector(state => state.session.user);
 
+    // useEffect(() => {
+    //     setShowModal(showState)
+    // }, [showState])
 
-    const onClick = e => {
-        setShowModal(true);
+    // const onClick = () => {
+    //     if(showModal){
+    //         setShowModal(false)
+    //     }else{
+    //         setShowModal(true);
+    //     }
 
-    };
+    // };
 
     const dateFormat = (dateString) => {
         const date = new Date(dateString)
@@ -50,10 +57,10 @@ const TaskRow = ({task, showState}) => {
                         <img style={{'width':'20px', 'paddingLeft':'10px'}} src={incomplete_check}></img>
                     </td>
                     <td className="capitalize" >
-                        <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick}>{task.title}</Link>
-                        { showModal && (
-                            <Modal onClose={onClick} styles={styles} >
-                                <TaskDetails onClick={() => setShowModal(false)} task={task} date={dateFormat}/>
+                        <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick(task.id)}>{task.title}</Link>
+                        { currentTask === task.id && (
+                            <Modal styles={styles} >
+                                <TaskDetails task={task} date={dateFormat}/>
                             </Modal>
                         )}
                     </td>
