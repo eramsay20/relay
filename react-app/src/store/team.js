@@ -78,11 +78,13 @@ export const makeTeamFunction = (title, users) => async dispatch => {
 }
 
 export const updateTeamFunction = (teamId, title, users) => async dispatch => {
+    users = users.map(user => parseInt(user))
     const response = await fetch(`/api/teams/${teamId}`, {
         headers: {'Content-Type': 'application/json'},
         method: 'PUT',
         body: JSON.stringify({'title': title, 'users' : users})
     });
+    console.log(teamId, title, users, response)
     if (response.ok) {
         const team = await response.json()
         dispatch(makeTeam(team))

@@ -277,7 +277,7 @@ body {
       "sidebar-teams";
 
     grid-template-columns: 1fr;
-    grid-template-rows: 200px 20px 1fr;
+    grid-template-rows: 80px 20px 1fr;
     grid-gap: 5px;
     height: 100%;
     width: 100%;
@@ -288,11 +288,8 @@ body {
 .sidebar-nav{
     grid-area: sidebar-nav;
     padding-left: 30px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: start;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .sidebar-teams{
@@ -301,19 +298,32 @@ body {
     line-height: 10px;
 }
 
+.sidebar-team-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 16px;
+}
+
 .sidebar-container p {
-  margin: 20px 0px 10px 0px;
-  font-size: 14px;
+  margin: 10px 0px 10px 0px;
+  font-size: 16px;
 }
 .sidebar-container h4 {
   margin: 20px 0px 20px 0px;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--GREY_TEXT_LABELS);
 }
 
 .sidebar-container a {
   color: var(--GREY_TEXT);
   font-size: 14px;
+}
+
+.sidebar-container a:hover {
+  color: var(--GREY_TEXT);
+  font-size: 14px;
+  background-color: var(--SIDEBAR_CHARCOAL);
 }
 
 

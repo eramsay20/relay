@@ -66,6 +66,7 @@ def team(id):
 @team_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def edit(id):
+    print(id)
     form = TeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
