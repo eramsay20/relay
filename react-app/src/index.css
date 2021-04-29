@@ -13,6 +13,7 @@
     --SKY_BLUE: #19aaf5;
     --VIOLET: #786dff;
     --AQUA_GREEN: #25e9c8;
+    --DUE_DATE_GREEN: #3cbf9c;
     --GREY_GRID: #cbd4db;
     --GREY_HIGHLIGHT: #f5f8f9;
 }
@@ -156,9 +157,32 @@ body {
 .my-tasks{
     grid-area: tasks;
     display: flex;
-    padding-right: 50px;
-    padding-left: 50px;
+    width: 100%;
     justify-content: center;
+}
+
+.my-task-row-entries{
+    display: flex;
+    width: 500px;
+    border: 2px solid var(--GREY_GRID);
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 10px;
+    flex-direction: column;
+}
+
+.my-task-row {
+    display: grid;
+    grid-template-areas:
+      "complete task due-date";
+    grid-template-columns:30px 1fr 75px;
+    grid-template-rows: 1fr;
+    height: 100%;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: var(--WHITE);
+    font-size: 14px;
 }
 
 .my-projects{
@@ -342,7 +366,12 @@ td {
 
 a {
     text-decoration: none;
-    color:var(--SIDEBAR_CHARCOAL_HIGHLIGHT)
+    color:var(--SIDEBAR_CHARCOAL_HIGHLIGHT);
+    transition: color 400ms;
+}
+
+a:hover {
+    color:var(--DUE_DATE_GREEN)
 }
 
 .nav-container {

@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, session, request, redirect
 from flask_login import login_required
 from app.models import db, Project, Task, Team, User
+from app.api.task_routes import delete_task
 
 project_routes = Blueprint('projects', __name__)
 
@@ -52,6 +53,12 @@ def project_tasks(id):
 def project(id):
     project = Project.query.get(id)
     if request.method == "DELETE":
+        tasks = Task.query.filter_by(project_id=id).all()
+        length = len(tasks)
+        i = 0
+        while i < length:
+            delete_task(tasks[i], tasks[i].id)
+            i += 1
         db.session.delete(project)
         db.session.commit()
         return {"Project": "NUll"}
