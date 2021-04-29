@@ -15,7 +15,7 @@ def projects():
     filter_teams = ([team.to_dict()["id"] for team in teams if
                     int(session["_user_id"]) in [int(user.to_dict()["id"])
                     for user in team.users]])
-    dict_project = [project.to_dict() for project in projects]
+    my_project = [project.to_dict() for project in projects]
     project_teams = ([Project.query.filter(Project.team_id == id).first()
                      for id in filter_teams if id not in
                      [project["team_id"] for project in dict_project]])
@@ -29,7 +29,7 @@ def projects():
         db.session.add(new_project)
         db.session.commit()
         return new_project.to_dict()
-    all_projects = (dict_project +
+    all_projects = (my_project +
                     [project.to_dict() for project in project_teams])
     print(all_projects)
     return {"projects": all_projects}
