@@ -4,6 +4,7 @@ import SideBar from '../SideBar';
 import ProjectDisplay from './ProjectDisplay';
 import TaskDisplay from './TaskDisplay';
 import { projects } from '../../store/project';
+import TaskForm from "../task/TaskForm";
 
 const ProfilePage = () => {
     const dispatch = useDispatch(); 
@@ -42,6 +43,7 @@ const ProfilePage = () => {
             <div>
                 <div className="flex-container">
                     <h3 className="min-margin">My Projects</h3>
+                    <TaskForm />
                 </div>
                 {divider}
                 <div className="my-projects">
