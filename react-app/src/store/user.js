@@ -17,7 +17,6 @@ export const getUsersFunction = () => async dispatch => {
 const initialState = { users: [] };
 
 export default function reducer(state = initialState, action) {
-    console.log(action.payload)
     switch (action.type) {
         case LOAD:
             return { users: action.payload.users };

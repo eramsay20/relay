@@ -4,7 +4,6 @@ import SideBar from '../SideBar';
 import ProjectDisplay from './ProjectDisplay';
 import TaskDisplay from './TaskDisplay';
 import { projects } from '../../store/project';
-import TaskForm from "../task/TaskForm";
 
 const ProfilePage = () => {
     const dispatch = useDispatch(); 
