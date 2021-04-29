@@ -3,23 +3,21 @@ import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { Modal } from "../../context/Modal";
 import TaskDetails from "../task/TaskDetails";
+import styles from './TaskRow.module.css';
 
-const TaskRow = ({task}) => {
+const TaskRow = ({task, showState}) => {
 
     const {project_id} = useParams();
-
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(showState);
 
     const incomplete_check = require('../../frontend-assets/grey_checkmark.png')
     const complete_check = require('../../frontend-assets/aqua_checkmark.png')
     const user = useSelector(state => state.session.user);
 
-    // const onClick= e => {
-    //     e.preventDefault();
-    // };
 
     const onClick = e => {
         setShowModal(true);
+
     };
 
     const dateFormat = (dateString) => {
@@ -54,8 +52,8 @@ const TaskRow = ({task}) => {
                     <td className="capitalize" >
                         <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick}>{task.title}</Link>
                         { showModal && (
-                            <Modal onClose={() => setShowModal(false)} >
-                                <TaskDetails task={task} date={dateFormat}/>
+                            <Modal onClose={onClick} styles={styles} >
+                                <TaskDetails onClick={() => setShowModal(false)} task={task} date={dateFormat}/>
                             </Modal>
                         )}
                     </td>

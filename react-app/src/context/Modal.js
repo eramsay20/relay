@@ -16,19 +16,19 @@ export const ModalProvider = ({children}) => {
             <ModalContext.Provider value={value} >
                 {children}
             </ModalContext.Provider>
-            <div ref={modalRef} />
+            <div id="test" ref={modalRef} />
         </>
     )
 };
 
-export const Modal = ({onClose, children}) => {
+export const Modal = ({onClose, children, styles}) => {
     const modalNode = useContext(ModalContext);
     if(!modalNode) return null;
 
     return ReactDOM.createPortal(
-        <div id="modal">
-            <div id="modal-background" onClick={onClose} />
-            <div id="modal-content">
+        <div id={styles?.modal} className="modal">
+            <div id={styles?.modalBackground} className="modal-background" onClick={onClose} />
+            <div id={styles?.modalContent} className="modal-content">
                 {children}
             </div>
         </div>,

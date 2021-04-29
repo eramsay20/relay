@@ -3,13 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import TaskRow from './TaskRow';
 import TaskRowForm from './TaskRowForm';
 import { getTasksFunction, getTasksForProjectsFunction } from '../../store/task';
+import { useModalState } from "../../context/ModalState";
 import { project } from '../../store/project';
 
 const TaskTable = () => {
     const dispatch = useDispatch();
-    const tasks = useSelector(state => state.task.tasks)
-    const currProject = useSelector(state => state.project.project)
-    const [lastTask, setLastTask] = useState('')
+    const { showState, closeModal } = useModalState();
+
+
+    const tasks = useSelector(state => state.task.tasks);
+    const currProject = useSelector(state => state.project.project);
+    const [lastTask, setLastTask] = useState('');
 
     let projectId;
     if (currProject) projectId = currProject.id
@@ -22,11 +26,11 @@ const TaskTable = () => {
     }, [dispatch, projectId, lastTask])
 
     let task_components = project_tasks.map( task => (
-        <TaskRow task={task} key={task.id}/>
+        <TaskRow task={task} key={task.id} showState={showState}/>
     ))
 
     return (
-        <table>
+        <table onClick={closeModal}>
             <thead>
                 <tr className="task-row-titles task-row">
                     <td style={{ 'borderRight': 'none' }}></td>
