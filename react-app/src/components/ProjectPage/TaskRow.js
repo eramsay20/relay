@@ -17,7 +17,7 @@ const TaskRow = ({task, currentTask, onClick}) => {
 
     const toggle_status = () => {
         setChange(!change)
-        const payload = [task.id, task.project_id,  task.title, !task.complete, task.user_Id, task.due_date, task.description]
+        const payload = [task.id, task.project_id,  task.title, !task.complete, task.user_id, task.due_date, task.description]
         dispatch(updateTaskFunction(...payload))
     }
     
