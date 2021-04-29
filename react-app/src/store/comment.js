@@ -57,7 +57,7 @@ const initialState = {comments: null}
 const commentReducer = (state=initialState, action) => {
     switch(action.type) {
         case SET_COMMENTS:
-            return {comments: action.comments.comments};
+            return {comments: {...action.comments}};
         case REMOVE_COMMENT:
             const newState = {...state};
             for (const key in action.comment){

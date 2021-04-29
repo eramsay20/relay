@@ -6,15 +6,15 @@ import { getTasksFunction, getTasksForProjectsFunction } from '../../store/task'
 import { project } from '../../store/project';
 
 const TaskTable = () => {
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
     const tasks = useSelector(state => state.task.tasks)
     const currProject = useSelector(state => state.project.project)
     const [lastTask, setLastTask] = useState('')
-    
+
     let projectId;
     if (currProject) projectId = currProject.id
 
-    let project_tasks = tasks.filter(task => task.project_id === projectId)    
+    let project_tasks = tasks.filter(task => task.project_id === projectId)
 
     useEffect(() => {
         dispatch(project(projectId))
@@ -22,7 +22,7 @@ const TaskTable = () => {
     }, [dispatch, projectId, lastTask])
 
     let task_components = project_tasks.map( task => (
-        <TaskRow task={task}/>
+        <TaskRow task={task} key={task.id}/>
     ))
 
     return (

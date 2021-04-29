@@ -69,6 +69,18 @@
   height: 400px;
 }
 
+.commentInitial {
+  position: relative;
+  top: -10px;
+  left: -20px;
+}
+
+.commentText {
+  padding: 5px;
+  position: relative;
+  top: -10px;
+}
+
 body {
     background-color: var(--WHITE);
     color: var(--CHARCOAL);
@@ -406,7 +418,7 @@ input:focus {
     text-align: left;
     font-size: 12px;
     /* border: 1px solid black; */
-    
+
     padding: 0px;
     margin: 0px;
     border-radius: 0px;

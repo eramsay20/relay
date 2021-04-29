@@ -4,9 +4,13 @@ import { comments } from '../../store/comment';
 import CommentForm from "../CommentForm"
 
 const TaskDetails = ({task, date}) => {
+    const profile_icon_violet = require('../../frontend-assets/profile_icon_violet.png');
+
     const dispatch = useDispatch();
     const taskComment = useSelector(state => state.comment.comments)
-
+    if(taskComment){
+        console.log(taskComment)
+    }
     useEffect(() => {
         dispatch(comments(task.id))
     }, [dispatch]);
@@ -37,10 +41,11 @@ const TaskDetails = ({task, date}) => {
                 </div>
                 <div>
                     <h4>Comments</h4>
-                    {taskComment && taskComment.map(comment => (
-                        <div>
-                            <p>{comment.comment}</p>
-                            <p>-{comment.user_id}</p>
+                    {taskComment && Object.keys(taskComment).map(name => (
+                        <div key={name} style={{"padding": "10px"}}>
+                            <img style={{ 'width': '30px', 'paddingLeft': '10px' }} src={profile_icon_violet}></img>
+                            <span className="commentInitial">{name.split('')[0].toUpperCase()}</span>
+                            <span className="commentText">{taskComment[name].comment}</span>
                         </div>
                     ))}
                 </div>
