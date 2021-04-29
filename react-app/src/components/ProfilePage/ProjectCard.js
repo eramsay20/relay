@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NavLink } from 'react-router-dom'
-import { useDispatch, useSelector } from "react-redux";
-// import { projects } from '../../store/project';
 
 const ProjectDisplay = ({ project }) => {
     const task_list_icon = require("../../frontend-assets/task_list_icon.png")
-    const user = useSelector(state => state.session.user);
 
     return (
         <div className="project-card">
             <NavLink to={`/projects/${project.id}`}>
                 <img alt="project_icon" src={task_list_icon}></img>
             </NavLink>
-            <h4> {project.title}</h4>
+            <h5 className='min-margin'> {project.title}</h5>
         </div>
     );
 };
