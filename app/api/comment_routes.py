@@ -5,6 +5,12 @@ from app.models import db, Comment
 comment_routes = Blueprint("comments", __name__)
 
 
+def delete_comment(comment):
+    db.session.delete(comment)
+    db.session.commit()
+    return comment.to_dict()
+
+
 @comment_routes.route("/", methods=["POST"])
 @login_required
 def comments():
@@ -24,7 +30,9 @@ def comments():
 def comment(id):
     comment = Comment.query.get(id)
     if request.method == "DELETE":
-        db.session.delete(comment)
-        db.session.commit()
-        return comment.to_dict()
+        deleted_comment = delete_comment(comment)
+        # db.session.delete(comment)
+        # db.session.commit()
+        # return comment.to_dict()
+        return deleted_comment
     return comment.to_dict() if comment else {"Comment": "Null"}

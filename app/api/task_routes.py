@@ -1,9 +1,21 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Task, Project, db, Comment, User
+from app.api.comment_routes import delete_comment
 from app.forms import TaskForm, DeleteForm
 from flask_login import login_required
 
 task_routes = Blueprint('tasks', __name__)
+
+
+def delete_task(task, id):
+    comments = Comment.query.filter_by(task_id=id).all()
+    length = len(comments)
+    i = 0
+    while i < length:
+        delete_comment(comments[i])
+        i += 1
+    db.session.delete(task)
+    db.session.commit()
 
 
 @task_routes.route('/', methods=["GET"])
@@ -24,7 +36,6 @@ def teams():
 def make():
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('######################################', form)
     if form.validate_on_submit():
         task = Task(
             title=form.data['title'],
@@ -82,18 +93,17 @@ def edit(id):
 @login_required
 def delete(id):
     task = Task.query.get(id)
-    comments = Comment.query.filter_by(task_id=id).all()
-    length = len(comments)
-    i = 0
-    while i < length:
-        print('@@@@@@@@@@@@@@@@@@@@@@@', comments)
-        db.session.delete(comments[i])
-        i += 1
-        db.session.commit()
-    db.session.delete(task)
+    delete_task(task, id)
+    # comments = Comment.query.filter_by(task_id=id).all()
+    # length = len(comments)
+    # i = 0
+    # while i < length:
+    #     delete_comment(comments[i])
+    #     i += 1
+    # db.session.delete(task)
     db.session.commit()
     return {'id': id}
-    return {'errors': form.errors}
+
 
 @task_routes.route('/<int:id>/comments')
 @login_required

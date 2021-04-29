@@ -38,6 +38,7 @@ const ProfilePage = () => {
                 </div>
                 <div className="my-tasks">
                     <TaskDisplay projects={current_projects}/>
+                    <TaskForm />
                 </div>
             </div>
             <div>

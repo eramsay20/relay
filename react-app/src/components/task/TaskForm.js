@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTasksForProjectsFunction, getOneTaskFunction, makeTaskFunction, updateTaskFunction, deleteTaskFunction } from '../../store/task'
+import {deleteProject} from '../../store/project'
 import { getOneTeamFunction } from '../../store/team';
 import { comments } from '../../store/comment'
 
@@ -49,7 +50,7 @@ const TaskForm = () => {
     e.preventDefault();
     const deleteId = tasks.length
     console.log(deleteId)
-    dispatch(deleteTaskFunction(1))
+    dispatch(deleteProject(1))
   }
   return (
     <div>
