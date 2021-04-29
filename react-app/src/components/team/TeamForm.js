@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import TeamList from './TeamList';
 import { makeTeamFunction, getOneTeamFunction, getTeamsFunction, updateTeamFunction, deleteTeamFunction } from '../../store/team'
 import { getUsersFunction } from '../../store/user'
 const TeamForm = ( { prop } ) => {
@@ -9,15 +8,14 @@ const TeamForm = ( { prop } ) => {
   const [title, setTitle] = useState('');
   const [errors, setErrors] = useState([]);
   const [values, setValues] = useState([])
-  const team = useSelector(state => state.team.team)
+  const teams = useSelector(state => state.team)
   const users = useSelector(state => state.user.users)
   const setShowModal = prop.modal
   useEffect(()=>{
     dispatch(getTeamsFunction());
-    if (prop.id) dispatch(getOneTeamFunction(prop.id));
+    if (prop.id) setTitle(teams[prop.id].title);
     dispatch(getUsersFunction());
   },[dispatch])
-
   const onSubmit = (e) => {
       e.preventDefault();
       let error = []
@@ -31,6 +29,21 @@ const TeamForm = ( { prop } ) => {
       }
       if(prop) setShowModal(false)
   }
+  const onSubmitEdit = (e) => {
+    e.preventDefault();
+    let error = []
+    console.log(e)
+    if(!title.length){
+        error.push("Please submit a title.")
+        setErrors(error)
+    }
+    if(error.length === 0){
+      console.log(prop.id, title, values)
+        dispatch(updateTeamFunction(prop.id, title, values))
+        dispatch(getTeamsFunction())
+    }
+    if(prop) setShowModal(false)
+}
   const selectFunct = (e) =>{
     const array = Array.from(e.target.selectedOptions)
     console.log(array)
@@ -43,27 +56,17 @@ const TeamForm = ( { prop } ) => {
       setValues(val)
     }
   }
-  // const onEdit = (e) =>{
-  //   e.preventDefault();
-  //   let error = []
-  //   console.log(title)
-  //   if(!title.length){
-  //       error.push("Please submit a title.")
-  //       setErrors(error)
-  //   }
-  //   if(error.length === 0){
-  //       dispatch(updateTeamFunction(1, title, [28, 29]))
-  //   }
-  // }
-  // const onDelete = (e) =>{
-  //   e.preventDefault();
-  //   const deleteId = teams.length
-  //   console.log(deleteId)
-  //   dispatch(deleteTeamFunction(deleteId))
-  // }
+
+  const onDelete = (e) =>{
+    e.preventDefault();
+    const deleteId = teams[prop.id]['id']
+    console.log(deleteId)
+    dispatch(deleteTeamFunction(deleteId))
+    setShowModal(false)
+  }
     return (
     <div>
-      <form className='team-form' onSubmit={onSubmit}>
+      <form className='team-form' onSubmit={!prop.id ? onSubmit : onSubmitEdit}>
         {!prop.id ? <h2>New Team Form</h2>: <h2>Edit Team Form</h2>}
         <div className= 'team-form-errors'>
           {errors.map(error => (
@@ -95,6 +98,7 @@ const TeamForm = ( { prop } ) => {
             </label>
         </div>
         <button type="submit">Submit</button>
+        <div onClick={onDelete}>Remove Team</div>
       </form>
     </div>
   );
