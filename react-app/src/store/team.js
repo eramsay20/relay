@@ -110,9 +110,8 @@ const teamReducer = (state=initialState, action) => {
             
             return {
                 ...state,
-                team:{
-                    [action.payload.id]: action.payload
-                }
+                team: action.payload
+                
             }
         }
         case DELETE: {
