@@ -18,15 +18,17 @@ const SideBar = () => {
     },[dispatch])
 
     const onNewClick = () =>{
+        setProp({ modal:setShowModal })
         setShowModal(true)
     }
 
     const onClick = (e) =>{
-        console.log(e)
-        dispatch(getOneTeamFunction())
+        const id = parseInt(e.target.alt)
+        dispatch(getOneTeamFunction(id))
+        setProp({ id, modal:setShowModal })
         setShowModal(true)
-        setProp(e.target.alt)
     }
+
     const navLinks = (
         <>
             <NavLink className="nav-link" to="/">Home</NavLink>
