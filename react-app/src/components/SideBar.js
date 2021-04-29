@@ -8,11 +8,13 @@ import TeamForm from './team/TeamForm'
 
 const SideBar = () => {
     const add_task_icon = require('../frontend-assets/aqua_add_icon.png')
+    const remove_icon = require('../frontend-assets/remove_icon.png')
+    const home_icon = require('../frontend-assets/home_icon.png')
     const dispatch = useDispatch(); 
-    const user = useSelector(state => state.session.user);
     const team = useSelector(state => state.team.teams);
     const [showModal, setShowModal] = useState(false)
     const [prop, setProp] = useState(null)
+
     useEffect(()=>{
         dispatch(getTeamsFunction())
     },[dispatch])
@@ -29,19 +31,12 @@ const SideBar = () => {
         setShowModal(true)
     }
 
-    const navLinks = (
-        <>
-            <NavLink className="nav-link" to="/">Home</NavLink>
-            <NavLink className="nav-link" to="/">Tasks</NavLink>
-            <NavLink className="nav-link" to="/">Projects</NavLink>
-        </>
-    )
-
     const teamList = team.map(team => (
         <>
-            <div className='sidebar-teamname-button-holder'>
+            <div className='sidebar-team-header'>
                 <p>{team.title}</p>
-                <img alt={team.id} style={{ 'width': '20px', 'paddingLeft': '10px'}} src={add_task_icon} onClick={onClick}></img>
+                <img alt={team.id} style={{ 'width': '20px', 'paddingRight': '20px'}} src={add_task_icon} onClick={onClick}></img>
+                {/* <img alt={team.id} style={{ 'width': '20px', 'paddingLeft': '0px' }} src={remove_icon} onClick={onClick}></img> */}
             </div>
             <div className="profile-icon-container">
                 {team.users.map(user => (
@@ -55,20 +50,28 @@ const SideBar = () => {
     return (
         <div className="sidebar-container">
             <div style={{ 'borderBottom':'1px solid var(--SIDEBAR_CHARCOAL_HIGHLIGHT)'}} className="sidebar-nav flex-container">
-                { navLinks }
+                <NavLink className="nav-link flex-container" to="/">
+                    <img style={{ 'width': '20px', 'paddingRight': '10px' }} src={home_icon} onClick={onNewClick}></img>
+                    <p style={{'paddingTop':'5px'}}>Home</p>
+                </NavLink>
             </div>
             <div className="sidebar-teams">
                 <div style={{'justifyContent': 'flex-start'}} className="flex-container">
-                    <h4>Teams</h4>
-                    <img style={{ 'width': '20px', 'paddingLeft': '10px'}} src={add_task_icon} onClick={onNewClick}></img>
-                    { showModal && (
-                            <Modal onClose={() => setShowModal(false)} style={{}}>
-                                <TeamForm prop= {prop} />
-                            </Modal>
-                        )}                    
+                    <h4>Teams</h4>                
                 </div>
                 <br></br>
                 {teamList}
+                <div style={{ 'justifyContent': 'flex-start', 'paddingTop':'10px' }} className="flex-container">
+                    <img style={{ 'width': '20px', 'paddingRight': '10px' }} src={add_task_icon} onClick={onNewClick}></img>
+                    <div className='sidebar-team-header'>
+                        <p>Add Team...</p>
+                    </div>
+                    {showModal && (
+                        <Modal onClose={() => setShowModal(false)} style={{}}>
+                            <TeamForm prop={prop} />
+                        </Modal>
+                    )}
+                </div>
             </div>
         </div>
     );
