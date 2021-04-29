@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import TaskRow from '../ProjectPage/TaskRow';
+import MyTaskRow from './MyTaskRow';
 import { getTasksFunction } from '../../store/task';
 
 const TaskDisplay = ({projects}) => {
@@ -18,25 +18,13 @@ const TaskDisplay = ({projects}) => {
     }, [dispatch])
 
     let task_components = myTasks.map(task => (
-        <TaskRow task={task} />
+        <MyTaskRow task={task} />
     ))
 
     return (
-        <table>
-            <thead>
-                <tr className="task-row-titles task-row">
-                    <td style={{ 'borderRight': 'none' }}></td>
-                    <td>Task Name</td>
-                    <td>Assignee</td>
-                    <td style={{ 'borderRight': 'none' }}>Due Date</td>
-                </tr>
-            </thead>
-            <tbody>
-                <div className='task-row-entries'>
-                    {task_components}
-                </div>
-            </tbody>
-        </table>
+        <div className='my-task-row-entries'>
+            {task_components}
+        </div>
     );
 };
 
