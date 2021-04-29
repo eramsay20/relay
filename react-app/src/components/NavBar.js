@@ -55,7 +55,6 @@ const NavBar = () => {
               { user && (
                 <div id="logout" className="profileContent">
                   <LogoutButton />
-                  {/* <div className="profileContent">Hello</div> */}
                 </div>
               )}
             </div>

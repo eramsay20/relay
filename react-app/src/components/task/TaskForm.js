@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTasksForProjectsFunction, getOneTaskFunction, makeTaskFunction, updateTaskFunction, deleteTaskFunction } from '../../store/task'
 import { getOneTeamFunction } from '../../store/team';
+import { comments } from '../../store/comment'
 
 const TaskForm = () => {
   const dispatch = useDispatch();
@@ -15,8 +16,9 @@ const TaskForm = () => {
   const tasks = useSelector(state => state.task.tasks);
   useEffect(()=>{
     dispatch(getTasksForProjectsFunction(1))
-    dispatch(getOneTaskFunction(2))
+    dispatch(getOneTaskFunction(1))
     dispatch(getOneTeamFunction(1))
+    dispatch(comments(1))
   },[dispatch])
   const onSubmit = (e) => {
     e.preventDefault();
