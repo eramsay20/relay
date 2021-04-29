@@ -18,7 +18,7 @@
     --GREY_HIGHLIGHT: #f5f8f9;
 }
 
-#modal {
+.modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -29,7 +29,7 @@
   align-items: center;
 }
 
-#modal-background {
+.modal-background {
   position: fixed;
   top: 0;
   right: 0;
@@ -38,7 +38,7 @@
   background-color: transparent;
 }
 
-#modal-content {
+.modal-content {
   position: absolute;
   background-color: transparent;
 }
@@ -82,6 +82,14 @@
   top: -10px;
 }
 
+#logout {
+  border-bottom: 1px solid var(--CHARCOAL);
+  border-right: 1px solid var(--CHARCOAL);
+  border-left: 1px solid var(--CHARCOAL) ;
+  width: 60px;
+  height: 20px;
+  padding: 5px;
+}
 body {
     background-color: var(--WHITE);
     color: var(--CHARCOAL);

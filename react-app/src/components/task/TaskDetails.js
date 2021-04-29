@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { comments } from '../../store/comment';
 import CommentForm from "../CommentForm"
 
-const TaskDetails = ({task, date}) => {
+const TaskDetails = ({task, date, onClick}) => {
     const profile_icon_violet = require('../../frontend-assets/profile_icon_violet.png');
 
     const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const TaskDetails = ({task, date}) => {
     }, [dispatch]);
     const due = date(task.due_date)
  return (
-     <div className="taskDetailContainer">
+     <div className="taskDetailContainer" onClick={onClick}>
          <nav>
              <div></div>
          </nav>

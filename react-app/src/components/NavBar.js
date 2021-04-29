@@ -53,7 +53,7 @@ const NavBar = () => {
           {showMenu && (
             <div>
               { user && (
-                <div className="profileContent">
+                <div id="logout" className="profileContent">
                   <LogoutButton />
                 </div>
               )}
