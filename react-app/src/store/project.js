@@ -23,7 +23,6 @@ export const project = (projectId) => async dispatch => {
         headers: {'Content-Type': 'application/json'}
     });
     const data = await response.json()
-    // console.log(data)
     if(!response.ok){
         return;
     };
@@ -50,7 +49,7 @@ export const deleteProject = (projectId) => async dispatch => {
     if(!response.ok){
         return
     };
-    dispatch(removeProject(data))       
+    dispatch(removeProject(data))
 };
 
 export const postProject = (project) => async dispatch => {
@@ -60,7 +59,7 @@ export const postProject = (project) => async dispatch => {
         method: 'POST',
         body: JSON.stringify({title})
     });
-    const data = response.json();
+    const data = await response.json();
     if(!response.ok){
         return;
     };
@@ -75,7 +74,7 @@ export const updateProjectStatus = (project) => async dispatch => {
         method: 'PUT',
         body: JSON.stringify({ 'complete': newStatus })
     });
-    const data = response.json();
+    const data = await response.json();
     if (!response.ok) {
         return;
     };
@@ -97,7 +96,9 @@ const projectReducer = (state=initialState, action) => {
             console.log(newState.projects)
             return { project: null , projects: newState.projects};
         case GET_PROJECT:
-            return { ...state, project: action.project};
+            const allProjects = [...state.projects]
+            allProjects.push(action.project)
+            return {project: action.project, projects: [...allProjects]};
         default:
             return state;
     };
