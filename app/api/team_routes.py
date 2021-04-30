@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Team, User, user_team, db
-from app.forms import TeamForm, DeleteForm, UserTeamForm
+from app.forms import TeamForm, UserTeamForm
 from flask_login import login_required
 
 team_routes = Blueprint('teams', __name__)
@@ -66,7 +66,6 @@ def team(id):
 @team_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def edit(id):
-    print(id)
     form = TeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -77,7 +76,6 @@ def edit(id):
         user_ids = body['users']
         team_users = team.users
         length = len(team_users)
-        print(team_users)
         i = 0
         while i < length:
             team_users[0].teams.remove(team)
@@ -104,11 +102,3 @@ def delete(id):
     return {'errors': form.errors}
 
 
-# @team_routes.route('<int:team_id>/users/<int:user_id>', methods=["DELETE"])
-# @login_required
-# def delete_join(team_id):
-#     join = user_team.query.filter_by(team_id=team_id and user_id=user_id)
-#     db.session.delete(team)
-#     db.session.commit()
-#     return {'team_id': team_id, 'user_id'}
-#     return {'errors': form.errors}

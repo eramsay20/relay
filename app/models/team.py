@@ -16,5 +16,4 @@ class Team(db.Model):
         return {
             "id": self.id,
             "title": self.title,
-            # "members": self.users.to_dict()
         }

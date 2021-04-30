@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { Modal } from "../../context/Modal";
 import TaskDetails from "../task/TaskDetails";
@@ -11,8 +10,6 @@ const TaskRow = ({ task }) => {
     const [showModal, setShowModal] = useState(false);
 
     const incomplete_check = require('../../frontend-assets/grey_checkmark.png')
-    const complete_check = require('../../frontend-assets/aqua_checkmark.png')
-    const user = useSelector(state => state.session.user);
 
     const onClick = e => {
         setShowModal(true);

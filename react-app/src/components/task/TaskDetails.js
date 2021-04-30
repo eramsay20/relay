@@ -9,7 +9,7 @@ const TaskDetails = ({assignee, task, date, onClick}) => {
     const profile_icon_violet = require('../../frontend-assets/profile_icon_violet.png');
 
     const history = useHistory()
-    const {project_id, task_id} = useParams
+    const {project_id} = useParams
 
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
@@ -22,8 +22,6 @@ const TaskDetails = ({assignee, task, date, onClick}) => {
     const [hideForm, setHideForm] = useState(true);
     const [userComment, setUserComment] = useState(!userCom)
 
-    console.log(userComment)
-    console.log(currComment)
     const openMenu = e => {
         e.preventDefault();
         if(showMenu){

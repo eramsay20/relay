@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Task, Project, db, Comment, User
 from app.api.comment_routes import delete_comment
-from app.forms import TaskForm, DeleteForm
+from app.forms import TaskForm
 from flask_login import login_required
 
 task_routes = Blueprint('tasks', __name__)
@@ -36,7 +36,6 @@ def teams():
 def make():
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # if form.validate_on_submit(): ## removed this because int() on userId was throwing errors when null
     task = Task(
         title=form.data['title'],
         project_id=form.data['project_id'],
@@ -48,7 +47,6 @@ def make():
     db.session.add(task)
     db.session.commit()
     return task.to_dict()
-    # return {'errors': form.errors}
 
 
 @task_routes.route('/projects/<int:id>', methods=['GET'])
@@ -76,7 +74,6 @@ def task(id):
 def edit(id):
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # if form.validate_on_submit(): ## removed this because int() on userId was throwing errors when null
     task = Task.query.get(id)
     task.project_id = form.data['project_id']
     task.user_id = form.data['user_id']
@@ -85,7 +82,6 @@ def edit(id):
     task.complete = form.data['complete']
     db.session.commit()
     return task.to_dict()
-    # return {'errors': form.errors}
 
 
 @task_routes.route('/<int:id>', methods=["DELETE"])
@@ -93,13 +89,6 @@ def edit(id):
 def delete(id):
     task = Task.query.get(id)
     delete_task(task, id)
-    # comments = Comment.query.filter_by(task_id=id).all()
-    # length = len(comments)
-    # i = 0
-    # while i < length:
-    #     delete_comment(comments[i])
-    #     i += 1
-    # db.session.delete(task)
     db.session.commit()
     return {'id': id}
 

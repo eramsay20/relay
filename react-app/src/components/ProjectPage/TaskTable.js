@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TaskRow from './TaskRow';
 import TaskRowForm from './TaskRowForm';
-import { getTasksFunction, getTasksForProjectsFunction, deleteTaskFunction } from '../../store/task';
+import { getTasksFunction, deleteTaskFunction } from '../../store/task';
 import { getUsersFunction } from '../../store/user';
-import { useModalState } from "../../context/ModalState";
 import { project } from '../../store/project';
 
 const TaskTable = () => {
