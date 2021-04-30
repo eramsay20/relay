@@ -9,10 +9,10 @@ def seed_tasks():
     p1_task1 = Task(
         project_id=1,
         complete=False,
-        title='ea dolore atque totam doloribus',
+        title='Review onboarding intake design concept',
         user_id=1,
         due_date=today,
-        description='Test description 1'
+        description='Need to meet with the product owner to determine whether to keep onboarding analysts in rotation in new schema'
     )
 
     db.session.add(p1_task1)
@@ -20,10 +20,10 @@ def seed_tasks():
     p1_task2 = Task(
         project_id=1,
         complete=False,
-        title='ab consequuntur maxime sit ea',
+        title='Give tyler access to onboarding resources and login',
         user_id=1,
         due_date=today,
-        description='Test description 2'
+        description='Not sure what he needs access to, but seems important'
     )
 
     db.session.add(p1_task2)
@@ -31,10 +31,10 @@ def seed_tasks():
     p1_task3 = Task(
         project_id=1,
         complete=False,
-        title='corrupti est ut sit repellendus',
+        title='Send Elons twitter pw to the SEC',
         user_id=1,
         due_date=today,
-        description='Test description 3'
+        description='The man knows things...'
     )
 
     db.session.add(p1_task3)
@@ -42,10 +42,10 @@ def seed_tasks():
     p1_task4 = Task(
         project_id=1,
         complete=False,
-        title='nemo tempore architecto iusto aut',
+        title='Figure out why Bezos makes so much noise in his office',
         user_id=None,
         due_date=None,
-        description=None
+        description='Pretty self explanatory'
     )
 
     db.session.add(p1_task4)
@@ -53,10 +53,10 @@ def seed_tasks():
     p1_task5 = Task(
         project_id=1,
         complete=False,
-        title='omnis voluptas quia fugiat omnis',
+        title='Find lyrics for that 90s song that goes Im blue, da bu di da bu die',
         user_id=None,
         due_date=None,
-        description=None
+        description='Cant get you out of maaahh head'
     )
 
     db.session.add(p1_task5)

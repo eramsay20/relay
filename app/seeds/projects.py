@@ -4,7 +4,7 @@ from app.models import db, Project
 def seed_projects():
 
     p1_user1 = Project(user_id=1, team_id=1,
-                       title='commodi ut fugiat', complete=False)
+                       title='Onboarding Team Sync', complete=False)
 
     db.session.add(p1_user1)
 
@@ -29,7 +29,7 @@ def seed_projects():
     db.session.add(p1_user5)
 
     p1_user6 = Project(user_id=6, team_id=2,
-                    title='impedit aut quis', complete=False)
+                    title='Product Scrum', complete=False)
 
     db.session.add(p1_user6)
 
@@ -54,7 +54,7 @@ def seed_projects():
     db.session.add(p1_user10)
 
     p1_user11 = Project(user_id=11, team_id=3,
-                        title='nobis sit voluptatem', complete=False)
+                        title='Sales Standup', complete=False)
 
     db.session.add(p1_user11)
 
@@ -78,7 +78,7 @@ def seed_projects():
     db.session.add(p1_user15)
 
     p1_user16 = Project(user_id=16, team_id=4,
-                        title='perferendis praesentium rerum', complete=False)
+                        title='Engineering Tickets', complete=False)
 
     db.session.add(p1_user16)
 
@@ -103,7 +103,7 @@ def seed_projects():
     db.session.add(p1_user20)
 
     p1_user21 = Project(user_id=21, team_id=5,
-                        title='totam error est', complete=False)
+                        title='Month End Review', complete=False)
 
     db.session.add(p1_user21)
 
@@ -127,7 +127,7 @@ def seed_projects():
     db.session.add(p1_user25)
 
     p1_user26 = Project(user_id=26, team_id=6,
-                        title='voluptas perspiciatis quae', complete=False)
+                        title='Shenanigans', complete=False)
 
     db.session.add(p1_user26)
 

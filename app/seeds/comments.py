@@ -6,7 +6,7 @@ def seed_comments():
     task1_comment1 = Comment(
         user_id=1,
         task_id=1,
-        comment='aut labore dolor unde aut eum dignissimos sed'
+        comment='Thought we already decided on a new flow?'
     )
 
     db.session.add(task1_comment1)
@@ -14,7 +14,7 @@ def seed_comments():
     task1_comment2 = Comment(
         user_id=2,
         task_id=1,
-        comment='illum quia similique est esse et et aut'
+        comment='Mmm yes, lets figure this out'
     )
 
     db.session.add(task1_comment2)
@@ -22,7 +22,7 @@ def seed_comments():
     task2_comment1 = Comment(
         user_id=1,
         task_id=2,
-        comment='et repellat eligendi odio optio reprehenderit non aliquam'
+        comment='who is Tyler?'
     )
 
     db.session.add(task2_comment1)
@@ -30,7 +30,7 @@ def seed_comments():
     task2_comment2 = Comment(
         user_id=2,
         task_id=2,
-        comment='neque provident et dolores doloribus aut eos totam'
+        comment='guys been missing access for days...'
     )
 
     db.session.add(task2_comment2)
@@ -38,7 +38,7 @@ def seed_comments():
     task3_comment1 = Comment(
         user_id=1,
         task_id=3,
-        comment='fugiat culpa eligendi sed in quos dolores quidem'
+        comment='finally!'
     )
 
     db.session.add(task3_comment1)
@@ -46,7 +46,7 @@ def seed_comments():
     task3_comment2 = Comment(
         user_id=2,
         task_id=3,
-        comment='reiciendis nemo est occaecati similique voluptas est laudantium'
+        comment='what about my DOGE coin?'
     )
 
     db.session.add(task3_comment2)
@@ -54,7 +54,7 @@ def seed_comments():
     task4_comment1 = Comment(
         user_id=1,
         task_id=4,
-        comment='ut quasi dolorum ipsum qui dolorum dolor dolorum'
+        comment='plz dont assign me...'
     )
 
     db.session.add(task4_comment1)
@@ -62,7 +62,7 @@ def seed_comments():
     task4_comment2 = Comment(
         user_id=2,
         task_id=4,
-        comment='iusto facilis autem ducimus iure animi natus et'
+        comment='thought I was the only one who could hear it...'
     )
 
     db.session.add(task4_comment2)
@@ -70,7 +70,7 @@ def seed_comments():
     task5_comment1 = Comment(
         user_id=1,
         task_id=5,
-        comment='maxime ea consequuntur voluptatem facilis est consequatur sunt'
+        comment='not much to go on...'
     )
 
     db.session.add(task5_comment1)
@@ -78,7 +78,7 @@ def seed_comments():
     task5_comment2 = Comment(
         user_id=2,
         task_id=5,
-        comment='eum voluptatem consequatur assumenda voluptatem sed et suscipit'
+        comment='aaaaand now its stuck in my head.'
     )
 
     db.session.add(task5_comment2)
