@@ -52,7 +52,7 @@ const TaskRow = ({ task }) => {
                             <img style={{ 'width': '20px'}} src={incomplete_check}></img>
                         </div>
                         <div className="capitalize" style={{ 'paddingLeft': '10px' }}>
-                            <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick}>{task.title}</Link>
+                            <div>{task.title}</div>
                             {showModal && (
                                 <Modal onClose={() => setShowModal(false)} style={{}}>
                                     <TaskDetails task={task} date={dateFormat} />
