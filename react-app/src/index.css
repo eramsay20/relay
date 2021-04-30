@@ -63,11 +63,14 @@
   border-radius: 10px;
   border: 1px solid var(--GREY_GRID);
   box-shadow: 1px 1px 1px 1px var(--WHITE);
+  height: 735px;
+  width: 565px;
 }
 
 .taskDetailContent {
   overflow-y: scroll;
-  height: 400px;
+  height: 350px;
+  overflow-x: hidden;
 }
 
 .commentInitial {
@@ -82,6 +85,16 @@
   top: -10px;
 }
 
+.modalCommentForm {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.modalCommentForm * {
+  width: 550px;
+}
+
 #logout {
   border-bottom: 1px solid var(--CHARCOAL);
   border-right: 1px solid var(--CHARCOAL);
@@ -91,14 +104,30 @@
   padding: 5px;
 }
 
-.logout {
-  border-bottom: 1px solid var(--CHARCOAL);
-  border-right: 1px solid var(--CHARCOAL);
-  border-left: 1px solid var(--CHARCOAL) ;
+.dropDownDiv {
+  border: 1px solid var(--CHARCOAL);
+  width: 60px;
+  height: 20px;
+  padding: 5px;
+  position: relative;
+  left: 400px;
+  top: -33px;
+}
+
+.outline {
+  border: 1px solid var(--CHARCOAL);
   width: 60px;
   height: 20px;
   padding: 5px;
 }
+
+.commentSelect {
+  top: -125px;
+  position: relative;
+  left: 400px;
+}
+
+
 body {
     background-color: var(--WHITE);
     color: var(--CHARCOAL);
