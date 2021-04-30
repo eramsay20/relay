@@ -7,26 +7,20 @@ import TaskDisplay from './TaskDisplay';
 import ProjectDeleteForm from './ProjectDeleteForm';
 import { Modal } from '../../context/Modal'
 const ProfilePage = () => {
+    const remove_icon = require('../../frontend-assets/remove_icon.png')
     const dispatch = useDispatch(); 
     const user = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false)
     const current_projects = useSelector(state => state.project.projects)
-    const remove_icon = require('../../frontend-assets/remove_icon.png')
-    const divider = (
-        <hr style={{'color': 'var(--GREY_TEXT_LABELS)','height': '15'}}/>
-    );
+    const divider = (<hr style={{'color': 'var(--GREY_TEXT_LABELS)','height': '15'}}/>);
 
     let my_projects;
     if(current_projects) my_projects = current_projects.filter(project => project.user_id === user.id)
     
-    useEffect(() => {
-        dispatch(projects())
-    }, [dispatch])
-
-    const onDelete = () =>{
-        setShowModal(true)
-    }
+    useEffect(() => { dispatch(projects()) }, [dispatch])
+    const onDelete = () =>{ setShowModal(true) } 
     const prop = {'project' : my_projects, 'modal': setShowModal }
+
     return (
         <div className="profile-container">
             <div className="sidebar">
@@ -42,9 +36,9 @@ const ProfilePage = () => {
             </div>
             <div className="my-projects">
                 <div>
-                    <div>
-                            <h3 style={{ 'paddingTop': '3px' }}>My Projects</h3>
-                            <img style={{ 'width': '20px', 'height':'20px' }} src={remove_icon} onClick={onDelete}></img>
+                    <div className='flex-container' style={{ 'justifyContent': 'flex-start', 'marginRight':'50px' }}>
+                            <h3 className='min-margin' style={{ 'paddingTop': '3px' }}>My Projects</h3>
+                            <img className='min-margin' style={{ 'width': '20px', 'height':'20px', 'marginLeft': '20px'}} src={remove_icon} onClick={onDelete}></img>
 
                         {showModal && (
                         <Modal onClose={()=>setShowModal(false)} style={{}}>

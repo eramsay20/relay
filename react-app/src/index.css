@@ -54,22 +54,23 @@
 }
 
 .taskDetailContainer {
-  background-color: white;
   background-color: var(--WHITE);
-  color: var(--CHARCOAL);
-  text-align: left;
-  font-size: 15px;
-  padding-left: 40px;
-  border-radius: 10px;
   border: 1px solid var(--GREY_GRID);
   box-shadow: 1px 1px 1px 1px var(--WHITE);
-  height: 735px;
+
+  display: flex;
+  font-size: 16px;
+  flex-direction: column;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 10px;
+  height: 85vh;
   width: 565px;
 }
 
 .taskDetailContent {
   overflow-y: scroll;
-  height: 350px;
+  height: 400px;
   overflow-x: hidden;
 }
 
@@ -86,13 +87,24 @@
 }
 
 .modalCommentForm {
-  position: absolute;
   bottom: 0px;
   left: 0px;
 }
 
-.modalCommentForm * {
-  width: 550px;
+.modalCommentForm {
+  width: 100%;
+}
+
+.modalCommentForm form {
+  margin-top: 20px;
+  padding: 20px;
+  width: 90%;
+  bottom: 5px;
+}
+
+.modalCommentForm input {
+  width: 100%;
+  margin: 0px;
 }
 
 #logout {
