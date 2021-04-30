@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { postProject } from '../store/project';
+import { postProject, projects } from '../store/project';
 import { useHistory } from "react-router-dom";
 
-const ProjectForm = () => {
+const ProjectForm = ({onClick}) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  
+
   const [title, setTitle] = useState('');
   const [team, setTeam] = useState(1);
   const [errors, setErrors] = useState([]);
@@ -17,7 +17,8 @@ const ProjectForm = () => {
       setErrors(["Project needs a title to be created."])
     }else {
       dispatch(postProject({title: title, team:team}))
-      history.push('/')
+      onClick()
+      // history.push("/")
     }
 
   }
