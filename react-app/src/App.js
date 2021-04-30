@@ -12,7 +12,6 @@ import { authenticate } from "./store/session";
 import ProjectForm from "./components/ProjectForm";
 
 function App() {
-  // const [authenticated, setAuthenticated] = useState(false);
   const dispatch = useDispatch()
   const [loaded, setLoaded] = useState(false);
 

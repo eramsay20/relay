@@ -56,19 +56,16 @@ export const getOneTaskFunction = (taskId) => async dispatch => {
 
 
 export const deleteTaskFunction = (taskId) => async dispatch => {
-    // console.log(taskId)
     const response = await fetch(`/api/tasks/${taskId}`, {
         headers: {'Content-Type': 'application/json'},
         method: 'DELETE',
     });
-    // console.log(response)
     if (response.ok) {
         const deletedTaskIdObj = await response.json()
         dispatch(deleteTask(deletedTaskIdObj))
     }
 }
 export const makeTaskFunction = (projectId,  title, complete, userId, dueDate, description) => async dispatch => {
-    // console.log(projectId, title, complete, userId, dueDate, description)
     const response = await fetch('/api/tasks/', {
         headers: {'Content-Type': 'application/json'},
         method: 'POST',
@@ -81,7 +78,6 @@ export const makeTaskFunction = (projectId,  title, complete, userId, dueDate, d
             'description': description
         })
     });
-    // console.log(response)
     if (response.ok) {
         const task = await response.json()
         dispatch(makeTask(task))

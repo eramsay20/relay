@@ -7,7 +7,6 @@ const ModalStateProvider = ({children}) => {
     const [showState, setShowState] = useState();
     const closeModal = () => {
         setShowState(false)
-        console.log("I was here.............")
     };
 
     return (
