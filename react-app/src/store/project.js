@@ -16,6 +16,7 @@ const removeProject = () => ({
     type: REMOVE_PROJECT
 });
 
+
 export const project = (projectId) => async dispatch => {
     const response = await fetch(`/api/projects/${projectId}`, {
         headers: {'Content-Type': 'application/json'}
@@ -60,6 +61,21 @@ export const postProject = (project) => async dispatch => {
     });
     const data = response.json();
     if(!response.ok){
+        return;
+    };
+    return dispatch(getProject(data));
+};
+
+export const updateProjectStatus = (project) => async dispatch => {
+    let status = project.complete
+    let newStatus = !status
+    const response = await fetch(`/api/projects/${project.id}`, {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'PUT',
+        body: JSON.stringify({ 'complete': newStatus })
+    });
+    const data = response.json();
+    if (!response.ok) {
         return;
     };
     return dispatch(getProject(data));
