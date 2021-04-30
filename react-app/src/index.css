@@ -49,7 +49,7 @@
 
 .profileContent {
   position: absolute;
-  right: 30px;
+  right: 20px;
   background-color: white;
 }
 
@@ -108,26 +108,21 @@
 }
 
 #logout {
-  border-bottom: 1px solid var(--CHARCOAL);
-  border-right: 1px solid var(--CHARCOAL);
-  border-left: 1px solid var(--CHARCOAL) ;
   width: 60px;
   height: 20px;
   padding: 5px;
 }
 
 .dropDownDiv {
-  border: 1px solid var(--CHARCOAL);
   width: 60px;
   height: 20px;
   padding: 5px;
   position: relative;
-  left: 400px;
+  left: 450px;
   top: -33px;
 }
 
 .outline {
-  border: 1px solid var(--CHARCOAL);
   width: 60px;
   height: 20px;
   padding: 5px;
@@ -136,7 +131,7 @@
 .commentSelect {
   top: -125px;
   position: relative;
-  left: 400px;
+  left: 450px;
 }
 
 

@@ -11,7 +11,7 @@ const NavBar = () => {
 
   const [showMenu, setShowMenu] = useState(false)
 
-  
+
   const openMenu = e => {
     e.preventDefault();
     if(showMenu) return;
@@ -54,7 +54,7 @@ const NavBar = () => {
           {showMenu && (
             <div>
               { user && (
-                <div id="logout" className="profileContent">
+                <div id="logout" className="profileContent nav-link">
                   <LogoutButton />
                 </div>
               )}

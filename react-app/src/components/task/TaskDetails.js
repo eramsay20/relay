@@ -89,8 +89,8 @@ const TaskDetails = ({assignee, task, date, onClick}) => {
                                     <div onClick={openMenu} className="dropDownDiv nav-link flex-container">update</div>
                                     {showMenu && (
                                         <div className="commentSelect profileContent">
-                                            <div className="logout outline" onClick={onEdit(taskComment[name])}>Edit</div>
-                                            <div className="outline" onClick={onDeleteSelect(taskComment[name].id)}>Delete</div>
+                                            <div className="outline nav-link" onClick={onEdit(taskComment[name])}>Edit</div>
+                                            <div className="outline nav-link" onClick={onDeleteSelect(taskComment[name].id)}>Delete</div>
                                         </div>
                                     )}
                                 </div>)
