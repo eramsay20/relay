@@ -25,13 +25,11 @@ const deleteTask = (payload) => ({
     })
     
 export const getTasksForProjectsFunction = (projectId) => async dispatch => {
-    // console.log('WE IN THIS THUNKKKK', projectId)
         const response = await fetch(`/api/projects/${projectId}/tasks`,{
             headers: {'Content-Type': 'application/json'}
         });
         if (response.ok) {
             const tasks = await response.json()
-            // console.log(tasks)
             dispatch(getTasks(tasks));
         }
 }
@@ -42,7 +40,6 @@ export const getTasksFunction = () => async dispatch => {
     });
     if (response.ok) {
         const tasks = await response.json()
-        console.log(tasks)
         dispatch(getTasks(tasks));
     }
 }
@@ -63,9 +60,8 @@ export const deleteTaskFunction = (taskId) => async dispatch => {
     const response = await fetch(`/api/tasks/${taskId}`, {
         headers: {'Content-Type': 'application/json'},
         method: 'DELETE',
-
     });
-    console.log(response)
+    // console.log(response)
     if (response.ok) {
         const deletedTaskIdObj = await response.json()
         dispatch(deleteTask(deletedTaskIdObj))
@@ -85,7 +81,7 @@ export const makeTaskFunction = (projectId,  title, complete, userId, dueDate, d
             'description': description
         })
     });
-    console.log(response)
+    // console.log(response)
     if (response.ok) {
         const task = await response.json()
         dispatch(makeTask(task))
@@ -118,9 +114,7 @@ const taskReducer = (state=initialState, action) => {
         case LOAD: {
             const allTasks = {}
             const saveTask = state.task
-            console.log(saveTask)
             const list = action.list
-            console.log(list)
             const keys = Object.keys(list)
             const listLength = keys.length
             const array = []
@@ -131,7 +125,6 @@ const taskReducer = (state=initialState, action) => {
             return {...allTasks, task: saveTask, tasks: array}
         }
         case ONE: {
-            
             return {
                 ...state,
                 task:{
@@ -155,7 +148,6 @@ const taskReducer = (state=initialState, action) => {
             if (newState[action.payload.id]){
                 newState[action.payload.id] = action.payload
                 newState.tasks.forEach((element, index) => {
-                    console.log(element)
                     if (element.id === action.payload.id){
                         newState.tasks.splice(index, 1)
                         newState.tasks.push(action.payload)
@@ -168,8 +160,6 @@ const taskReducer = (state=initialState, action) => {
             return {
                 ...newState,
                 [action.payload.id] : action.payload,
-                
-
             }
         }
         default:

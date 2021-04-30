@@ -4,45 +4,35 @@ import { makeTaskFunction } from '../../store/task'
 import { getTasksFunction } from '../../store/task';
 import { getUsersFunction } from '../../store/user' 
 
-const TaskRowForm = ({project, lastTask, setLastTask}) => {
+const TaskRowForm = ({users, project, lastTask, setLastTask}) => {
     const add_task_icon = require('../../frontend-assets/aqua_add_icon.png')
     const dispatch = useDispatch(); 
     const user = useSelector(state => state.session.user);
-    const all_users = useSelector(state => state.user.users)
 
     const [complete, setComplete] = useState(false);
-    const [title, setTitle] = useState(null);
-    const [assignee, setAssignee] = useState(null);
-    const [due, setDue] = useState(null);
-
-    useEffect(() => {
-        dispatch(getUsersFunction())
-    }, [dispatch])
+    const [title, setTitle] = useState('');
+    const [userId, setUserId] = useState('');
+    const [dueDate, setDueDate] = useState(null);
 
     const onSubmit = (e) => {
         e.preventDefault();
-        dispatch(makeTaskFunction(project.id, title, false, user.id, due, 'Add description...'))
+        dispatch(makeTaskFunction(project.id, title, false, userId, dueDate, 'Add description...'))
         // dispatch(makeTaskFunction(projectId, title, complete, userId, dueDate, description))
         lastTask = title
         setLastTask(lastTask)
         setTitle('')
-        setAssignee(null)
-        setDue(null)
+        setUserId('')
+        setDueDate(null)
         }
+        
     let project_id;
+    if(project) project_id = project.id
 
-    if(project){
-        project_id = project.id
-    }
-
-    if (all_users){
-        console.log(all_users)
-    }
-
-    const people = ['Eric', 'Mauro', 'Robert']
+    let people;
+    if (users) people = users.map(user => user.username)
 
     const select_options = people.map((person, idx) => (
-        <option value={idx}>{person}</option>
+        <option name="user_id" value={idx+1}>{person}</option>
     ))
 
     const today = new Date()
@@ -61,8 +51,8 @@ const TaskRowForm = ({project, lastTask, setLastTask}) => {
                 required={true}
                 placeholder='Add task...'
             />
-            <select className="task-form-select" value={assignee} required={false} onChange={e => setAssignee(e.target.value)}>
-                <option value={null}></option>
+            <select className="task-form-select" value={userId} onChange={e => setUserId(e.target.value)}>
+                <option value={''}></option>
                 {select_options}
             </select>
             <input
@@ -70,10 +60,8 @@ const TaskRowForm = ({project, lastTask, setLastTask}) => {
                 className="task-form-input"
                 type="date"
                 name="due_date"
-                onChange={e => setDue(e.target.value)}
-                value={due}
-                default={today}
-                placeholder={today}
+                onChange={e => setDueDate(e.target.value)}
+                value={dueDate}
             />
         </form>
     );
