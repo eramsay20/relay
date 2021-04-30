@@ -42,7 +42,7 @@ When a user clicks on a project card from their Profile page, they are dynamical
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-### Comment Modal (~Bonus!!!)
+### Comment Modal (~Bonus!!)
 
 When a user clicks on the title of a given task, a modal will popup on the righthand side of the screen. The modal renders details about the task, including a hidden 'description' field not show on the task row. In addition, users can add comments to the task via a built-in comment form shown at the bottom half of the model. A user who has added a comment is then show button options to edit or delete a comment they've left on the task within the modal.
 
