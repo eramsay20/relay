@@ -21,7 +21,7 @@ const TaskTable = () => {
     const deleteTask = (taskId) => {
         dispatch(deleteTaskFunction(taskId))
         setLastDeletedTask(taskId)
-    } 
+    }
 
     let projectId;
     if (currProject) projectId = currProject.id

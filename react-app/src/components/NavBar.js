@@ -11,6 +11,7 @@ const NavBar = () => {
 
   const [showMenu, setShowMenu] = useState(false)
 
+  
   const openMenu = e => {
     e.preventDefault();
     if(showMenu) return;
