@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { makeTeamFunction, getOneTeamFunction, getTeamsFunction, updateTeamFunction, deleteTeamFunction } from '../../store/team'
+import { makeTeamFunction, updateTeamFunction, deleteTeamFunction } from '../../store/team'
 import { getUsersFunction } from '../../store/user'
 const TeamForm = ( { prop } ) => {
-  console.log(prop.id)
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [errors, setErrors] = useState([]);
@@ -21,7 +20,6 @@ const TeamForm = ( { prop } ) => {
   const onSubmit = (e) => {
     e.preventDefault();
       let error = []
-      console.log(e)
       if(!title.length){
           error.push("Please submit a title.")
           setErrors(error)
@@ -34,24 +32,20 @@ const TeamForm = ( { prop } ) => {
   const onSubmitEdit = (e) => {
     e.preventDefault();
     let error = []
-    console.log(e)
     if(!title.length){
         error.push("Please submit a title.")
         setErrors(error)
     }
     if(error.length === 0){
-      console.log(prop.id, title, values)
         dispatch(updateTeamFunction(prop.id, title, values))
       }
       if(prop) setShowModal(false)
 }
   const selectFunct = (e) =>{
     const array = Array.from(e.target.selectedOptions)
-    console.log(array)
     if(array.length > 0) {
       const val = array.map((option) => option.value)
       setValues(val)
-      console.log(values)
     } else {
       const val = []
       setValues(val)
@@ -61,7 +55,6 @@ const TeamForm = ( { prop } ) => {
   const onDelete = (e) =>{
     e.preventDefault();
     const deleteId = teams[prop.id]['id']
-    console.log(deleteId)
     dispatch(deleteTeamFunction(deleteId))
     setShowModal(false)
   }

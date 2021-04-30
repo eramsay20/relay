@@ -8,10 +8,10 @@ import TeamForm from './team/TeamForm'
 
 const SideBar = () => {
     const add_task_icon = require('../frontend-assets/aqua_add_icon.png')
-    const remove_icon = require('../frontend-assets/remove_icon.png')
     const home_icon = require('../frontend-assets/home_icon.png')
     const dispatch = useDispatch(); 
-    const teamState = useSelector(state=> state.team)
+    //VS code thinks line 14 teamState isn't being read, but it is needed to make the team sidebar update
+    const teamState = useSelector(state=> state.team) //Don't delete me!
     const team = useSelector(state => state.team.teams);
     const [showModal, setShowModal] = useState(false)
     const [prop, setProp] = useState(null)

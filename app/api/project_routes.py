@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, session, request, redirect
+from flask import Blueprint, jsonify, session, request
 from flask_login import login_required
 from app.models import db, Project, Task, Team, User
 from app.api.task_routes import delete_task
@@ -31,7 +31,6 @@ def projects():
         return new_project.to_dict()
     all_projects = (my_project +
                     [project.to_dict() for project in project_teams])
-    print(all_projects)
     return {"projects": all_projects}
 
 
@@ -52,7 +51,6 @@ def project_tasks(id):
 @login_required
 def update_project_status(id):
     project = Project.query.get(id)
-    print(project)
     if request.method == "PUT":
         body = request.get_json()
         project.complete = body.get('complete')
