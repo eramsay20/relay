@@ -233,8 +233,6 @@ body {
     grid-area: sidebar;
 }
 
-
-
 /* PROJECT PAGE */
 .project-page-container {
     display: grid;
@@ -592,9 +590,26 @@ input:focus {
   font-size: 12px;
 }
 
+.team-title-button-div{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
 
-
-
+.user-multiselect{
+  display: flex;
+  flex-direction: row;
+  width:100%
+}
+.current-team-members{
+  color: #151b26;
+}
+.project-select{
+  display: flex;
+  flex-direction: row;
+  width:100%
+}
 
 
 /*

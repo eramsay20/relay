@@ -7,14 +7,13 @@ const ProjectDeleteForm = ( { prop } ) => {
   const [projectId, setProjectId] = useState(0)
   let projects;
   console.log(prop)
-  if(prop.project){
+  if(prop.project.length > 0){
     projects = prop.project
   } else {
-    projects = [{'title': 'You have no projects'}]
+    projects = [{'id': 0, 'title': 'You have no projects'}]
   }
   const setShowModal = prop.modal
   const onDelete = (e) =>{
-    e.preventDefault();
     console.log(e)
     const deleteId = projectId
     console.log(deleteId)
@@ -28,10 +27,11 @@ const ProjectDeleteForm = ( { prop } ) => {
         <div>
             <label>
               Projects
-              <select className='project-select' onChange={e => setProjectId(e.target.value)}>
+              <select className='project-select' value={projectId} onChange={e => setProjectId(e.target.value)}>
+                  <option value={''}></option>
                   {
                     projects.map(project => (
-                      <option type="checkbox" key={project.id} value={project.id}>{project.title}</option>
+                      <option key={project.id} value={project.id}>{project.title}</option>
                     ))
                   }
               </select>

@@ -11,6 +11,7 @@ const SideBar = () => {
     const remove_icon = require('../frontend-assets/remove_icon.png')
     const home_icon = require('../frontend-assets/home_icon.png')
     const dispatch = useDispatch(); 
+    const teamState = useSelector(state=> state.team)
     const team = useSelector(state => state.team.teams);
     const [showModal, setShowModal] = useState(false)
     const [prop, setProp] = useState(null)
