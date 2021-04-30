@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 
 const ProjectDisplay = ({ project }) => {
     const task_list_icon = require("../../frontend-assets/task_list_icon.png")
-
     return (
         <div className="project-card">
             <NavLink to={`/projects/${project.id}`}>

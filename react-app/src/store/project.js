@@ -12,16 +12,18 @@ const getProject = (project) => ({
     project
 });
 
-const removeProject = () => ({
-    type: REMOVE_PROJECT
+const removeProject = (payload) => ({
+    type: REMOVE_PROJECT,
+    payload
 });
+
 
 export const project = (projectId) => async dispatch => {
     const response = await fetch(`/api/projects/${projectId}`, {
         headers: {'Content-Type': 'application/json'}
     });
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     if(!response.ok){
         return;
     };
@@ -46,9 +48,9 @@ export const deleteProject = (projectId) => async dispatch => {
     });
     const data = await response.json()
     if(!response.ok){
-        return;
+        return
     };
-    dispatch(removeProject());
+    dispatch(removeProject(data))       
 };
 
 export const postProject = (project) => async dispatch => {
@@ -65,6 +67,21 @@ export const postProject = (project) => async dispatch => {
     return dispatch(getProject(data));
 };
 
+export const updateProjectStatus = (project) => async dispatch => {
+    let status = project.complete
+    let newStatus = !status
+    const response = await fetch(`/api/projects/${project.id}`, {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'PUT',
+        body: JSON.stringify({ 'complete': newStatus })
+    });
+    const data = response.json();
+    if (!response.ok) {
+        return;
+    };
+    return dispatch(getProject(data));
+};
+
 const initialState = { project: null , projects: null}
 
 const projectReducer = (state=initialState, action) => {
@@ -72,7 +89,13 @@ const projectReducer = (state=initialState, action) => {
         case SET_PROJECTS:
             return { ...state, projects: action.projects.projects};
         case REMOVE_PROJECT:
-            return { project: null , projects: state.projects};
+            const newState = {...state};
+            const id = action.payload.id
+            console.log(action.payload)
+            console.log(newState.projects)
+            newState.projects = newState.projects.filter(project => project.id !== id)
+            console.log(newState.projects)
+            return { project: null , projects: newState.projects};
         case GET_PROJECT:
             return { ...state, project: action.project};
         default:

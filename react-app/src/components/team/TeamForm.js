@@ -8,16 +8,18 @@ const TeamForm = ( { prop } ) => {
   const [title, setTitle] = useState('');
   const [errors, setErrors] = useState([]);
   const [values, setValues] = useState([])
+  const [teamUsers, setTeamUsers] = useState([]);
+  const remove_icon = require('../../frontend-assets/remove_icon.png')
   const teams = useSelector(state => state.team)
   const users = useSelector(state => state.user.users)
   const setShowModal = prop.modal
   useEffect(()=>{
-    dispatch(getTeamsFunction());
     if (prop.id) setTitle(teams[prop.id].title);
+    if (prop.id) setTeamUsers(teams[prop.id].users);
     dispatch(getUsersFunction());
-  },[dispatch])
+  },[])
   const onSubmit = (e) => {
-      e.preventDefault();
+    e.preventDefault();
       let error = []
       console.log(e)
       if(!title.length){
@@ -40,9 +42,8 @@ const TeamForm = ( { prop } ) => {
     if(error.length === 0){
       console.log(prop.id, title, values)
         dispatch(updateTeamFunction(prop.id, title, values))
-        dispatch(getTeamsFunction())
-    }
-    if(prop) setShowModal(false)
+      }
+      if(prop) setShowModal(false)
 }
   const selectFunct = (e) =>{
     const array = Array.from(e.target.selectedOptions)
@@ -65,15 +66,18 @@ const TeamForm = ( { prop } ) => {
     setShowModal(false)
   }
     return (
-    <div>
+      <div>
       <form className='team-form' onSubmit={!prop.id ? onSubmit : onSubmitEdit}>
-        {!prop.id ? <h2>New Team Form</h2>: <h2>Edit Team Form</h2>}
+        <div className='team-title-button-div'>
+          {!prop.id ? <h2>New Team Form</h2>: <h2>Edit Team Form</h2>}
+          <img src={remove_icon} style={{ 'width': '20px', 'height':'20px', 'paddingTop':'17px'}} onClick={onDelete}/>
+        </div>
         <div className= 'team-form-errors'>
           {errors.map(error => (
               <div>{error}</div>
           ))}
         </div>
-        <div className='title-field-div'>
+        <div className='title-field-div'style={{'paddingTop':'20px'}}>
           <label>
             title
             <input
@@ -85,9 +89,16 @@ const TeamForm = ( { prop } ) => {
             />
           </label>
         </div>
-        <div className>
+        <div className='select-field'>
+          {
+          prop.id ? 
+          <div style={{'paddingBottom':'10px'}}>
+          <p className='current-team-members'>Current Team Members</p>
+          {teamUsers.map(user =>(<p key={user.id*10}className='current-team-members'>{user.username}</p>))}
+          </div> : null
+          }
             <label>
-              Team Members
+              Select All Desired Team Members
               <select className='user-multiselect' multiple onChange={selectFunct}>
                   {
                     users.map(user => (
@@ -98,7 +109,6 @@ const TeamForm = ( { prop } ) => {
             </label>
         </div>
         <button type="submit">Submit</button>
-        <div onClick={onDelete}>Remove Team</div>
       </form>
     </div>
   );

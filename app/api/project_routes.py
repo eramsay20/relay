@@ -48,6 +48,19 @@ def project_tasks(id):
     return task_dict
 
 
+@project_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def update_project_status(id):
+    project = Project.query.get(id)
+    print(project)
+    if request.method == "PUT":
+        body = request.get_json()
+        project.complete = body.get('complete')
+        db.session.commit()
+        return project.to_dict()
+    return project.to_dict() if project else {"Project": "Null"}
+
+
 @project_routes.route("/<int:id>", methods=["GET", "DELETE"])
 @login_required
 def project(id):
@@ -61,6 +74,5 @@ def project(id):
             i += 1
         db.session.delete(project)
         db.session.commit()
-        return {"Project": "NUll"}
-    print(project)
+        return {'id': id}
     return project.to_dict() if project else {"Project": "Null"}

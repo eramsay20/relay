@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { projects } from '../../store/project';
 import SideBar from '../SideBar';
 import ProjectDisplay from './ProjectDisplay';
 import TaskDisplay from './TaskDisplay';
-
+import ProjectDeleteForm from './ProjectDeleteForm';
+import { Modal } from '../../context/Modal'
 const ProfilePage = () => {
     const dispatch = useDispatch(); 
     const user = useSelector(state => state.session.user);
+    const [showModal, setShowModal] = useState(false)
     const current_projects = useSelector(state => state.project.projects)
+    const remove_icon = require('../../frontend-assets/remove_icon.png')
     const divider = (
         <hr style={{'color': 'var(--GREY_TEXT_LABELS)','height': '15'}}/>
     );
@@ -20,6 +23,10 @@ const ProfilePage = () => {
         dispatch(projects())
     }, [dispatch])
 
+    const onDelete = () =>{
+        setShowModal(true)
+    }
+    const prop = {'project' : my_projects, 'modal': setShowModal }
     return (
         <div className="profile-container">
             <div className="sidebar">
@@ -36,7 +43,14 @@ const ProfilePage = () => {
             <div className="my-projects">
                 <div>
                     <div>
-                        <h3 className="">My Projects</h3>
+                            <h3 style={{ 'paddingTop': '3px' }}>My Projects</h3>
+                            <img style={{ 'width': '20px', 'height':'20px' }} src={remove_icon} onClick={onDelete}></img>
+
+                        {showModal && (
+                        <Modal onClose={()=>setShowModal(false)} style={{}}>
+                            <ProjectDeleteForm prop={prop} />
+                        </Modal>
+                        )}
                     </div>
                     {divider}
                     <ProjectDisplay projects={my_projects} />
