@@ -81,9 +81,13 @@
 }
 
 .commentText {
+  width: 300px;
+  word-wrap: break-word;
   padding: 5px;
   position: relative;
-  top: -10px;
+  font-size: 15px;
+  top: -60px;
+  left: 50px;
 }
 
 .modalCommentForm {
@@ -119,7 +123,7 @@
   padding: 5px;
   position: relative;
   left: 450px;
-  top: -33px;
+  top: -120px;
 }
 
 .outline {
@@ -129,7 +133,7 @@
 }
 
 .commentSelect {
-  top: -125px;
+  top: -210px;
   position: relative;
   left: 450px;
 }

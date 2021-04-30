@@ -20,7 +20,7 @@ const TaskDetails = ({assignee, task, date, onClick}) => {
     const [showMenu, setShowMenu] = useState(false);
     const [currComment, setCurrComment] = useState(null);
     const [hideForm, setHideForm] = useState(true);
-    const [userComment, setUserComment] = useState(!userCom)
+    const [userComment, setUserComment] = useState(userCom)
 
     const openMenu = e => {
         e.preventDefault();
@@ -80,17 +80,17 @@ const TaskDetails = ({assignee, task, date, onClick}) => {
                 <div>
                      <h4 style={{ 'marginTop': '30px' }}>Comments</h4>
                     {taskComment && Object.keys(taskComment).map(name => (
-                        <div key={name} style={{"padding": "10px"}}>
+                        <div key={name} style={{"padding": "10px", "height":"50px"}}>
                             <img style={{ 'width': '30px', 'paddingLeft': '10px' }} src={profile_icon_violet}></img>
                             <span className="commentInitial">{name.split('')[0].toUpperCase()}</span>
-                            <span className="commentText">{taskComment[name]?.comment}</span>
+                            <p className="commentText">{taskComment[name]?.comment}</p>
                             {taskComment[name]?.user_id === user.id &&
                                 (<div onClick={openMenu}>
                                     <div onClick={openMenu} className="dropDownDiv nav-link flex-container">update</div>
                                     {showMenu && (
                                         <div className="commentSelect profileContent">
-                                            <div className="outline nav-link" onClick={onEdit(taskComment[name])}>Edit</div>
-                                            <div className="outline nav-link" onClick={onDeleteSelect(taskComment[name].id)}>Delete</div>
+                                            <div className="outline nav-link flex-container" onClick={onEdit(taskComment[name])}>Edit</div>
+                                            <div className="outline nav-link flex-container" onClick={onDeleteSelect(taskComment[name].id)}>Delete</div>
                                         </div>
                                     )}
                                 </div>)
