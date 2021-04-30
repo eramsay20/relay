@@ -81,7 +81,7 @@ export const updateProjectStatus = (project) => async dispatch => {
     return dispatch(getProject(data));
 };
 
-const initialState = { project: null , projects: null}
+const initialState = { project: null , projects: []}
 
 const projectReducer = (state=initialState, action) => {
     switch(action.type) {
