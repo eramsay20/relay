@@ -1,20 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom'
+import { project } from "../../store/project";
+import { updateProjectStatus } from '../../store/project';
 import SideBar from '../SideBar';
 import ProjectHeader from './ProjectHeader';
 import ProjectContent from './ProjectContent';
-import { project } from "../../store/project";
-
 
 const ProjectPage = () => {
     const dispatch = useDispatch();
     const {project_id} = useParams();
     const currProject = useSelector(state => state.project.project);
 
+    const [projectStatus, setProjectStatus] = useState(false);
+
     useEffect(() => {
         dispatch(project(parseInt(project_id)))
-    }, [dispatch]);
+    }, [dispatch, projectStatus]);
+
+    const toggleProjectStatus = () => {
+        setProjectStatus(!projectStatus)
+        dispatch(updateProjectStatus(currProject))
+    }
 
     return (
         <div className="project-page-container">
@@ -22,7 +29,7 @@ const ProjectPage = () => {
                 <SideBar />
             </div>
             <div className="project-page-header ">
-                <ProjectHeader project={currProject}/>
+                <ProjectHeader project={currProject} projectStatus={projectStatus} toggleProjectStatus={toggleProjectStatus}/>
             </div>
             <div className="project-page-content">
                 <ProjectContent project={currProject} />
