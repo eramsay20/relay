@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Modal } from "../../context/Modal";
 import TaskDetails from "../task/TaskDetails";
 
 const TaskRow = ({ task }) => {
-
-    const { project_id } = useParams();
 
     const [showModal, setShowModal] = useState(false);
 
@@ -52,7 +50,7 @@ const TaskRow = ({ task }) => {
                             <img style={{ 'width': '20px'}} src={incomplete_check}></img>
                         </div>
                         <div className="capitalize" style={{ 'paddingLeft': '10px' }}>
-                            <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick}>{task.title}</Link>
+                            <Link to={`/projects/${task.project_id}/tasks/${task.id}`} onClick={onClick}>{task.title}</Link>
                             {showModal && (
                                 <Modal onClose={() => setShowModal(false)} style={{}}>
                                     <TaskDetails task={task} date={dateFormat} />
