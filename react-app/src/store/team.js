@@ -36,7 +36,7 @@ export const getTeamsFunction = () => async dispatch => {
     });
     if (response.ok) {
         const teams = await response.json()
-        console.log(teams)
+        // console.log(teams)
         dispatch(getTeams(teams));
     }
 }
@@ -51,7 +51,7 @@ export const getOneTeamFunction = (teamId) => async dispatch => {
 }
 
 export const deleteTeamFunction = (teamId) => async dispatch => {
-    console.log(teamId)
+    // console.log(teamId)
     const response = await fetch(`/api/teams/${teamId}`, {
         headers: {'Content-Type': 'application/json'},
         method: 'DELETE',
@@ -64,7 +64,7 @@ export const deleteTeamFunction = (teamId) => async dispatch => {
     }
 }
 export const makeTeamFunction = (title, users) => async dispatch => {
-    console.log(title)
+    // console.log(title)
     const response = await fetch('/api/teams/', {
         headers: {'Content-Type': 'application/json'},
         method: 'POST',
@@ -98,7 +98,7 @@ const teamReducer = (state=initialState, action) => {
         case LOAD: {
             const allTeams = {}
             const list = action.list
-            console.log(list)
+            // console.log(list)
             const keys = Object.keys(list)
             const listLength = keys.length
             const array = []

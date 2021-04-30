@@ -56,7 +56,7 @@ export const getOneTaskFunction = (taskId) => async dispatch => {
 
 
 export const deleteTaskFunction = (taskId) => async dispatch => {
-    console.log(taskId)
+    // console.log(taskId)
     const response = await fetch(`/api/tasks/${taskId}`, {
         headers: {'Content-Type': 'application/json'},
         method: 'DELETE',
@@ -68,7 +68,7 @@ export const deleteTaskFunction = (taskId) => async dispatch => {
     }
 }
 export const makeTaskFunction = (projectId,  title, complete, userId, dueDate, description) => async dispatch => {
-    console.log(projectId, title, complete, userId, dueDate, description)
+    // console.log(projectId, title, complete, userId, dueDate, description)
     const response = await fetch('/api/tasks/', {
         headers: {'Content-Type': 'application/json'},
         method: 'POST',
@@ -136,7 +136,7 @@ const taskReducer = (state=initialState, action) => {
             const newState = {...state};
             const id = action.payload.id
             delete newState[id]
-            if(newState.task[id])delete newState.task[id]
+            // if(newState.task[id]) delete newState.task[id]
             newState.tasks = newState.tasks.filter(task => task.id !== id)
             return {
                 ...newState
