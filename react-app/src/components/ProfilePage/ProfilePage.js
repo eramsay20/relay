@@ -43,8 +43,9 @@ const ProfilePage = () => {
             <div className="my-projects">
                 <div>
                     <div>
-                        <h3 className="">My Projects</h3>
-                        <img style={{ 'width': '20px', 'paddingRight': '10px' }} src={remove_icon} onClick={onDelete}></img>
+                            <h3 style={{ 'paddingTop': '3px' }}>My Projects</h3>
+                            <img style={{ 'width': '20px', 'height':'20px' }} src={remove_icon} onClick={onDelete}></img>
+
                         {showModal && (
                         <Modal onClose={()=>setShowModal(false)} style={{}}>
                             <ProjectDeleteForm prop={prop} />

@@ -233,8 +233,6 @@ body {
     grid-area: sidebar;
 }
 
-
-
 /* PROJECT PAGE */
 .project-page-container {
     display: grid;
@@ -607,8 +605,11 @@ input:focus {
 .current-team-members{
   color: #151b26;
 }
-
-
+.project-select{
+  display: flex;
+  flex-direction: row;
+  width:100%
+}
 
 
 /*
