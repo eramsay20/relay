@@ -16,9 +16,6 @@ const ProjectPage = () => {
         dispatch(project(parseInt(project_id)))
     }, [dispatch]);
 
-    // const user = useSelector(state => state.session.user);
-    // grab the project content here, pass as props to TableHeader & TableContent
-
     return (
         <div className="project-page-container">
             <div className="sidebar">
