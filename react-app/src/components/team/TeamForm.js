@@ -13,7 +13,6 @@ const TeamForm = ( { prop } ) => {
   const users = useSelector(state => state.user.users)
   const setShowModal = prop.modal
   useEffect(()=>{
-    dispatch(getTeamsFunction());
     if (prop.id) setTitle(teams[prop.id].title);
     dispatch(getUsersFunction());
   },[])
