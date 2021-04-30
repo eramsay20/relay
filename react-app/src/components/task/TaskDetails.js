@@ -7,12 +7,13 @@ const TaskDetails = ({task, date, onClick}) => {
     const profile_icon_violet = require('../../frontend-assets/profile_icon_violet.png');
 
     const dispatch = useDispatch();
-    const userId = useSelector(state => state.session.user.id);
+    const user = useSelector(state => state.session.user);
     const taskComment = useSelector(state => state.comment.comments);
+    const userComment = !(taskComment && user.username in taskComment)
 
     const [showMenu, setShowMenu] = useState(true);
     const [currComment, setCurrComment] = useState(null);
-
+    const [hideForm, setHideForm] = useState(true)
     const openMenu = e => {
         e.preventDefault();
         if(showMenu) return;
@@ -71,8 +72,8 @@ const TaskDetails = ({task, date, onClick}) => {
                         <div key={name} style={{"padding": "10px"}}>
                             <img style={{ 'width': '30px', 'paddingLeft': '10px' }} src={profile_icon_violet}></img>
                             <span className="commentInitial">{name.split('')[0].toUpperCase()}</span>
-                            <span className="commentText">{taskComment[name].comment}</span>
-                            {taskComment[name].user_id === userId &&
+                            <span className="commentText">{taskComment[name]?.comment}</span>
+                            {taskComment[name]?.user_id === user.id &&
                                 (<div>
                                     <div onClick={openMenu} >adkja;lfdj;asjr;lejl;</div>
                                     {showMenu && (
@@ -89,7 +90,7 @@ const TaskDetails = ({task, date, onClick}) => {
             </div>
          </div>
          <div>
-             {currComment && <CommentForm comment2={currComment.comment} commentId={currComment.id}/>}
+             {(hideForm && (currComment || userComment))  && <CommentForm comment2={currComment?.comment} commentId={currComment?.id}  onHide={() => setHideForm(false)} />}
          </div>
      </div>
  )

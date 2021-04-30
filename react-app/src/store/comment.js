@@ -1,6 +1,7 @@
 const SET_COMMENTS = "comments/SET_COMMENTS";
 const REMOVE_COMMENT = "comments/REMOVE_COMMENT";
 const ADD_COMMENT = "comments/ADD_COMMENT";
+const EDIT_COMMENT = "comments/EDIT_COMMENTS";
 
 const setComments = (comments) => ({
     type: SET_COMMENTS,
@@ -16,6 +17,11 @@ const addComment = (comment) => ({
     type: ADD_COMMENT,
     comment
 });
+
+const editComments = (comment) => ({
+    type: EDIT_COMMENT,
+    comment
+})
 
 export const comments = (task_id) => async dispatch => {
     const response = await fetch(`/api/tasks/${task_id}/comments`, {
@@ -46,7 +52,7 @@ export const postComment = ({comment, task_id}) => async dispatch => {
         method: 'POST',
         body: JSON.stringify({comment, task_id})
     });
-    const data = response.json();
+    const data = await response.json();
     if(!response.ok){
         return;
     };
@@ -54,17 +60,16 @@ export const postComment = ({comment, task_id}) => async dispatch => {
 };
 
 export const editComment = ({commentId, comment}) => async dispatch => {
-    console.log(commentId)
     const response = await fetch(`/api/comments/${commentId}`, {
         headers: {'Content-Type': 'application/json'},
         method: "PUT",
         body: JSON.stringify({comment})
     });
-    const data = response.json();
+    const data = await response.json();
     if(!response.ok){
         return;
     };
-    dispatch(setComments(data))
+    dispatch(editComments(data))
 };
 
 const initialState = {comments: null}
@@ -75,15 +80,19 @@ const commentReducer = (state=initialState, action) => {
             return {comments: {...action.comments}};
         case REMOVE_COMMENT:
             const newState = {...state.comments};
-            console.log(newState);
-            console.log(action.comment)
             for (const key in action.comment){
                 delete newState[key]
             };
             return {...state, comments: {...newState}};
         case ADD_COMMENT:
-            const {comment} = action
-            return {comments: {...state.comments, comment}}
+            const {comment} = action;
+            return {comments: {...state.comments, comment}};
+        case EDIT_COMMENT:
+            const editState = {...state.comments};
+            for (const key in action.comment){
+                editState[key] = action.comment[key]
+            };
+            return {...state, comments: {...editState}};
         default:
             return state;
     };

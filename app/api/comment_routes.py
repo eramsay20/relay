@@ -38,6 +38,6 @@ def comment(id):
         body = request.get_json()
         comment.comment = body.get("comment")
         db.session.commit()
-        return redirect("/api/comments/")
+        return {name: comment.to_dict()}
     else:
         return ({name: comment.to_dict()} if comment else {"Comment": "Null"})
