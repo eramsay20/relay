@@ -143,10 +143,7 @@ const teamReducer = (state=initialState, action) => {
                 newState.teams.push(action.payload)
             }
             return {
-                ...newState,
-                [action.payload.id] : action.payload,
-                
-
+                ...newState               
             }
         }
         case JOIN: {

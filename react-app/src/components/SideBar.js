@@ -31,6 +31,9 @@ const SideBar = () => {
         setShowModal(true)
     }
 
+    const onClose = (e) => {
+        setShowModal(false);
+    }
     const teamList = team.map(team => (
         <>
             <div className='sidebar-team-header'>
@@ -66,7 +69,7 @@ const SideBar = () => {
                         <p>Add Team...</p>
                     </div>
                     {showModal && (
-                        <Modal onClose={() => setShowModal(false)} style={{}}>
+                        <Modal onClose={onClose} style={{}}>
                             <TeamForm prop={prop} />
                         </Modal>
                     )}
