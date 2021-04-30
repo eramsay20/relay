@@ -8,6 +8,7 @@ const TeamForm = ( { prop } ) => {
   const [title, setTitle] = useState('');
   const [errors, setErrors] = useState([]);
   const [values, setValues] = useState([])
+  const remove_icon = require('../../frontend-assets/remove_icon.png')
   const teams = useSelector(state => state.team)
   const users = useSelector(state => state.user.users)
   const setShowModal = prop.modal
@@ -15,9 +16,9 @@ const TeamForm = ( { prop } ) => {
     dispatch(getTeamsFunction());
     if (prop.id) setTitle(teams[prop.id].title);
     dispatch(getUsersFunction());
-  },[dispatch])
+  },[])
   const onSubmit = (e) => {
-      e.preventDefault();
+    e.preventDefault();
       let error = []
       console.log(e)
       if(!title.length){
@@ -40,9 +41,8 @@ const TeamForm = ( { prop } ) => {
     if(error.length === 0){
       console.log(prop.id, title, values)
         dispatch(updateTeamFunction(prop.id, title, values))
-        dispatch(getTeamsFunction())
-    }
-    if(prop) setShowModal(false)
+      }
+      if(prop) setShowModal(false)
 }
   const selectFunct = (e) =>{
     const array = Array.from(e.target.selectedOptions)
@@ -65,9 +65,10 @@ const TeamForm = ( { prop } ) => {
     setShowModal(false)
   }
     return (
-    <div>
+      <div>
       <form className='team-form' onSubmit={!prop.id ? onSubmit : onSubmitEdit}>
         {!prop.id ? <h2>New Team Form</h2>: <h2>Edit Team Form</h2>}
+        <img src={remove_icon} style={{ 'width': '20px', 'paddingRight': '20px'}} onClick={onDelete}/>
         <div className= 'team-form-errors'>
           {errors.map(error => (
               <div>{error}</div>
@@ -98,7 +99,6 @@ const TeamForm = ( { prop } ) => {
             </label>
         </div>
         <button type="submit">Submit</button>
-        <div onClick={onDelete}>Remove Team</div>
       </form>
     </div>
   );
