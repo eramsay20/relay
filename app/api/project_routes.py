@@ -61,6 +61,6 @@ def project(id):
             i += 1
         db.session.delete(project)
         db.session.commit()
-        return {"Project": "NUll"}
+        return {'id': id}
     print(project)
     return project.to_dict() if project else {"Project": "Null"}

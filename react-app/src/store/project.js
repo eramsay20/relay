@@ -12,8 +12,9 @@ const getProject = (project) => ({
     project
 });
 
-const removeProject = () => ({
-    type: REMOVE_PROJECT
+const removeProject = (payload) => ({
+    type: REMOVE_PROJECT,
+    payload
 });
 
 export const project = (projectId) => async dispatch => {
@@ -46,9 +47,9 @@ export const deleteProject = (projectId) => async dispatch => {
     });
     const data = await response.json()
     if(!response.ok){
-        return;
+        return
     };
-    dispatch(removeProject());
+    dispatch(removeProject(data))       
 };
 
 export const postProject = (project) => async dispatch => {
@@ -72,7 +73,13 @@ const projectReducer = (state=initialState, action) => {
         case SET_PROJECTS:
             return { ...state, projects: action.projects.projects};
         case REMOVE_PROJECT:
-            return { project: null , projects: state.projects};
+            const newState = {...state};
+            const id = action.payload.id
+            console.log(action.payload)
+            console.log(newState.projects)
+            newState.projects = newState.projects.filter(project => project.id !== id)
+            console.log(newState.projects)
+            return { project: null , projects: newState.projects};
         case GET_PROJECT:
             return { ...state, project: action.project};
         default:

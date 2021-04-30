@@ -14,7 +14,6 @@ const ProjectDeleteForm = ( { prop } ) => {
   }
   const setShowModal = prop.modal
   const onDelete = (e) =>{
-    e.preventDefault();
     console.log(e)
     const deleteId = projectId
     console.log(deleteId)
