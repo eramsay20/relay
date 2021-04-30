@@ -70,7 +70,7 @@ const TeamForm = ( { prop } ) => {
       <form className='team-form' onSubmit={!prop.id ? onSubmit : onSubmitEdit}>
         <div className='team-title-button-div'>
           {!prop.id ? <h2>New Team Form</h2>: <h2>Edit Team Form</h2>}
-          <img src={remove_icon} style={{ 'width': '20px', 'height':'20px', 'paddingTop':'17px'}} onClick={onDelete}/>
+          {!prop.id ? null : <img src={remove_icon} style={{ 'width': '20px', 'height':'20px', 'paddingTop':'17px'}} onClick={onDelete}/>}
         </div>
         <div className= 'team-form-errors'>
           {errors.map(error => (
