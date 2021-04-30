@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "../../context/Modal";
 import ProjectForm from "../ProjectForm";
 
-const ProjectHeader = ({project}) => {
+const ProjectHeader = ({project, projectStatus, toggleProjectStatus}) => {
     const [showModal, setShowModal] = useState(false);
     const task_list_icon = require("../../frontend-assets/task_list_icon.png")
     const incomplete_check = require('../../frontend-assets/grey_checkmark.png')
@@ -14,6 +13,9 @@ const ProjectHeader = ({project}) => {
         e.preventDefault();
         setShowModal(true);
     };
+
+    let statusDisplay;
+    projectStatus ? statusDisplay = complete_check : statusDisplay = incomplete_check
 
     return (
         <>
@@ -30,7 +32,7 @@ const ProjectHeader = ({project}) => {
                 <h3 style={{ 'paddingTop': '15px' }}>{project?.title}</h3>
                 <div className="flex-container" style={{ 'justifyContent':'flex-start'}}>
                     <h4 style={{ 'color': 'var(--GREY_TEXT_LABELS', 'margin': '0px'}}>{completed}</h4>
-                    <img style={{ 'width': '20px', 'paddingLeft': '10px' }} src={incomplete_check}></img>
+                    <img onClick={toggleProjectStatus} style={{ 'width': '20px', 'paddingLeft': '10px' }} src={statusDisplay}></img>
                 </div>
             </div>
             <div></div>
