@@ -62,7 +62,7 @@ const TaskRow = ({users, task, currentTask, onClick, deleteTask}) => {
                             <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick(task.id)}>{task.title}</Link>
                             { currentTask === task.id && (
                                 <Modal styles={styles} >
-                                    <TaskDetails task={task} date={dateFormat} onClick={onClick}/>
+                                    <TaskDetails assignee={assignee} task={task} date={dateFormat} onClick={onClick}/>
                                 </Modal>
                             )}
                             <img onClick={deleteThisTask} style={{ 'width': '20px', 'paddingLeft': '10px' }} src={remove_icon}></img>

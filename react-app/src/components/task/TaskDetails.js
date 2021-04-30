@@ -5,7 +5,7 @@ import { comments, deleteComment } from '../../store/comment';
 import { deleteTaskFunction } from '../../store/task';
 import CommentForm from "../CommentForm"
 
-const TaskDetails = ({task, date, onClick}) => {
+const TaskDetails = ({assignee, task, date, onClick}) => {
     const profile_icon_violet = require('../../frontend-assets/profile_icon_violet.png');
 
     const history = useHistory()
@@ -57,33 +57,30 @@ const TaskDetails = ({task, date, onClick}) => {
     }, [dispatch]);
 
     const due = date(task.due_date);
+
  return (
      <div className="taskDetailContainer">
-         <nav>
-             <div onClick={onClick(null)}>Exit</div>
-             <div onClick={onDeleteTask}>Delete</div>
-         </nav>
-         <div>
-            <h1>{task.title}</h1>
+         <div style={{ 'justifyContent': 'flex-start', 'borderBottom':'2px solid var(--GREY_HIGHLIGHT)' }} className='flex-container min-margin'>
+             <div className='nav-link' onClick={onClick(null)}>Exit</div>
+             <div className='nav-link' onClick={onDeleteTask}>Delete</div>
+         </div>
+         <div >
+             <h1 className="min-margin capitalize" >{task.title}</h1>
             <div className="taskDetailContent">
-                <div>
-                    <h4>Assignee</h4>
-                    <p>{task.user_id}</p>
+                 <div className='flex-container' style={{ 'justifyContent': 'flex-start' }}>
+                     <h4 className="min-margin capitalize">Assignee</h4>
+                     <p className="capitalize min-margin" style={{ 'marginLeft': '50px' }}>{assignee}</p>
                 </div>
-                <div>
-                    <h4>Due Date</h4>
-                    <p>{due}</p>
-                </div>
-                <div>
-                    <h4>Project</h4>
-                    <p>{task.project_id}</p>
+                 <div className='flex-container' style={{ 'justifyContent': 'flex-start' }}>
+                     <h4 className="min-margin capitalize">Due Date</h4>
+                     <p className='min-margin' style={{ 'marginLeft': '50px' }}>{due}</p>
                 </div>
                 <div>
                     <h4>Description</h4>
-                    <p>{task.description}</p>
+                     <p style={{ 'backgroundColor': 'var(--GREY_HIGHLIGHT)', 'padding':'20px', 'borderRadius':'5px', 'marginRight':'20px' }}>{task.description}</p>
                 </div>
                 <div>
-                    <h4>Comments</h4>
+                     <h4 style={{ 'marginTop': '30px' }}>Comments</h4>
                     {taskComment && Object.keys(taskComment).map(name => (
                         <div key={name} style={{"padding": "10px"}}>
                             <img style={{ 'width': '30px', 'paddingLeft': '10px' }} src={profile_icon_violet}></img>
@@ -91,7 +88,7 @@ const TaskDetails = ({task, date, onClick}) => {
                             <span className="commentText">{taskComment[name]?.comment}</span>
                             {taskComment[name]?.user_id === user.id &&
                                 (<div onClick={openMenu}>
-                                    <div onClick={openMenu} className="dropDownDiv">V</div>
+                                    <div onClick={openMenu} className="dropDownDiv nav-link flex-container">update</div>
                                     {showMenu && (
                                         <div className="commentSelect profileContent">
                                             <div className="logout outline" onClick={onEdit(taskComment[name])}>Edit</div>
