@@ -104,9 +104,9 @@ def delete(id):
     return {'id': id}
 
 
-@task_routes.route('/<int:id>/comments')
+@task_routes.route('/<int:task_id>/comments')
 @login_required
-def comments(id):
+def all_comments(task_id):
     comments = (db.session.query(Comment, User.username).join(User)
-                .filter(Comment.task_id == id).all())
+                .filter(Comment.task_id == task_id).all())
     return {name: comment.to_dict() for comment, name in comments}
