@@ -7,7 +7,7 @@ const TaskDisplay = ({projects}) => {
     const dispatch = useDispatch();
     const tasks = useSelector(state => state.task.tasks)
     const user = useSelector(state => state.session.user);
-    
+    const project = useSelector(state => state.project.projects);
     let myTasks;
     if (tasks){
         myTasks = tasks.filter(task => task.user_id === user.id)
@@ -15,7 +15,7 @@ const TaskDisplay = ({projects}) => {
 
     useEffect(() => {
         dispatch(getTasksFunction())
-    }, [dispatch])
+    }, [dispatch, project])
 
     let task_components = myTasks.map(task => (
         <MyTaskRow task={task} />
