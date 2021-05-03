@@ -38,7 +38,7 @@ When logged in, the user sees their profile page as their 'home' page. In it the
 ### Project Page - (MVP Req #3 & #4)
 When a user clicks on a project card from their Profile page, they are dynamically routed to the respective Project page via NavLinks in React. The Project page renders a new view showing a project header with the title and status, as well as a task table outlining all the tasks for the given project. The project header houses a small checkmark which when clicked will toggle and update the status of the project dynamically. At the bottom of the task table there is a form disguised as another table row. When filled out, a user can hit the enter key or press the green plus button on the left of the row to add the new task to the table in real time. 
 
-![Project](https://github.com/eramsay20/relay/blob/main/assets/comparisons/profile_page.png?raw=true)
+![Project](https://github.com/eramsay20/relay/blob/main/assets/comparisons/project_page.png?raw=true)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
