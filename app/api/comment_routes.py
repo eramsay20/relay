@@ -8,7 +8,8 @@ comment_routes = Blueprint("comments", __name__)
 def delete_comment(comment):
     db.session.delete(comment)
     db.session.commit()
-    return comment.to_dict()
+    user = User.query.get(session["_user_id"]).username
+    return {comment.id: {**comment.to_dict(), **{"user": user}}}
 
 
 @comment_routes.route("/", methods=["POST"])
@@ -20,9 +21,10 @@ def comments():
         task_id=body.get("task_id"),
         comment=body.get("comment")
     )
+    user = User.query.get(session["_user_id"]).username
     db.session.add(new_comment)
     db.session.commit()
-    return new_comment.to_dict()
+    return {new_comment.id: {**new_comment.to_dict(), **{"user": user}}}
 
 
 @comment_routes.route("/<int:id>", methods=["GET", "DELETE", "PUT"])
