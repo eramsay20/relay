@@ -38,7 +38,7 @@ const ProfilePage = () => {
                 <div>
                     <div className='flex-container' style={{ 'justifyContent': 'flex-start', 'marginRight':'50px' }}>
                             <h3 className='min-margin' style={{ 'paddingTop': '3px' }}>My Projects</h3>
-                            <img className='min-margin' style={{ 'width': '20px', 'height':'20px', 'marginLeft': '20px'}} src={remove_icon} onClick={onDelete}></img>
+                            <img className='remove-project-button' src={remove_icon} onClick={onDelete}></img>
 
                         {showModal && (
                         <Modal onClose={()=>setShowModal(false)} style={{}}>

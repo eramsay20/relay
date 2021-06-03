@@ -32,7 +32,7 @@ const ProjectHeader = ({project, projectStatus, toggleProjectStatus}) => {
                 <h3 style={{ 'paddingTop': '15px' }}>{project?.title}</h3>
                 <div className="flex-container" style={{ 'justifyContent':'flex-start'}}>
                     <h4 style={{ 'color': 'var(--GREY_TEXT_LABELS', 'margin': '0px'}}>{completed}</h4>
-                    <img onClick={toggleProjectStatus} style={{ 'width': '20px', 'paddingLeft': '10px' }} src={statusDisplay}></img>
+                    <img onClick={toggleProjectStatus} className="complete-task-button" src={statusDisplay}></img>
                 </div>
             </div>
             <div></div>

@@ -57,17 +57,17 @@ const TaskRow = ({users, task, currentTask, onClick, deleteTask}) => {
             (
                 <>
                     <td style={{ 'borderRight': 'none' }} className="flex-container">
-                        <img onClick={toggle_status} style={{'width':'20px', 'paddingLeft':'10px'}} src={statusImg}></img>
+                        <img onClick={toggle_status} className="complete-task-button" src={statusImg}></img>
                     </td>
                     <td >
                         <div style={{ 'justifyContent': 'space-between' }} className="capitalize flex-container">
                             <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick(task.id)}>{task.title}</Link>
                             { currentTask === task.id && (
                                 <Modal styles={styles} >
-                                    <TaskDetails assignee={assignee} task={task} date={dateFormat} onClick={onClick}/>
+                                    <TaskDetails users={users} assignee={assignee} task={task} date={dateFormat} onClick={onClick}/>
                                 </Modal>
                             )}
-                            <img onClick={deleteThisTask} style={{ 'width': '20px', 'paddingLeft': '10px' }} src={remove_icon}></img>
+                            <img onClick={deleteThisTask} className="remove-task-button" src={remove_icon}></img>
                         </div>
                     </td>
                     <td>{assignee}</td>

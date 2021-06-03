@@ -39,7 +39,7 @@ const SideBar = () => {
         <>
             <div className='sidebar-team-header'>
                 <p>{team.title}</p>
-                <img alt={team.id} style={{ 'width': '20px', 'paddingRight': '20px'}} src={add_task_icon} onClick={onClick}></img>
+                <img alt={team.id} className={'add-team-button'} src={add_task_icon} onClick={onClick}></img>
             </div>
             <div className="profile-icon-container">
                 {team.users.map(user => (
@@ -65,7 +65,7 @@ const SideBar = () => {
                 <br></br>
                 {teamList}
                 <div style={{ 'justifyContent': 'flex-start', 'paddingTop':'10px' }} className="flex-container">
-                    <img style={{ 'width': '20px', 'paddingRight': '10px' }} src={add_task_icon} onClick={onNewClick}></img>
+                    <img className={'add-team-button'} src={add_task_icon} onClick={onNewClick}></img>
                     <div className='sidebar-team-header'>
                         <p>Add Team...</p>
                     </div>
