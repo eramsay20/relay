@@ -77,13 +77,13 @@ body {
   padding-left: 40px;
   padding-right: 40px;
   border-radius: 10px;
-  height: 85vh;
+  height: 87vh;
   width: 565px;
 }
 
 .taskDetailContent {
   overflow-y: scroll;
-  height: 400px;
+  height: 35pc;
   overflow-x: hidden;
 }
 
@@ -94,7 +94,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   width: 100%;
   margin: 0px;
   padding: 10px;
@@ -162,19 +161,16 @@ body {
 }
 
 .modalCommentForm {
-  bottom: 0px;
-  left: 0px;
-}
-
-.modalCommentForm {
+  position: relative;
+  bottom: 16%;
   width: 100%;
 }
+
 
 .modalCommentForm form {
   margin-top: 20px;
   padding: 20px;
   width: 90%;
-  bottom: 5px;
 }
 
 .modalCommentForm input {
@@ -186,6 +182,9 @@ body {
   width: 60px;
   height: 20px;
   padding: 5px;
+  border-right: 1px solid var(--SIDEBAR_CHARCOAL_HIGHLIGHT);
+  border-left: 1px solid var(--SIDEBAR_CHARCOAL_HIGHLIGHT);
+  border-bottom: 1px solid var(--SIDEBAR_CHARCOAL_HIGHLIGHT);
 }
 
 .dropDownDiv {

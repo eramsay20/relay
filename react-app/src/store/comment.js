@@ -85,8 +85,11 @@ const commentReducer = (state=initialState, action) => {
             };
             return {...state, comments: {...newState}};
         case ADD_COMMENT:
-            const {comment} = action;
-            return {comments: {...state.comments, comment}};
+            const addState = {...state.comments};
+            for(const key in action.comment){
+                addState[key] = action.comment[key];
+            };
+            return {comments: {...addState}};
         case EDIT_COMMENT:
             const editState = {...state.comments};
             for (const key in action.comment){
