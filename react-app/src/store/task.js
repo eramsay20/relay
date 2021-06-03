@@ -145,16 +145,16 @@ const taskReducer = (state=initialState, action) => {
                 newState[action.payload.id] = action.payload
                 newState.tasks.forEach((element, index) => {
                     if (element.id === action.payload.id){
-                        newState.tasks.splice(index, 1)
-                        newState.tasks.push(action.payload)
+                        newState.tasks.splice(index, 1, action.payload)
                     }
                 });
             } else {
-                newState[action.payload.id] = action.payload;
                 newState.tasks.push(action.payload)
+                newState[action.payload.id] = action.payload;
             }
             return {
                 ...newState,
+                tasks : newState.tasks,
                 [action.payload.id] : action.payload,
             }
         }
