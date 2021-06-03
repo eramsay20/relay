@@ -14,7 +14,6 @@ const TaskTable = () => {
     const [lastTask, setLastTask] = useState('');
     const [currentTask, setCurrentTask] = useState(null)
     const [lastDeletedTask, setLastDeletedTask] = useState('')
-
     const onClick = (id) => () => { setCurrentTask(id) };
 
     const deleteTask = (taskId) => {
@@ -29,12 +28,12 @@ const TaskTable = () => {
 
     useEffect(() => {
         dispatch(project(projectId))
-        dispatch(getTasksFunction())
         dispatch(getUsersFunction())
+        dispatch(getTasksFunction())
     }, [dispatch, projectId, lastTask, lastDeletedTask])
 
     let task_components = project_tasks.map( task => (
-        <TaskRow users={all_users} task={task} key={task.id} currentTask={currentTask} onClick={onClick} deleteTask={deleteTask}/>
+        <TaskRow users={all_users} task={task} key={task.id} currentTask={currentTask} onClick={onClick} deleteTask={deleteTask} setLastTask={setLastTask}/>
     ))
 
     return (

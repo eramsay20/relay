@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch} from "react-redux";
-import { makeTaskFunction } from '../../store/task'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector} from "react-redux";
+import { makeTaskFunction, getTasksFunction } from '../../store/task'
 
 const TaskRowForm = ({users, project, lastTask, setLastTask}) => {
     const add_task_icon = require('../../frontend-assets/aqua_add_icon.png')
+    const task = useSelector(state => state.task.task);
     const dispatch = useDispatch(); 
     const [title, setTitle] = useState('');
     const [userId, setUserId] = useState('');
@@ -12,8 +13,7 @@ const TaskRowForm = ({users, project, lastTask, setLastTask}) => {
     const onSubmit = (e) => {
         e.preventDefault();
         dispatch(makeTaskFunction(project.id, title, false, userId, dueDate, 'Add description...'))
-        lastTask = title
-        setLastTask(lastTask)
+        setLastTask(title)
         setTitle('')
         setUserId('')
         setDueDate(null)
@@ -21,6 +21,10 @@ const TaskRowForm = ({users, project, lastTask, setLastTask}) => {
         
     let project_id;
     if(project) project_id = project.id
+
+    useEffect(() => {
+        dispatch(getTasksFunction())
+    }, [dispatch, task])
 
     let people;
     if (users) people = users.map(user => user.username)

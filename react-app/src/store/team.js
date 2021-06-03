@@ -134,8 +134,7 @@ const teamReducer = (state=initialState, action) => {
                 newState.teams.forEach((element, index) => {
                     console.log(element)
                     if (element.id === action.payload.id){
-                        newState.teams.splice(index, 1)
-                        newState.teams.push(action.payload)
+                        newState.teams.splice(index, 1, action.payload)
                     }
                 });
             } else {

@@ -30,7 +30,7 @@ const TaskRow = ({ task }) => {
                         </div>
                         <div className="capitalize" style={{ 'paddingLeft': '10px' }}>
 
-                            <Link to={`/projects/${task.project_id}/tasks/${task.id}`} onClick={onClick}>{task.title}</Link>
+                            <Link to={`/projects/${task.project_id}/tasks/${task.id}`}>{task.title}</Link>
 
                             {showModal && (
                                 <Modal onClose={() => setShowModal(false)} style={{}}>
