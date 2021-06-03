@@ -23,9 +23,11 @@ const TaskDetails = ({ users, assignee, task, date, onClick}) => {
 
     // EDIT FORM -- COVERED INPUTS
     const [titleInput, setTitleInput] = useState(task.title);
-    const [assigneeIdInput, setAssigneeIdInput] = useState(assignee);
-    const [dueInput, setDueInput] = useState(date);
+    const [assigneeIdInput, setAssigneeIdInput] = useState(task.user_id);
+    const [dueInput, setDueInput] = useState(task.due_date);
     const [descriptionInput, setDescriptionInput] = useState(task.description);
+    // console.log(date)
+    console.log(task)
 
     const openMenu = e => {
         e.preventDefault();
@@ -108,7 +110,11 @@ const TaskDetails = ({ users, assignee, task, date, onClick}) => {
                     </label>
                      <label>
                          <h3>Due Date</h3>
-                         <input type='date' name='dueInput' value={dueInput} onChange={e => setDueInput(e.target.value)}></input>
+                         <input type='date' name='dueInput' value={dueInput} onChange={e => {
+                            setDueInput(e.target.value)
+                            console.log(e.target.value)
+                            console.log(dueInput)
+                         }}></input>
                      </label>
                      <label>
                          <h3>Description</h3>
