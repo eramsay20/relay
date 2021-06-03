@@ -36,7 +36,7 @@ const TaskRow = ({users, task, currentTask, onClick, deleteTask}) => {
         const date = new Date(dateString)
         const day = date.toDateString();
         const month = day.split(" ")[1]
-        const dateNum = day.split(" ")[2]
+        const dateNum = Number(day.split(" ")[2]) + 1 // adding +1 to offset GMT default time zone
         return `${month} ${dateNum}`
     }
 
@@ -64,7 +64,7 @@ const TaskRow = ({users, task, currentTask, onClick, deleteTask}) => {
                             <Link to={`/projects/${project_id}/tasks/${task.id}`} onClick={onClick(task.id)}>{task.title}</Link>
                             { currentTask === task.id && (
                                 <Modal styles={styles} >
-                                    <TaskDetails users={users} assignee={assignee} task={task} date={dateFormat} onClick={onClick}/>
+                                    <TaskDetails users={users} task={task} onClick={onClick}/>
                                 </Modal>
                             )}
                             <img onClick={deleteThisTask} className="remove-task-button" src={remove_icon}></img>
