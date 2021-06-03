@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { editComment, postComment } from '../store/comment';
 
-const CommentForm = ({comment2, commentId, onHide}) => {
+const CommentForm = ({comment2, commentId, onSetCurr}) => {
     const {task_id} = useParams();
     const dispatch = useDispatch();
 
     const [comment, setComment] = useState(comment2? comment2: "");
     const [errors, setErrors] = useState([]);
+
 
     const onSubmitForm = (e) => {
         e.preventDefault();
@@ -16,10 +17,11 @@ const CommentForm = ({comment2, commentId, onHide}) => {
             setErrors(["Comment cannot be an empty field."])
         }else if(comment2){
             dispatch(editComment({comment, commentId}));
-            onHide();
+            onSetCurr(null);
+            setComment("");
         }else {
             dispatch(postComment({comment, task_id}))
-            onHide()
+            setComment("");
         }
     }
 
@@ -44,7 +46,7 @@ const CommentForm = ({comment2, commentId, onHide}) => {
                 </div>
                 <div>
                     <button type="submit">{comment2 ? "Update Comment":"Add Comment"}</button>
-                    {comment2 && <button onClick={onHide} >Cancel</button>}
+                    {comment2 && <button onClick={onSetCurr} >Cancel</button>}
                 </div>
             </form>
         </div>
