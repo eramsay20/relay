@@ -87,6 +87,64 @@ body {
   overflow-x: hidden;
 }
 
+
+
+
+.task-detail-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  width: 100%;
+  margin: 0px;
+  padding: 10px;
+  box-shadow: none;
+}
+
+.task-detail-form > label {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.task-detail-form > label > h3 {
+  width: 100px;
+}
+
+.task-detail-form > label > input {
+  padding: 5px 10px 5px 10px;
+  margin: 10px 10px 10px 20px;
+  display: flex;
+  width: 75%;
+  justify-content: flex-end;
+}
+
+.task-detail-form > label > select {
+  padding: 5px 10px 5px 10px;
+  margin: 10px 10px 10px 20px;
+  display: flex;
+  width: 75%;
+  justify-content: flex-end;
+  border: 2px solid var(--GREY_GRID);
+  border-radius: 5px;
+}
+
+.task-detail-form > textarea {
+  margin-right: 20px;
+  padding: 15px;
+  min-width: 300px;
+  width: 90%;
+  height: 50px;
+  border: 2px solid var(--GREY_GRID);
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--GREY_HIGHLIGHT);
+}
+
+
+
 .commentInitial {
   position: relative;
   top: -10px;
