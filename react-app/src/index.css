@@ -99,7 +99,7 @@ body {
   padding: 5px;
   position: relative;
   font-size: 15px;
-  top: -60px;
+  top: -50px;
   left: 50px;
 }
 
@@ -136,7 +136,7 @@ body {
   padding: 5px;
   position: relative;
   left: 450px;
-  top: -120px;
+  top: -90px;
 }
 
 .outline {
@@ -146,7 +146,7 @@ body {
 }
 
 .commentSelect {
-  top: -210px;
+  top: -180px;
   position: relative;
   left: 450px;
 }
@@ -220,19 +220,19 @@ body {
 
 .project-card {
   display: flex;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 5px 10px 5px 10px;
   flex-direction: column;
   text-transform: capitalize;
   align-items: center;
-  margin: 10px 10px 0px 10px;
-  transition: background-color 400ms, color 400ms;
+  margin: 10px;
+  transition: background-color 400ms, color 400ms, box-shadow 300ms;
 }
 
 .project-card:hover {
   background-color: var(--GREY_HIGHLIGHT);
   border-radius: 10px;
   color: var(--VIOLET);
+  box-shadow: 1px 1px 15px 1px var(--GREY_GRID);
 }
 
 .project-card h5 {
@@ -309,6 +309,17 @@ body {
     margin: 10px;
 }
 
+.remove-project-button {
+  width: 20px;
+  height: 20px;
+  margin: 20px 0 10px 20px;
+  transition: transform 300ms;
+  cursor: pointer;
+}
+
+.remove-project-button:hover {
+  transform: scale(1.2);
+}
 
 
 /* SIDEBAR */
@@ -366,6 +377,17 @@ body {
   color: var(--GREY_TEXT);
   font-size: 14px;
   background-color: var(--SIDEBAR_CHARCOAL);
+}
+
+.add-team-button {
+  width: 20px;
+  padding-right: 20px;
+  transition: transform 300ms;
+  cursor: pointer;
+}
+
+.add-team-button:hover {
+  transform: scale(1.2);
 }
 
 
@@ -442,6 +464,28 @@ td {
     border-top: 1px solid var(--GREY_GRID);
     border-right: 1px solid var(--GREY_GRID);
     padding: 10px;
+}
+
+.complete-task-button {
+  width: 20px;
+  padding-left: 10px;
+  cursor: pointer;
+  transition: transform 300ms;
+}
+
+.complete-task-button:hover {
+  transform: scale(1.2);
+}
+
+.remove-task-button {
+  width: 20px;
+  padding-left: 10px;
+  cursor: pointer;
+  transition: transform 300ms;
+}
+
+.remove-task-button:hover {
+  transform: scale(1.2);
 }
 
 
@@ -568,12 +612,14 @@ input:focus {
     width: 15%;
     padding: 0px;
     margin: 0px;
-    transition: none;
+    transition: transform 300ms, background-color 300ms;
+    cursor: pointer;
 }
 
 .task-form-button:hover {
     background-color: var(--AQUA_GREEN);
     border: 1px solid var(--AQUA_GREEN);
+    transform: scale(1.1);
     color: white;
 }
 
