@@ -100,6 +100,7 @@ This is the backend for the Flask React project.
    ```
 
    <!-- 
+   heroku run -a relay-aa flask seed undo 
    heroku run -a relay-aa flask db upgrade
    heroku run -a relay-aa flask seed all 
    -->

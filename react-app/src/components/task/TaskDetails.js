@@ -5,7 +5,7 @@ import { comments, deleteComment } from '../../store/comment';
 import { deleteTaskFunction, updateTaskFunction } from '../../store/task';
 import CommentForm from "../CommentForm"
 
-const TaskDetails = ({ users, assignee, task, date, onClick}) => {
+const TaskDetails = ({ users, task, onClick}) => {
     const profile_icon_violet = require('../../frontend-assets/profile_icon_violet.png');
 
     const history = useHistory()
@@ -18,24 +18,25 @@ const TaskDetails = ({ users, assignee, task, date, onClick}) => {
     const [showMenu, setShowMenu] = useState(null);
     const [currComment, setCurrComment] = useState(null);
 
-    // EDIT FORM -- COVERED INPUTS
+    const dateFormat = (dateStr) => {
+        if(dateStr === null) return dateStr
+        let newDate = new Date(dateStr);
+        let due = newDate.toISOString().substr(0,10)
+        return due
+    }
+
+    // UPDATE TASK FORM ------
     const [titleInput, setTitleInput] = useState(task.title);
     const [assigneeIdInput, setAssigneeIdInput] = useState(task.user_id);
-    const [dueInput, setDueInput] = useState(task.due_date);
+    const [dueInput, setDueInput] = useState(dateFormat(task.due_date));
     const [descriptionInput, setDescriptionInput] = useState(task.description);
-    // console.log(date)
-    console.log(task)
 
-    const openMenu = e => {
-        e.preventDefault();
-        if(showMenu){
-            setShowMenu(null);
-            return;
-        }else {
-            setShowMenu(e.target.id);
-            return;
-        };
-    };
+    let people;
+    if (users) people = users.map(user => user.username)
+
+    const select_options = people.map((person, idx) => (
+        <option key={`${person}-${idx}`} name="user_id" value={idx + 1}>{person}</option>
+    ))
 
     const onEditTask = () => {
         let taskId = task.id;
@@ -50,11 +51,26 @@ const TaskDetails = ({ users, assignee, task, date, onClick}) => {
         onClick(null)
         history.push(`/projects/${project_id}`)
     }
+    // ------------------------ 
+
+    const openMenu = e => {
+        e.preventDefault();
+        if(showMenu){
+            setShowMenu(null);
+            return;
+        }else {
+            setShowMenu(e.target.id);
+            return;
+        };
+    };
+
 
     const onDeleteTask = () => {
         dispatch(deleteTaskFunction(task.id))
         onClick(null)
+        history.push(`/projects/${project_id}`)
     }
+    
 
     const onDeleteSelect = (id) => () => {
         dispatch(deleteComment(id));
@@ -68,15 +84,6 @@ const TaskDetails = ({ users, assignee, task, date, onClick}) => {
     useEffect(() => {
         dispatch(comments(task.id))
     }, [dispatch]);
-
-    const due = date(task.due_date);
-    let people;
-    if (users) people = users.map(user => user.username)
-
-    const select_options = people.map((person, idx) => (
-        <option key={`${person}-${idx}`} name="user_id" value={idx + 1}>{person}</option>
-    ))
-    
 
  return (
      <div className="taskDetailContainer">
@@ -102,29 +109,13 @@ const TaskDetails = ({ users, assignee, task, date, onClick}) => {
                     </label>
                      <label>
                          <h3>Due Date</h3>
-                         <input type='date' name='dueInput' value={dueInput} onChange={e => {
-                            setDueInput(e.target.value)
-                            console.log(e.target.value)
-                            console.log(dueInput)
-                         }}></input>
+                         <input type='date' name='dueInput' value={dueInput} onChange={e => setDueInput(e.target.value)}></input>
                      </label>
                      <label>
                          <h3>Description</h3>
                      </label>
                      <textarea value={descriptionInput} onChange={e => setDescriptionInput(e.target.value)}></textarea>
                 </form>
-                 {/* <div className='flex-container' style={{ 'justifyContent': 'flex-start' }}>
-                     <h4 className="min-margin capitalize">Assignee</h4>
-                     <p className="capitalize min-margin" style={{ 'marginLeft': '50px' }}>{assignee}</p>
-                </div>
-                 <div className='flex-container' style={{ 'justifyContent': 'flex-start' }}>
-                     <h4 className="min-margin capitalize">Due Date</h4>
-                     <p className='min-margin' style={{ 'marginLeft': '50px' }}>{due}</p>
-                </div>
-                <div>
-                    <h4>Description</h4>
-                     <p style={{ 'backgroundColor': 'var(--GREY_HIGHLIGHT)', 'padding':'20px', 'borderRadius':'5px', 'marginRight':'20px' }}>{task.description}</p>
-                </div> */}
                 <div>
                      <h4 style={{ 'marginTop': '30px' }}>Comments</h4>
                     {taskComment && Object.keys(taskComment).map(id => (
