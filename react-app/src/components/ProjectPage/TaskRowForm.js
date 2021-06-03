@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { makeTaskFunction, getTasksFunction } from '../../store/task'
 
 const TaskRowForm = ({users, project, lastTask, setLastTask, tasksChange, changeTasks}) => {
     const add_task_icon = require('../../frontend-assets/aqua_add_icon.png')
+    const task = useSelector(state => state.task.task);
     const dispatch = useDispatch(); 
     const [title, setTitle] = useState('');
     const [userId, setUserId] = useState('');
@@ -17,6 +18,8 @@ const TaskRowForm = ({users, project, lastTask, setLastTask, tasksChange, change
         setUserId('')
         setDueDate(null)
         changeTasks(tasksChange + 1)
+        dispatch(getTasksFunction())
+        console.log('title:', title,'userId', userId, 'lastTask', lastTask, 'taskchange', tasksChange, 'due', dueDate)
         }
         
     let project_id;
@@ -24,7 +27,7 @@ const TaskRowForm = ({users, project, lastTask, setLastTask, tasksChange, change
 
     useEffect(() => {
         dispatch(getTasksFunction())
-    }, [dispatch,tasksChange, title, userId, lastTask])
+    }, [dispatch, tasksChange, task])
 
     let people;
     if (users) people = users.map(user => user.username)
@@ -32,6 +35,7 @@ const TaskRowForm = ({users, project, lastTask, setLastTask, tasksChange, change
     const select_options = people.map((person, idx) => (
         <option name="user_id" value={idx+1}>{person}</option>
     ))
+    console.log('title:', title,'userId', userId, 'lastTask', lastTask, 'taskchange', tasksChange, 'due', dueDate)
 
     const today = new Date()
 
