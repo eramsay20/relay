@@ -6,7 +6,7 @@ import { getTasksFunction, deleteTaskFunction } from '../../store/task';
 import { getUsersFunction } from '../../store/user';
 import { project } from '../../store/project';
 
-const TaskTable = ({tasksChange, changeTasks}) => {
+const TaskTable = () => {
     const dispatch = useDispatch();
     const tasks = useSelector(state => state.task.tasks);
     const currProject = useSelector(state => state.project.project);
@@ -30,7 +30,7 @@ const TaskTable = ({tasksChange, changeTasks}) => {
         dispatch(project(projectId))
         dispatch(getUsersFunction())
         dispatch(getTasksFunction())
-    }, [dispatch, projectId, lastTask, lastDeletedTask, tasksChange])
+    }, [dispatch, projectId, lastTask, lastDeletedTask])
 
     let task_components = project_tasks.map( task => (
         <TaskRow users={all_users} task={task} key={task.id} currentTask={currentTask} onClick={onClick} deleteTask={deleteTask} setLastTask={setLastTask}/>
@@ -49,7 +49,7 @@ const TaskTable = ({tasksChange, changeTasks}) => {
             <tbody>
                 <div className='task-row-entries'>
                     {task_components}
-                    <TaskRowForm users={all_users} project={currProject} tastTask={lastTask} tasksChange={tasksChange} changeTasks={changeTasks} setLastTask={setLastTask}/>
+                    <TaskRowForm users={all_users} project={currProject} tastTask={lastTask} setLastTask={setLastTask}/>
                 </div>
             </tbody>
         </table>
