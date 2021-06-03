@@ -28,7 +28,7 @@ const ProjectHeader = ({project, projectStatus, toggleProjectStatus}) => {
                 </Modal>
                 )}
             </div>
-            <div style={{ 'text-transform': 'capitalize', 'paddingTop':'10px' }}>
+            <div style={{ 'textTransform': 'capitalize', 'paddingTop':'10px' }}>
                 <h3 style={{ 'paddingTop': '15px' }}>{project?.title}</h3>
                 <div className="flex-container" style={{ 'justifyContent':'flex-start'}}>
                     <h4 style={{ 'color': 'var(--GREY_TEXT_LABELS', 'margin': '0px'}}>{completed}</h4>

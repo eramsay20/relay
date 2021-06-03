@@ -14,21 +14,18 @@ const TaskDetails = ({assignee, task, date, onClick}) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const taskComment = useSelector(state => state.comment.comments);
-    const userCom = (taskComment && user.username in taskComment)
 
 
-    const [showMenu, setShowMenu] = useState(false);
+    const [showMenu, setShowMenu] = useState(null);
     const [currComment, setCurrComment] = useState(null);
-    const [hideForm, setHideForm] = useState(true);
-    const [userComment, setUserComment] = useState(userCom)
 
     const openMenu = e => {
         e.preventDefault();
         if(showMenu){
-            setShowMenu(false);
+            setShowMenu(null);
             return;
         }else {
-            setShowMenu(true);
+            setShowMenu(e.target.id);
             return;
         };
     };
@@ -39,15 +36,10 @@ const TaskDetails = ({assignee, task, date, onClick}) => {
     }
     const onDeleteSelect = (id) => () => {
         dispatch(deleteComment(id));
-        setUserComment(true);
-        setHideForm(true);
-        setCurrComment(null);
         dispatch(comments(task.id))
     };
     const onEdit = (comment) => () => {
         setCurrComment(comment);
-        setHideForm(true);
-        dispatch(comments(task.id))
     };
 
     useEffect(() => {
@@ -79,18 +71,18 @@ const TaskDetails = ({assignee, task, date, onClick}) => {
                 </div>
                 <div>
                      <h4 style={{ 'marginTop': '30px' }}>Comments</h4>
-                    {taskComment && Object.keys(taskComment).map(name => (
-                        <div key={name} style={{"padding": "10px", "height":"50px"}}>
+                    {taskComment && Object.keys(taskComment).map(id => (
+                        <div key={id} style={{"padding": "10px", "height":"50px"}}>
                             <img style={{ 'width': '30px', 'paddingLeft': '10px' }} src={profile_icon_violet}></img>
-                            <span className="commentInitial">{name.split('')[0].toUpperCase()}</span>
-                            <p className="commentText">{taskComment[name]?.comment}</p>
-                            {taskComment[name]?.user_id === user.id &&
+                            <span className="commentInitial">{taskComment[id]?.user?.split('')[0].toUpperCase()}</span>
+                            <p className="commentText">{taskComment[id]?.comment}</p>
+                            {taskComment[id]?.user_id === user.id &&
                                 (<div onClick={openMenu}>
-                                    <div onClick={openMenu} className="dropDownDiv nav-link flex-container">update</div>
-                                    {showMenu && (
-                                        <div className="commentSelect profileContent">
-                                            <div className="outline nav-link flex-container" onClick={onEdit(taskComment[name])}>Edit</div>
-                                            <div className="outline nav-link flex-container" onClick={onDeleteSelect(taskComment[name].id)}>Delete</div>
+                                    <div id={taskComment[id].id} onClick={openMenu} className="dropDownDiv nav-link flex-container">update</div>
+                                    {showMenu == taskComment[id].id && (
+                                        <div className="commentSelect profileConten">
+                                            <div className="outline nav-link flex-container" onClick={onEdit(taskComment[id])}>Edit</div>
+                                            <div className="outline nav-link flex-container" onClick={onDeleteSelect(taskComment[id].id)}>Delete</div>
                                         </div>
                                     )}
                                 </div>)
@@ -101,7 +93,7 @@ const TaskDetails = ({assignee, task, date, onClick}) => {
             </div>
          </div>
          <div className="modalCommentForm">
-             {(hideForm && (currComment || userComment))  && <CommentForm comment2={currComment?.comment} commentId={currComment?.id}  onHide={() => setHideForm(false)}  />}
+             <CommentForm comment2={currComment?.comment} commentId={currComment?.id} onSetCurr={() => setCurrComment(null)}/>
          </div>
      </div>
  )

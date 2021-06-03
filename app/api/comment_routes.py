@@ -33,11 +33,12 @@ def comment(id):
     if request.method == "DELETE":
         db.session.delete(comment)
         db.session.commit()
-        return {name: comment.to_dict()}
+        return {comment.id: {**comment.to_dict(), **{"user": name}}}
     elif request.method == "PUT":
         body = request.get_json()
         comment.comment = body.get("comment")
         db.session.commit()
-        return {name: comment.to_dict()}
+        return {comment.id: {**comment.to_dict(), **{"user": name}}}
     else:
-        return ({name: comment.to_dict()} if comment else {"Comment": "Null"})
+        return ({comment.id: {**comment.to_dict(), **{"user": name}}}
+                if comment else {"Comment": "Null"})

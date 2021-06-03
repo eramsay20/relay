@@ -98,4 +98,5 @@ def delete(id):
 def all_comments(task_id):
     comments = (db.session.query(Comment, User.username).join(User)
                 .filter(Comment.task_id == task_id).all())
-    return {name: comment.to_dict() for comment, name in comments}
+    return ({comment.id: {**comment.to_dict(), **{"user": name}}
+             for comment, name in comments})
