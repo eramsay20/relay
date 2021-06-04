@@ -75,6 +75,7 @@ def edit(id):
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     task = Task.query.get(id)
+    task.title = form.data['title']
     task.project_id = form.data['project_id']
     task.user_id = form.data['user_id']
     task.due_date = form.data['due_date']

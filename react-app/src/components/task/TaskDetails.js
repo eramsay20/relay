@@ -41,12 +41,12 @@ const TaskDetails = ({ users, task, onClick}) => {
     const onEditTask = () => {
         let taskId = task.id;
         let projectId = project_id;
-        let title = task.title;
         let complete = task.complete;
+        let title = titleInput;
         let userId = assigneeIdInput;
         let dueDate = dueInput;
         let description = descriptionInput;
-
+        
         dispatch(updateTaskFunction(taskId, projectId, title, complete, userId, dueDate, description))
         onClick(null)
         history.push(`/projects/${project_id}`)
