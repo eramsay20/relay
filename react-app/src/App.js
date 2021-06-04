@@ -62,7 +62,7 @@ function App() {
               <ProjectForm />
             </ProtectedRoute>
           </Switch>
-        <div className={`footer flex-container`}>
+        <div className={`footer`}>
           <Footer />
         </div>
       </div>
