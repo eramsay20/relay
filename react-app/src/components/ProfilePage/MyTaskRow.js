@@ -13,7 +13,7 @@ const TaskRow = ({ task }) => {
         const date = new Date(dateString)
         const day = date.toDateString();
         const month = day.split(" ")[1]
-        const dateNum = day.split(" ")[2]
+        const dateNum = Number(day.split(" ")[2]) + 1 // add 1 day to offset GMT default time zone
         return `${month} ${dateNum}`
     }
 

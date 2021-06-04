@@ -29,7 +29,7 @@ body {
 
 
 
-/* MODAL DESIGN */
+/* DEFAULT MODAL DESIGN */
 
 .modal {
   position: fixed;
@@ -56,6 +56,9 @@ body {
   background-color: transparent;
 }
 
+
+/* PROFILE LOGOUT BUTTON MODAL */
+
 .profileDropdown {
   position: relative;
 }
@@ -73,6 +76,14 @@ body {
   box-shadow: 1px 1px 5px 1px var(--GREY_GRID);
 }
 
+#logout {
+  width: 60px;
+  height: 20px;
+  padding: 5px;
+}
+
+
+/* TASK DETAILS MODAL */
 .taskDetailContainer {
   background-color: var(--WHITE);
   border: 1px solid var(--GREY_GRID);
@@ -84,18 +95,96 @@ body {
   padding-left: 40px;
   padding-right: 40px;
   border-radius: 10px;
-  height: 87vh;
-  width: 565px;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  height: 85vh;
+  width: 90%;
 }
 
 .taskDetailContent {
   overflow-y: scroll;
-  height: 35pc;
+  height: 100%;
   overflow-x: hidden;
 }
 
+.commentText {
+  width: 300px;
+  padding-left: 5px;
+  font-size: 14px;
+  margin: 0px;
+}
+
+.comments-section {
+  overflow-y: scroll;
+}
+
+.comment-container {
+    display:flex;
+    align-items: flex-start;
+    padding: 10px;
+    margin-bottom:25px;
+    height: 30px;
+
+}
+
+.commenter-icon {
+  width: 20px;
+  height: 20px;
+  padding-left: 10px;
+}
+
+.commenter-initial {
+  position: relative;
+  font-size: 10px;
+  top: 4px;
+  left: -13px;
+  color: white;
+}
+
+/* COMMENT FORM */
+
+.modalCommentForm {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.modalCommentForm form {
+  margin-top: 0px;
+  padding: 10px;
+  width: 450px; 
+}
+
+.modalCommentForm input {
+  width: 100%;
+  margin: 0px;
+}
+
+.dropDownDiv {
+  width: 50px;
+  height: 15px;
+  padding: 2px;
+  position: relative;
+  left: 30px;
+  top: 0px;
+  font-size: 14px;
+}
+
+.outline {
+  width: 40px;
+  height: 15px;
+  padding: 2px;
+}
+
+.commentSelect {
+  font-size: 14px;
+  top: 0px;
+  position: relative;
+  left: 35px;
+}
 
 
+/* Task Details Update Form */
 
 .task-detail-form {
   display: flex;
@@ -116,7 +205,7 @@ body {
 }
 
 .task-detail-form > label > h3 {
-  width: 100px;
+  width: 85px;
 }
 
 .task-detail-form > label > input {
@@ -147,69 +236,6 @@ body {
   border-radius: 5px;
   font-family: 'Roboto', sans-serif;
   background-color: var(--GREY_HIGHLIGHT);
-}
-
-
-
-.commentInitial {
-  position: relative;
-  top: -10px;
-  left: -20px;
-}
-
-.commentText {
-  width: 300px;
-  word-wrap: break-word;
-  padding: 5px;
-  position: relative;
-  font-size: 15px;
-  top: -50px;
-  left: 50px;
-}
-
-.modalCommentForm {
-  position: relative;
-  bottom: 16%;
-  width: 100%;
-}
-
-
-.modalCommentForm form {
-  margin-top: 20px;
-  padding: 20px;
-  width: 90%;
-}
-
-.modalCommentForm input {
-  width: 100%;
-  margin: 0px;
-}
-
-#logout {
-  width: 60px;
-  height: 20px;
-  padding: 5px;
-}
-
-.dropDownDiv {
-  width: 60px;
-  height: 20px;
-  padding: 5px;
-  position: relative;
-  left: 450px;
-  top: -90px;
-}
-
-.outline {
-  width: 60px;
-  height: 20px;
-  padding: 5px;
-}
-
-.commentSelect {
-  top: -180px;
-  position: relative;
-  left: 450px;
 }
 
 

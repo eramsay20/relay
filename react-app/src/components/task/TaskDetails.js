@@ -83,7 +83,7 @@ const TaskDetails = ({ users, task, onClick}) => {
 
     useEffect(() => {
         dispatch(comments(task.id))
-    }, [dispatch]);
+    }, [dispatch, history]);
 
  return (
      <div className="taskDetailContainer">
@@ -92,9 +92,9 @@ const TaskDetails = ({ users, task, onClick}) => {
              <div className='nav-link' onClick={onEditTask}>Update</div>
              <div className='nav-link' onClick={onDeleteTask}>Delete</div>
          </div>
-         <div >
+         <div className="taskDetailContent">
             <h2 className="min-margin capitalize" >{task.title}</h2>
-            <div className="taskDetailContent">
+            <div>
                 <form className='task-detail-form' onSubmit={onEditTask}>
                      <label>
                          <h3>Task Title</h3>
@@ -116,16 +116,19 @@ const TaskDetails = ({ users, task, onClick}) => {
                      </label>
                      <textarea value={descriptionInput} onChange={e => setDescriptionInput(e.target.value)}></textarea>
                 </form>
-                <div>
-                     <h4 style={{ 'marginTop': '30px' }}>Comments</h4>
+                <div className='comments-section'>
+                     <h4 style={{ 'marginTop': '20px', 'marginLeft': '10px'}}>Comments</h4>
+                    <div className="modalCommentForm">
+                        <CommentForm comment2={currComment?.comment} commentId={currComment?.id} onSetCurr={() => setCurrComment(null)}/>
+                    </div>
                     {taskComment && Object.keys(taskComment).map(id => (
-                        <div key={id} style={{"padding": "10px", "height":"50px"}}>
-                            <img style={{ 'width': '30px', 'paddingLeft': '10px' }} src={profile_icon_violet}></img>
-                            <span className="commentInitial">{taskComment[id]?.user?.split('')[0].toUpperCase()}</span>
+                        <div key={id} className='comment-container'>
+                            <img className='commenter-icon' src={profile_icon_violet}></img>
+                            <span className="commenter-initial">{taskComment[id]?.user?.split('')[0].toUpperCase()}</span>
                             <p className="commentText">{taskComment[id]?.comment}</p>
                             {taskComment[id]?.user_id === user.id &&
                                 (<div onClick={openMenu}>
-                                    <div id={taskComment[id].id} onClick={openMenu} className="dropDownDiv nav-link flex-container">update</div>
+                                <div id={taskComment[id].id} onClick={openMenu} className="dropDownDiv nav-link flex-container">Update</div>
                                     {showMenu == taskComment[id].id && (
                                         <div className="commentSelect profileConten">
                                             <div className="outline nav-link flex-container" onClick={onEdit(taskComment[id])}>Edit</div>
@@ -138,9 +141,6 @@ const TaskDetails = ({ users, task, onClick}) => {
                     ))}
                 </div>
             </div>
-         </div>
-         <div className="modalCommentForm">
-             <CommentForm comment2={currComment?.comment} commentId={currComment?.id} onSetCurr={() => setCurrComment(null)}/>
          </div>
      </div>
  )
