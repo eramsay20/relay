@@ -9,48 +9,48 @@ function Footer() {
     const github_icon = require('../frontend-assets/github_icon.png')
 
     const user = useSelector(state => state.session.user);
+    // style = {{ 'position': 'relative', 'right': '20px', 'font-size': '8px' }
 
     let links;
     if (user){
         links = (
-            <div className = 'flex-container' style={{'paddingLeft':'230px'}}>
-                <a className='flex-container' href={WIKI_PATH} target="_blank" style={{ marginLeft: '20px' }}>
-                    <img style={{ 'width': '35px' }} src={github_icon}></img>
-                    <p style={{ 'position': 'relative', 'right':'21px', 'font-size':'8px' }}>W</p>
+            <div className = 'footer-links' style={{'marginLeft':'300px'}}>
+                <a className='footer-link' href={WIKI_PATH} style={{ 'paddingRight': '60px' }}>
+                    <img className='footer-image' src={github_icon}></img>
+                    <p>Wiki</p>
                 </a>
-                <a className='flex-container' href={GITHUB_PROFILE_MS} target="_blank" style={{ marginLeft: '20px' }}>
-                    <img style={{ 'width': '35px' }} src={github_icon}></img>
-                    <p style={{ 'position': 'relative', 'right': '21px', 'font-size': '8px' }}>M</p>
+                <a className='footer-link' href={GITHUB_PROFILE_MS}>
+                    <img className='footer-image' src={github_icon}></img>
+                    <p>Mauro Sanchez</p>
                 </a>
-                <a className='flex-container' href={GITHUB_PROFILE_RG} target="_blank" style={{ marginLeft: '20px' }}>
-                    <img style={{ 'width': '35px' }} src={github_icon}></img>
-                    <p style={{ 'position': 'relative', 'right': '20px', 'font-size': '8px' }}>R</p>
+                <a className='footer-link' href={GITHUB_PROFILE_RG} target="_blank">
+                    <img className='footer-image' src={github_icon}></img>
+                    <p>Robert George</p>
                 </a>
-                <a className='flex-container' href={GITHUB_PROFILE_ER} target="_blank" style={{ marginLeft: '20px' }}>
-                    <img style={{ 'width': '35px' }} src={github_icon}></img>
-                    <p style={{ 'position': 'relative', 'right': '20px', 'font-size': '8px' }}>E</p>
+                <a className='footer-link' href={GITHUB_PROFILE_ER} target="_blank">
+                    <img className='footer-image' src={github_icon}></img>
+                    <p>Eric Ramsay</p>
                 </a>
-
             </div>
         )
     } else {
         links = (
-            <div className='flex-container' style={{ 'paddingRight': '20px' }}>
-                <a className='flex-container' href={WIKI_PATH} style={{ marginLeft: '20px' }}>
-                    <img style={{ 'width': '35px' }} src={github_icon}></img>
-                    <p style={{ 'position': 'relative', 'right': '21px', 'font-size': '8px' }}>W</p>
+            <div className='flex-container'>
+                <a className='footer-link' href={WIKI_PATH} style={{ 'paddingRight': '60px' }}>
+                    <img className='footer-image' src={github_icon}></img>
+                    <p>Wiki</p>
                 </a>
-                <a className='flex-container' href={GITHUB_PROFILE_MS} style={{ marginLeft: '20px' }}>
-                    <img style={{ 'width': '35px' }} src={github_icon}></img>
-                    <p style={{ 'position': 'relative', 'right': '21px', 'font-size': '8px' }}>M</p>
+                <a className='footer-link' href={GITHUB_PROFILE_MS}>
+                    <img className='footer-image' src={github_icon}></img>
+                    <p>Mauro Sanchez</p>
                 </a>
-                <a className='flex-container' href={GITHUB_PROFILE_RG} style={{ marginLeft: '20px' }}>
-                    <img style={{ 'width': '35px' }} src={github_icon}></img>
-                    <p style={{ 'position': 'relative', 'right': '20px', 'font-size': '8px' }}>R</p>
+                <a className='footer-link' href={GITHUB_PROFILE_RG} target="_blank">
+                    <img className='footer-image' src={github_icon}></img>
+                    <p>Robert George</p>
                 </a>
-                <a className='flex-container' href={GITHUB_PROFILE_ER} style={{ marginLeft: '20px' }}>
-                    <img style={{ 'width': '35px' }} src={github_icon}></img>
-                    <p style={{ 'position': 'relative', 'right': '20px', 'font-size': '8px' }}>E</p>
+                <a className='footer-link' href={GITHUB_PROFILE_ER} target="_blank">
+                    <img className='footer-image' src={github_icon}></img>
+                    <p>Eric Ramsay</p>
                 </a>
             </div>
         )
