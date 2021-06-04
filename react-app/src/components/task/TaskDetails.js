@@ -51,7 +51,7 @@ const TaskDetails = ({ users, task, onClick}) => {
         onClick(null)
         history.push(`/projects/${project_id}`)
     }
-    // ------------------------ 
+    // ------------------------
 
     const openMenu = e => {
         e.preventDefault();
@@ -70,7 +70,7 @@ const TaskDetails = ({ users, task, onClick}) => {
         onClick(null)
         history.push(`/projects/${project_id}`)
     }
-    
+
 
     const onDeleteSelect = (id) => () => {
         dispatch(deleteComment(id));
@@ -116,7 +116,7 @@ const TaskDetails = ({ users, task, onClick}) => {
                      </label>
                      <textarea value={descriptionInput} onChange={e => setDescriptionInput(e.target.value)}></textarea>
                 </form>
-                <div className='comments-section'>
+                <div>
                      <h4 style={{ 'marginTop': '20px', 'marginLeft': '10px'}}>Comments</h4>
                     <div className="modalCommentForm">
                         <CommentForm comment2={currComment?.comment} commentId={currComment?.id} onSetCurr={() => setCurrComment(null)}/>

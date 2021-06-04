@@ -114,9 +114,6 @@ body {
   margin: 0px;
 }
 
-.comments-section {
-  overflow-y: scroll;
-}
 
 .comment-container {
     display:flex;
@@ -152,7 +149,7 @@ body {
 .modalCommentForm form {
   margin-top: 0px;
   padding: 10px;
-  width: 450px; 
+  width: 450px;
 }
 
 .modalCommentForm input {
