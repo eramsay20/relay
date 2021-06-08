@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-***[relay](https://ebrite-app.herokuapp.com/)*** is a clone of asana.com that focuses on helping teams manage projects and task delegation across team members. Users can create new projects and assign tasks to members of the team assigned to a given project. 
+***[relay](https://relay-aa.herokuapp.com/)*** is a clone of asana.com that focuses on helping teams manage projects and task delegation across team members. Users can create new projects and assign tasks to members of the team assigned to a given project. 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
