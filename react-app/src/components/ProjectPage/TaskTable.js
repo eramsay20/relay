@@ -6,10 +6,9 @@ import { getTasksFunction, deleteTaskFunction } from '../../store/task';
 import { getUsersFunction } from '../../store/user';
 import { project } from '../../store/project';
 
-const TaskTable = () => {
+const TaskTable = ({ projectProp }) => {
     const dispatch = useDispatch();
     const tasks = useSelector(state => state.task.tasks);
-    const currProject = useSelector(state => state.project.project);
     const all_users = useSelector(state => state.user.users)
     const [lastTask, setLastTask] = useState('');
     const [currentTask, setCurrentTask] = useState(null)
@@ -21,20 +20,20 @@ const TaskTable = () => {
         setLastDeletedTask(taskId)
     }
 
-    let projectId;
-    if (currProject) projectId = currProject.id
-
-    let project_tasks = tasks.filter(task => task.project_id === projectId)
+    let project_tasks, task_components;
+    if(projectProp){
+        project_tasks = tasks.filter(task => task.project_id === projectProp.id)
+        task_components = project_tasks.map(task => (
+            <TaskRow users={all_users} task={task} key={task.id} currentTask={currentTask} onClick={onClick} deleteTask={deleteTask} setLastTask={setLastTask} />
+        ))
+    } 
 
     useEffect(() => {
-        if(projectId) dispatch(project(projectId))
+        if(projectProp) dispatch(project(projectProp.id))
         dispatch(getUsersFunction())
         dispatch(getTasksFunction())
-    }, [dispatch, projectId, lastTask, lastDeletedTask])
+    }, [dispatch, lastTask, lastDeletedTask])
 
-    let task_components = project_tasks.map( task => (
-        <TaskRow users={all_users} task={task} key={task.id} currentTask={currentTask} onClick={onClick} deleteTask={deleteTask} setLastTask={setLastTask}/>
-    ))
 
     return (
         <table onClick={onClick}>
@@ -49,7 +48,7 @@ const TaskTable = () => {
             <tbody>
                 <div className='task-row-entries'>
                     {task_components}
-                    <TaskRowForm users={all_users} project={currProject} tastTask={lastTask} setLastTask={setLastTask}/>
+                    <TaskRowForm users={all_users} project={projectProp} tastTask={lastTask} setLastTask={setLastTask}/>
                 </div>
             </tbody>
         </table>

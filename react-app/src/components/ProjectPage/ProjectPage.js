@@ -9,13 +9,13 @@ import ProjectContent from './ProjectContent';
 
 const ProjectPage = () => {
     const dispatch = useDispatch();
-    const {project_id} = useParams();
+    const { project_id } = useParams();
     const currProject = useSelector(state => state.project.project);
-
     const [projectStatus, setProjectStatus] = useState(false);
 
     useEffect(() => {
-        dispatch(project(Number(project_id)))
+        dispatch(project(Number(project_id))) // PROJECT
+        console.log('project page pid', project_id)
     }, [dispatch, projectStatus]);
 
     const toggleProjectStatus = () => {

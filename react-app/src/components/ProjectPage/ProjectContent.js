@@ -13,7 +13,7 @@ const ProjectContent = ({ project }) => {
                 <TaskHeader project={project}/>
             </div>
             <div className="task-container">
-                <TaskTable project={project}/>
+                <TaskTable projectProp={project}/>
             </div>
         </div>
     );
