@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom'
-import { project } from "../../store/project";
+import { getProject } from "../../store/project";
 import { updateProjectStatus } from '../../store/project';
 import SideBar from '../SideBar';
 import ProjectHeader from './ProjectHeader';
@@ -14,8 +14,7 @@ const ProjectPage = () => {
     const [projectStatus, setProjectStatus] = useState(false);
 
     useEffect(() => {
-        dispatch(project(Number(project_id))) // PROJECT
-        console.log('project page pid', project_id)
+        dispatch(getProject(Number(project_id))) // PROJECT
     }, [dispatch, projectStatus]);
 
     const toggleProjectStatus = () => {

@@ -1,18 +1,18 @@
-import React, {useState, useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { deleteProject } from '../../store/project'
-const ProjectDeleteForm = ( { prop } ) => {
+const ProjectDeleteForm = ( { props } ) => {
   const dispatch = useDispatch();
   const [projectId, setProjectId] = useState(0)
+
   let projects;
-  if(prop.project.length > 0){
-    projects = prop.project
-  } else {
-    projects = [{'id': 0, 'title': 'You have no projects'}]
-  }
-  const setShowModal = prop.modal
+  if(props.projects.length > 0) projects = props.projects
+  else projects = [{'id': 0, 'title': 'You have no projects'}]
+
+  const setShowModal = props.modal
   const onDelete = (e) =>{
-    const deleteId = projectId
+    e.preventDefault()
+    const deleteId = Number(projectId)
     dispatch(deleteProject(deleteId))
     setShowModal(false)
   }

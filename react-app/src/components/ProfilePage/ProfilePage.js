@@ -9,8 +9,8 @@ import { Modal } from '../../context/Modal'
 const ProfilePage = () => {
     const remove_icon = require('../../frontend-assets/remove_icon.png')
     const dispatch = useDispatch(); 
-    const user = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false)
+    const user = useSelector(state => state.session.user);
     const current_projects = useSelector(state => state.project.projects)
     const divider = (<hr style={{'color': 'var(--GREY_TEXT_LABELS)','height': '15'}}/>);
 
@@ -18,8 +18,9 @@ const ProfilePage = () => {
     if(current_projects) my_projects = current_projects.filter(project => project.user_id === user.id)
     
     useEffect(() => { dispatch(projects()) }, [dispatch])
-    const onDelete = () =>{ setShowModal(true) } 
-    const prop = {'project' : my_projects, 'modal': setShowModal }
+
+    const onDelete = () =>{ setShowModal(true) } // show delete button modal
+    const props = {'projects' : my_projects, 'modal': setShowModal }
 
     return (
         <div className="profile-container">
@@ -42,7 +43,7 @@ const ProfilePage = () => {
 
                         {showModal && (
                         <Modal onClose={()=>setShowModal(false)} style={{}}>
-                            <ProjectDeleteForm prop={prop} />
+                            <ProjectDeleteForm props={props} />
                         </Modal>
                         )}
                     </div>
