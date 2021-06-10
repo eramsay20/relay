@@ -27,7 +27,7 @@ const TaskTable = () => {
     let project_tasks = tasks.filter(task => task.project_id === projectId)
 
     useEffect(() => {
-        dispatch(project(projectId))
+        if(projectId) dispatch(project(projectId))
         dispatch(getUsersFunction())
         dispatch(getTasksFunction())
     }, [dispatch, projectId, lastTask, lastDeletedTask])

@@ -7,7 +7,7 @@ const TaskRow = ({ task }) => {
 
     const [showModal, setShowModal] = useState(false);
     const incomplete_check = require('../../frontend-assets/grey_checkmark.png')
-    const onClick = () => { setShowModal(true) }
+    // const onClick = () => { setShowModal(true) }
 
     const dateFormat = (dateString) => {
         const date = new Date(dateString)
