@@ -1,5 +1,5 @@
 const SET_PROJECTS = "projects/SET_PROJECT";
-const GET_PROJECT = "/projects/GET_PROJECT";
+const ADD_PROJECT = "/projects/ADD_PROJECT";
 const REMOVE_PROJECT = "projects/REMOVE_PROJECT";
 
 const setProjects = (projects) => ({
@@ -7,8 +7,8 @@ const setProjects = (projects) => ({
     projects
 });
 
-const getProject = (project) => ({
-    type: GET_PROJECT,
+const addProject = (project) => ({
+    type: ADD_PROJECT,
     project
 });
 
@@ -18,7 +18,7 @@ const removeProject = (payload) => ({
 });
 
 
-export const project = (projectId) => async dispatch => {
+export const getProject = (projectId) => async dispatch => {
     const response = await fetch(`/api/projects/${projectId}`, {
         headers: {'Content-Type': 'application/json'}
     });
@@ -26,7 +26,7 @@ export const project = (projectId) => async dispatch => {
     if(!response.ok){
         return;
     };
-    dispatch(getProject(data))
+    dispatch(addProject(data))
 };
 
 export const projects = () => async dispatch => {
@@ -63,7 +63,7 @@ export const postProject = (project) => async dispatch => {
     if(!response.ok){
         return;
     };
-    return dispatch(getProject(data));
+    return dispatch(addProject(data));
 };
 
 export const updateProjectStatus = (project) => async dispatch => {
@@ -78,7 +78,7 @@ export const updateProjectStatus = (project) => async dispatch => {
     if (!response.ok) {
         return;
     };
-    return dispatch(getProject(data));
+    return dispatch(addProject(data));
 };
 
 const initialState = { project: null , projects: []}
@@ -92,7 +92,7 @@ const projectReducer = (state=initialState, action) => {
             const id = action.payload.id
             newState.projects = newState.projects.filter(project => project.id !== id)
             return { project: null , projects: newState.projects};
-        case GET_PROJECT:
+        case ADD_PROJECT:
             const allProjects = [...state.projects]
             allProjects.push(action.project)
             return {project: action.project, projects: [...allProjects]};

@@ -4,7 +4,7 @@ import TaskRow from './TaskRow';
 import TaskRowForm from './TaskRowForm';
 import { getTasksFunction, deleteTaskFunction } from '../../store/task';
 import { getUsersFunction } from '../../store/user';
-import { project } from '../../store/project';
+import { getProject } from '../../store/project';
 
 const TaskTable = ({ projectProp }) => {
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const TaskTable = ({ projectProp }) => {
     } 
 
     useEffect(() => {
-        if(projectProp) dispatch(project(projectProp.id))
+        if(projectProp) dispatch(getProject(projectProp.id))
         dispatch(getUsersFunction())
         dispatch(getTasksFunction())
     }, [dispatch, lastTask, lastDeletedTask])
