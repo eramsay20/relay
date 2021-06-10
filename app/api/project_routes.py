@@ -59,12 +59,12 @@ def update_project_status(id):
     return project.to_dict() if project else {"Project": "Null"}
 
 
-@project_routes.route("/<int:id>", methods=["GET", "DELETE"])
+@project_routes.route("/<int:projectId>", methods=["GET", "DELETE"])
 @login_required
-def project(id):
-    project = Project.query.get(id)
+def project(projectId):
+    project = Project.query.get(projectId)
     if request.method == "DELETE":
-        tasks = Task.query.filter_by(project_id=id).all()
+        tasks = Task.query.filter_by(project_id=projectId).all()
         length = len(tasks)
         i = 0
         while i < length:

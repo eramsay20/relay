@@ -2,11 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteProject } from '../../store/project'
 const ProjectDeleteForm = ( { prop } ) => {
-  console.log(prop)
   const dispatch = useDispatch();
   const [projectId, setProjectId] = useState(0)
   let projects;
-  console.log(prop)
   if(prop.project.length > 0){
     projects = prop.project
   } else {
@@ -14,9 +12,7 @@ const ProjectDeleteForm = ( { prop } ) => {
   }
   const setShowModal = prop.modal
   const onDelete = (e) =>{
-    console.log(e)
     const deleteId = projectId
-    console.log(deleteId)
     dispatch(deleteProject(deleteId))
     setShowModal(false)
   }

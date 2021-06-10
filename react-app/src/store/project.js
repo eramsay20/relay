@@ -90,10 +90,7 @@ const projectReducer = (state=initialState, action) => {
         case REMOVE_PROJECT:
             const newState = {...state};
             const id = action.payload.id
-            console.log(action.payload)
-            console.log(newState.projects)
             newState.projects = newState.projects.filter(project => project.id !== id)
-            console.log(newState.projects)
             return { project: null , projects: newState.projects};
         case GET_PROJECT:
             const allProjects = [...state.projects]

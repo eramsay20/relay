@@ -15,7 +15,7 @@ const ProjectPage = () => {
     const [projectStatus, setProjectStatus] = useState(false);
 
     useEffect(() => {
-        dispatch(project(parseInt(project_id)))
+        dispatch(project(Number(project_id)))
     }, [dispatch, projectStatus]);
 
     const toggleProjectStatus = () => {
